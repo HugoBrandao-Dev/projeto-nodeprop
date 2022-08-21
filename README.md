@@ -16,7 +16,7 @@ desenvolvimento back-end.
 * Express JS: Criação de rotas que atenderão as requisições.
 
 ### Biblioteca(s)
-* KnexJS: Query builder, para a comunicação entre a aplicação e o banco de dados MySQL.
+
 
 ### Banco de dados
 * MySQL: Para armazenamento de dados.
@@ -25,5 +25,6 @@ desenvolvimento back-end.
 * Node.js: Para uso de JavaScript.
 * NPM: Para gerenciamento de pacotes.
 * EJS: Template engine, para geração de HTML utilizando JavaScript
+* KnexJS: Query builder, para a comunicação entre a aplicação e o banco de dados MySQL.
 
 # Possíveis melhorias futuras
