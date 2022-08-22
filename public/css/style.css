@@ -192,6 +192,21 @@ button {
 	line-height: 1.5em;
 }
 
+/* PRINCIPAL */
+
+.principal {
+	background-color: #fff;
+}
+
+.principal h2 {
+	font-size: 2.0em;
+	font-weight: 700;
+}
+
+.principal h3 {
+	font-size: 1.5em;
+}
+
 /* NEWSLETTER */
 
 .newsletter h2 {
@@ -231,34 +246,6 @@ button {
 .rodape .copyright {
 	color: rgba(255,255,255,0.7);
 }
-
-/*
-=> MEDIA TYPES <=
-
-- Screen: Para monitores ou dispositivos com telas coloridas e resolução 
-adequada.
-- Print: Para impressoras. Muito usado para dar uma versão de impressão
-do site.
-*/
-
-
-/*
-A mudança só ocorrerá se a página estiver no modo de impressão
-@media print {
-	.banner .title h2, .banner .title h3, .newsletter h2, .newsletter h3 {
-		color: #130400;
-	}
-}
-*/
-
-/* 
-MEDIA QUERY = MEDIA TYPE + EXPRESSÃO
-@media screen and (min-width: 320px) { Isso é um MEDIA QUERY }
-*/
-
-/* ========== MOBILE FIRST ========== */
-
-/* SMALL DEVICES - SMARTHPHONES */
 
 @media screen and (min-width: 480px) {
 	.cabecalho .logo {

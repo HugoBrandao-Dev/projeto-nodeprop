@@ -6,6 +6,12 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
+// Controllers
+const clientesController = require('./controllers/ClientesController')
+
+// Configuração dos Controllers
+app.use('/', clientesController)
+
 app.get('/', (req, res) => {
   res.render('index')
 })
