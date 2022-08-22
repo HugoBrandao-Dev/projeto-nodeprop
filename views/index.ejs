@@ -1,8 +1,5 @@
 <%- include('header.ejs') %>
 <%- include('banner.ejs') %>
-
-  <!-- Corpo -->
-
   <main class="servicos container">
     <article class="servico bg-white br-7">
       <a href="#"><img src="img/criacoes.jpg" alt="Campanhas Publicitárias"></a>
@@ -29,37 +26,5 @@
       </div>
     </article>
   </main>
-
-  <!-- Newsletter -->
-  <%- include('newsletter.ejs') %>
-
-  <!-- Footer -->
-  <footer class="rodape container bg-gradient text-center">
-    <div class="social-icons">
-      <a href="#" class="btn-facebook"><i class="fab fa-facebook fa-lg"></i></a>
-      <a href="#" class="btn-twitter"><i class="fab fa-twitter fa-lg"></i></a>
-      <a href="#" class="btn-google"><i class="fab fa-google fa-lg"></i></a>
-      <a href="#" class="btn-instagram"><i class="fab fa-instagram fa-lg"></i></a>
-      <a href="#" class="btn-envelope"><i class="far fa-envelope fa-lg"></i></a>
-    </div>
-    <p class="copyright mt-2">
-      Copyright &copy; NodeProp 2021. Todos os direitos reservados.
-    </p>
-  </footer>
-
-  <!-- SCRIPTS -->
-  <!-- Jquery -->
-  <script src="https://code.jquery.com/jquery-1.12.0.js" integrity="sha256-yFU3rK1y8NfUCd/B4tLapZAy9x0pZCqLZLmFL3AWb7s=" crossorigin="anonymous"></script>
-  <script>
-    // Mostra o menu quando o botão btn-menu é clicado
-    $(".btn-menu").click(function () {
-      $(".menu").show()
-    })
-
-    // Esconde o menu quando o botão btn-close é clicado
-    $(".btn-close").click(function() {
-      $(".menu").hide()
-    })
-  </script>
-</body>
-</html>
+<%- include('newsletter.ejs') %>
+<%- include('footer.ejs') %>
