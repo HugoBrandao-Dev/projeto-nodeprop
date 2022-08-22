@@ -9,10 +9,12 @@ app.use(express.json())
 // Controllers
 const clientesController = require('./controllers/ClientesController')
 const servicosController = require('./controllers/ServicosController')
+const blogController = require('./controllers/blogController')
 
 // Configuração dos Controllers
 app.use('/', clientesController)
 app.use('/', servicosController)
+app.use('/', blogController)
 
 app.get('/', (req, res) => {
   res.render('index')
