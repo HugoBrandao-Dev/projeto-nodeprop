@@ -74,7 +74,7 @@ button {
 	width: 20%;
 	height: 4px;
 	border-radius: 2px;
-	margin: 20px auto;
+	margin: 50px auto;
 	background: linear-gradient(to right, #ce2e3c, #da6709);
 }
 
@@ -169,12 +169,16 @@ button {
 	padding: 5%;
 }
 
-/* SERVIÇOS */
+/* Áreas: SERVIÇOS e CLIENTES */
 
-.servicos .servico {
+.servicos .servico, .clientes .cliente {
 	width: 100%;
 	text-align: left;
 	margin-bottom: 3%;
+}
+
+.clientes .cliente img {
+	border-radius: 7px;
 }
 
 .servicos .servico img {
@@ -295,12 +299,12 @@ button {
 	.banner .title h3 {
 		font-size: 2em;
 	}
-	.servicos .servico {
+	.servicos .servico, .clientes .cliente {
 		width: 49%;
 		float: left;
 		margin-right: 2%;
 	}
-	.servicos .servico:nth-child(2) { /* Mexe com o segundo elemento que contém a classe servico */
+	.servicos .servico:nth-child(2), .clientes .cliente:nth-child(2){ /* Mexe com o segundo elemento que contém a classe servico */
 		margin-right: 0;
 	}
 	.newsletter h2 {
@@ -370,13 +374,13 @@ button {
 			width: 100%;
 			margin-right: 0;
 		}
-		.servicos .servico {
+		.servicos .servico, .clientes .cliente {
 			width: 32%;
 		}
-		.servicos .servico:nth-child(2) {
+		.servicos .servico:nth-child(2), .clientes .cliente:nth-child(2) {
 			margin-right: 2%;
 		}
-		.servicos .servico:nth-child(3) {
+		.servicos .servico:nth-child(3), .clientes .cliente:nth-child(3) {
 			margin-right: 0;
 		}
 		.newsletter form input {
