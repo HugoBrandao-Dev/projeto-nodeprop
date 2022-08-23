@@ -70,6 +70,14 @@ button {
 	margin-top: 2%;
 }
 
+.horizontal-bar {
+	width: 20%;
+	height: 4px;
+	border-radius: 2px;
+	margin: 20px auto;
+	background: linear-gradient(to right, #ce2e3c, #da6709);
+}
+
 /* CABEÇALHO */
 
 .cabecalho .logo {
@@ -201,6 +209,7 @@ button {
 .principal h2 {
 	font-size: 2.0em;
 	font-weight: 700;
+	margin-bottom: 10px;
 }
 
 .principal h3 {
