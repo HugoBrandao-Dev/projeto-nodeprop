@@ -74,7 +74,7 @@ button {
 	width: 20%;
 	height: 4px;
 	border-radius: 2px;
-	margin: 50px auto;
+	margin: 25px auto;
 	background: linear-gradient(to right, #ce2e3c, #da6709);
 }
 
@@ -204,6 +204,39 @@ button {
 	line-height: 1.5em;
 }
 
+.artigos .artigo {
+	background-color: rgb(245,245,245);
+	margin-bottom: 10px;
+	float: left;
+}
+
+.artigos .artigo:last-child {
+	margin-bottom: 0px;
+}
+
+.artigos .artigo .title {
+	padding: 7px;
+	font-size: 1.5em;
+}
+
+.artigos .artigo .text {
+	padding: 0 7px;
+	margin: 7px 0;
+	height: 100px;
+	overflow: hidden;
+}
+
+.artigos .artigo a {
+	float: left;
+	font-size: 1em;
+	text-align: center;
+	color: #fff;
+	padding: 7px;
+	border-radius: 0 0 7px 7px;
+	width: 100%;
+	background: linear-gradient(to right, #ce2e3c, #da6709);
+}
+
 /* PRINCIPAL */
 
 .principal {
@@ -307,6 +340,21 @@ button {
 	.servicos .servico:nth-child(2), .clientes .cliente:nth-child(2){ /* Mexe com o segundo elemento que contém a classe servico */
 		margin-right: 0;
 	}
+
+	.artigos .artigo .title, .artigos .artigo .text {
+		padding: 0;
+	}
+
+	.artigos .artigo {
+		padding: 7px;
+	}
+
+	.artigos .artigo a {
+		border-radius: 7px;
+		float: right;
+		width: auto;
+	}
+
 	.newsletter h2 {
 		font-size: 2em;
 	}
