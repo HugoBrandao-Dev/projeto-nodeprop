@@ -270,6 +270,31 @@ button {
 /* SMALL DEVICES - TABLETS */
 
 @media screen and (min-width: 768px) {
+	.banner .title {
+		width: 100%;
+		float: left;
+		text-align: left;
+		margin-right: 2%;
+	}
+	.banner .buttons {
+		width: 100%;
+		float: right;
+		margin-top: 0;
+	}
+	.banner .buttons button {
+		width: 49%;
+		margin-right: 1%;
+	}
+	.banner .buttons button:last-child {
+		margin-right: 0;
+	}
+	.banner .title h2 {
+		font-size: 3em;
+	}
+
+	.banner .title h3 {
+		font-size: 2em;
+	}
 	.servicos .servico {
 		width: 49%;
 		float: left;
@@ -301,46 +326,6 @@ button {
 /* MEDIUM DEVICES - TABLETS & DESKTOPS */
 
 @media screen and (min-width: 960px) {
-	.banner .title {
-		width: 68%;
-		float: left;
-		text-align: left;
-		margin-right: 2%;
-	}
-	.banner .buttons {
-		width: 30%;
-		float: right;
-		margin-top: 0;
-	}
-	.banner .title h2 {
-		font-size: 3em;
-	}
-
-	.banner .title h3 {
-		font-size: 2em;
-	}
-	.servicos .servico {
-		width: 32%;
-	}
-	.servicos .servico:nth-child(2) {
-		margin-right: 2%;
-	}
-	.servicos .servico:nth-child(3) {
-		margin-right: 0;
-	}
-	.newsletter form input {
-		width: 60%;
-		float: none;
-	}
-	.newsletter form button {
-		width: 20%;
-		float: none;
-	}
-}
-
-/* LARGE DEVICES - WIDESCREENS */
-
-@media screen and (min-width: 1280px) {
 	.cabecalho .btn-menu, .cabecalho .menu .btn-close {
 		display: none;
 	}
@@ -357,22 +342,49 @@ button {
 			acabam não aparecerendo. Para contornar esse problema, colocamos
 			a propriedade !important, que forçará o menu a aparecer quando
 			a tela atingir outro brackpoint.
-		*/
-		display: block !important;
-		position: static;
+			*/
+			display: block !important;
+			position: static;
+		}
+		.cabecalho .menu li {
+			padding: 0;
+			float: left;
+		}
+		.cabecalho .menu li a {
+			color: #130400;
+			font-size: 1em;
+			padding: 15px;
+		}
+		.cabecalho .menu li a:hover {
+			border: none;
+			color: #da6709;
+		}
+		.banner .title {
+			width: 68%;
+			margin-right: 2%;
+		}
+		.banner .buttons {
+			width: 30%;
+		}
+		.banner .buttons button {
+			width: 100%;
+			margin-right: 0;
+		}
+		.servicos .servico {
+			width: 32%;
+		}
+		.servicos .servico:nth-child(2) {
+			margin-right: 2%;
+		}
+		.servicos .servico:nth-child(3) {
+			margin-right: 0;
+		}
+		.newsletter form input {
+			width: 60%;
+			float: none;
+		}
+		.newsletter form button {
+			width: 20%;
+			float: none;
+		}
 	}
-	.cabecalho .menu li {
-		padding: 0;
-		float: left;
-	}
-	.cabecalho .menu li a {
-		color: #130400;
-		font-size: 1em;
-		padding: 15px;
-	}
-	.cabecalho .menu li a:hover {
-		border: none;
-		color: #da6709;
-	}
-
-}
