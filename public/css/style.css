@@ -267,6 +267,35 @@ button {
 	float: right;
 }
 
+.informations {
+	background-color: rgb(245,245,245);
+	padding: 7px;
+	border-radius: 7px;
+}
+
+.informations .information {
+	margin-bottom: 20px;
+}
+
+.information .contacts i {
+	font-size: 20px;
+}
+
+.informations .information:last-child {
+	margin-bottom: 0;
+}
+
+.informations .information h1 {
+	font-size: 1.2em;
+	font-weight: 500;
+	margin-bottom: 5px;
+}
+
+.informations .information iframe {
+	width: 100%;
+	height: 200px;
+}
+
 /* PRINCIPAL */
 
 .principal {
@@ -391,6 +420,17 @@ button {
 
 	.about figure {
 		width: 48%;
+	}
+
+	.informations .information .localization {
+		width: 50%;
+		height: 400px;
+		margin: 0 auto;
+	}
+
+	.informations .information iframe {
+		height: 100%;
+		width: 100%;
 	}
 
 	.newsletter h2 {
