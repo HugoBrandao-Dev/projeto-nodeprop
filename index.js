@@ -24,6 +24,10 @@ app.get('/', (req, res) => {
   res.render('index')
 })
 
+app.get('/admin', (req, res) => {
+  res.render('admin/index')
+})
+
 app.listen(8080, error => {
   if (error) {
     console.log('Servidor: [ Error ] => ' + error)
