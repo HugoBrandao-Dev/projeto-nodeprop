@@ -223,6 +223,7 @@ button {
 	padding: 0 7px;
 	margin: 7px 0;
 	height: 100px;
+	text-align: justify;
 	overflow: hidden;
 }
 
@@ -235,6 +236,35 @@ button {
 	border-radius: 0 0 7px 7px;
 	width: 100%;
 	background: linear-gradient(to right, #ce2e3c, #da6709);
+}
+
+.about, .about p, .about figure {
+	float: left;
+}
+
+.about {
+	text-align: justify;
+	background-color: rgb(245,245,245);
+	padding: 7px;
+}
+
+.about p {
+	text-indent: 2.5em;
+	line-height: 1.5em;
+}
+
+.about figure {
+	width: 100%;
+	margin: 10px 0;
+}
+
+.about figure:first-child {
+	margin-top: 0;
+}
+
+.about figcaption {
+	font-size: 0.9em;
+	float: right;
 }
 
 /* PRINCIPAL */
@@ -340,7 +370,6 @@ button {
 	.servicos .servico:nth-child(2), .clientes .cliente:nth-child(2){ /* Mexe com o segundo elemento que contém a classe servico */
 		margin-right: 0;
 	}
-
 	.artigos .artigo .title, .artigos .artigo .text {
 		padding: 0;
 	}
@@ -353,6 +382,15 @@ button {
 		border-radius: 7px;
 		float: right;
 		width: auto;
+	}
+
+	.about p {
+		font-weight: 500;
+		float: inherit;
+	}
+
+	.about figure {
+		width: 48%;
 	}
 
 	.newsletter h2 {
