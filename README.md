@@ -28,3 +28,5 @@ desenvolvimento back-end.
 * KnexJS: Query builder, para a comunicação entre a aplicação e o banco de dados MySQL.
 
 # Possíveis melhorias futuras
+* Corrigir bug das redes sociais, mostradas no footer da página.
+* Corrigir bug da área administrativa, onde os botões de expansão das ações de cada registro ficam amostra, quando clicamos no botão de menu do site.
