@@ -1,3 +1,5 @@
+/* HOME */
+
 .sections-items .section-item, .sections-items .section-item a {
   float: left;
 }
@@ -28,4 +30,110 @@
   font-size: 1.2em;
   font-weight: 700;
   color: #ce2e3c;
+}
+
+/* CLIENTES */
+
+.btn {
+  padding: 5px 10px;
+  font-weight: 500;
+}
+
+.btn-add {
+  background-color: #00b33c;
+  color: #fff;
+  border-radius: 0 7px 0 7px;
+}
+
+.principal table {
+  width: 100%;
+}
+
+thead tr th, tbody tr td {
+  padding: 10px 20px;
+}
+
+thead tr th {
+  font-weight: 700;
+}
+
+tbody tr td {
+  font-weight: 500;
+}
+
+.table-email, .table-cargo, .table-telefone {
+  display: none;
+}
+
+table tr td .btn-table-acao {
+  padding: 6px;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 50%;
+}
+
+table tr td .btn-editar-registro {
+  color: #cccc00;
+  border-color: #cccc00;
+}
+
+table tr td .btn-deletar-registro {
+  color: #ff3333;
+  border-color: #ff3333;
+}
+
+table tr td .btn-info-registro {
+  color: #0066ff;
+  border-color: #0066ff;
+}
+
+.btn-editar-registro, .btn-deletar-registro, .btn-info-registro {
+  float: left;
+  margin-right: 5px;
+}
+
+table tr td .btn-expandir-acoes {
+  color: #fff;
+  border-color: #0066ff;
+  background-color: #0066ff;
+  float: right;
+  position: relative;
+}
+
+table td ul {
+  display: none;
+  position: absolute;
+  left: 50%;
+  width: 120px;
+}
+
+@media screen and (min-width: 768px) {
+
+  /* CLIENTES */
+
+  table tr td .btn-expandir-acoes {
+    display: none;
+    float: none;
+    position: initial;
+  }
+
+  table td ul {
+    display: block;
+    position: initial;
+    margin: 0 auto;
+  }
+
+  table tbody td {
+    text-align: center;
+  }
+
+  .table-email, .table-telefone {
+    display: table-cell;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .table-cargo {
+    display: table-cell;
+  }
 }

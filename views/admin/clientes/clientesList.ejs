@@ -1,0 +1,110 @@
+<%- include('../../partials/admin/header.ejs') %>
+<main class="principal container">
+  <hgroup>
+    <h2>Clientes</h2>
+  </hgroup>
+  <a href="#" class="btn btn-add">Novo cliente</a>
+  <hr class="horizontal-bar">
+  <article class="clientes">
+    <table>
+      <thead>
+        <tr>
+          <th class="table-id">ID</th>
+          <th class="table-nome">Nome</th>
+          <th class="table-email">Email</th>
+          <th class="table-telefone">Telefone</th>
+          <th class="table-cargo">Cargo</th>
+          <th class="table-acao">Ação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="table-id">0</td>
+          <td class="table-nome">Tobias de Oliveira</td>
+          <td class="table-email">tobias@gmail.com</td>
+          <td class="table-telefone">(00) 00000-0000</td>
+          <td class="table-cargo">Desenvolvedor Mobile</td>
+          <td class="table-acao">
+            <button class="btn-table-acao btn-expandir-acoes expandir-0"><i class="fas fa-ellipsis-h"></i></button>
+            <ul class="acoes-0">
+              <li>
+                <a href="#" class="btn-table-acao btn-editar-registro" title="Editar registro"><i class="fa fa-edit"></i></a>
+              </li>
+              <li>
+                <a href="#" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></a>
+              </li>
+              <li>
+                <a href="#" class="btn-table-acao btn-info-registro" title="Informações do registro"><i class="fa fa-info-circle"></i></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="table-id">1</td>
+          <td class="table-nome">Dinorá de Oliveira</td>
+          <td class="table-email">dinora@hotmail.com</td>
+          <td class="table-telefone">(11) 11111-1111</td>
+          <td class="table-cargo">Atendente</td>
+          <td class="table-acao">
+            <button class="btn-table-acao btn-expandir-acoes expandir-1"><i class="fas fa-ellipsis-h"></i></button>
+            <ul class="acoes-1">
+              <li>
+                <a href="#" class="btn-table-acao btn-editar-registro" title="Editar registro"><i class="fa fa-edit"></i></a>
+              </li>
+              <li>
+                <a href="#" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></a>
+              </li>
+              <li>
+                <a href="#" class="btn-table-acao btn-info-registro" title="Informações do registro"><i class="fa fa-info-circle"></i></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="table-id">2</td>
+          <td class="table-nome">Josias Cruz</td>
+          <td class="table-email">josias@yahoo.com</td>
+          <td class="table-telefone">(22) 22222-2222</td>
+          <td class="table-cargo">Desenvolvedor de Software</td>
+          <td class="table-acao">
+            <button class="btn-table-acao btn-expandir-acoes expandir-2"><i class="fas fa-ellipsis-h"></i></button>
+            <ul class="acoes-2">
+              <li>
+                <a href="#" class="btn-table-acao btn-editar-registro" title="Editar registro"><i class="fa fa-edit"></i></a>
+              </li>
+              <li>
+                <a href="#" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></a>
+              </li>
+              <li>
+                <a href="#" class="btn-table-acao btn-info-registro" title="Informações do registro"><i class="fa fa-info-circle"></i></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="table-id">3</td>
+          <td class="table-nome">Doralice Cruz</td>
+          <td class="table-email">doralice@uol.com</td>
+          <td class="table-telefone">(33) 33333-3333</td>
+          <td class="table-cargo">Desenvolvedor de Software</td>
+          <td class="table-acao">
+            <button class="btn-table-acao btn-expandir-acoes expandir-3"><i class="fas fa-ellipsis-h"></i></button>
+            <ul class="acoes-3">
+              <li>
+                <a href="#" class="btn-table-acao btn-editar-registro" title="Editar registro"><i class="fa fa-edit"></i></a>
+              </li>
+              <li>
+                <a href="#" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></a>
+              </li>
+              <li>
+                <a href="#" class="btn-table-acao btn-info-registro" title="Informações do registro"><i class="fa fa-info-circle"></i></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </article>
+</main>
+<script type="text/javascript" src="/js/botoesExpandirAcoes.js"></script>
+<%- include('../../partials/admin/footer.ejs') %>
