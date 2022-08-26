@@ -114,14 +114,6 @@ table td ul {
   width: 120px;
 }
 
-tbody .ul-responsaveis li {
-  list-style: initial;
-}
-
-tbody .ul-responsaveis {
-  text-align: left;
-}
-
 /* Cliente: informações */
 
 .cliente-info {
@@ -165,6 +157,27 @@ tbody .ul-responsaveis {
 .btn-edit {
   background-color: #e6e600;
   color: #000;
+}
+
+/* SERVIÇOS */
+
+tbody .ul-responsaveis li {
+  list-style: initial;
+}
+
+tbody .ul-responsaveis {
+  text-align: left;
+}
+
+/* SERVIÇOS: Responsáveis */
+
+.div-responsaveis label {
+  float: left;
+  width: 100%;
+}
+
+.div-responsaveis input {
+  width: 10px;
 }
 
 @media screen and (min-width: 768px) {
