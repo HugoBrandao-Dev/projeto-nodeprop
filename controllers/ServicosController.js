@@ -15,4 +15,16 @@ router.get('/admin/servico/novo', (req, res) => {
   res.render('admin/servicos/servicoCadastrar')
 })
 
+router.post('/admin/servico/salvarNovo', (req, res) => {
+  let servico = req.body.iptServico
+  let responsavel = req.body.iptResponsavel
+  let informacoes = req.body.iptInformacoes
+
+  res.send({
+    servico,
+    responsavel,
+    informacoes,
+  })
+})
+
 module.exports = router
