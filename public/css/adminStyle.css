@@ -67,7 +67,7 @@ tbody tr:hover {
   background-color: #f2f2f2;
 }
 
-.table-email, .table-cargo, .table-telefone {
+.table-email, .table-cargo, .table-telefone, .table-responsaveis {
   display: none;
 }
 
@@ -112,6 +112,14 @@ table td ul {
   position: absolute;
   left: 50%;
   width: 120px;
+}
+
+tbody .ul-responsaveis li {
+  list-style: initial;
+}
+
+tbody .ul-responsaveis {
+  text-align: left;
 }
 
 /* Cliente: informações */
@@ -179,7 +187,7 @@ table td ul {
     text-align: center;
   }
 
-  .table-email, .table-telefone {
+  .table-email, .table-telefone, .table-responsaveis {
     display: table-cell;
   }
 
