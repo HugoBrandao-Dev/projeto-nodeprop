@@ -1,0 +1,67 @@
+<%- include('../../partials/admin/header.ejs') %>
+<main class="principal container">
+  <hgroup>
+    <h2>Atualizar</h2>
+    <h3>Atualizar informações do cliente</h3>
+  </hgroup>
+  <hr class="horizontal-bar">
+  <form class="form-cadastro" method="POST" action="/admin/cliente/salvarNovo" onsubmit="desmascarar(event, this)">
+    <label>Nome:</label>
+    <input type="text" name="iptNome" class="br-7" placeholder="Nome completo">
+
+    <label>Data de nascimento/Criação:</label>
+    <input type="date" name="iptAno" class="br-7">
+
+    <label>Email:</label>
+    <input type="email" name="iptEmail" class="br-7" placeholder="seu_email@email.com">
+
+    <label>Telefone:</label>
+    <input type="tel" name="iptTelefone" class="br-7">
+
+    <label>Celular:</label>
+    <input type="tel" name="iptCelular" class="br-7">
+
+    <label>Localização/Cidade:</label>
+    <input type="text" name="iptLocalizacao" class="br-7">
+
+    <label>Endereço:</label>
+    <input type="text" name="iptEndereco" class="br-7" placeholder="Bairro/Rua/Número">
+
+    <label>Informações adicionais:</label>
+    <textarea class="br-7" rows="10" name="iptInformacoes"></textarea>
+
+    <label>CPF/CNPJ:</label>
+    <input type="text" name="iptIdentificacao" class="br-7">
+
+    <label>Contrato assinado:</label>
+    <input type="file" name="iptContrato" class="br-7">
+
+    <button type="submit" class="btn btn-edit btn-right">Atualizar</button>
+  </form>
+</main>
+<script type="text/javascript" src="/js/botoesExpandirAcoes.js"></script>
+<script src="https://unpkg.com/imask"></script>
+<script type="text/javascript">
+
+  // Mascara para o telefone
+  let iptTelefone = document.getElementsByName('iptTelefone')[0]
+  let telefoneMask = {
+    mask: '+00 (00) 00000-0000'
+  }
+  let aplicarMaskTelefone = IMask(iptTelefone, telefoneMask)
+
+  // Mascara para o telefone
+  let iptCelular = document.getElementsByName('iptCelular')[0]
+  let celularMask = {
+    mask: '+00 (00) 00000-0000'
+  }
+  let aplicarMaskCelular = IMask(iptCelular, celularMask)
+
+  function desmascarar(event, form) {
+    event.preventDefault()
+    iptCelular.value = aplicarMaskCelular.unmaskedValue
+    iptTelefone.value = aplicarMaskTelefone.unmaskedValue
+    form.submit()
+  }
+</script>
+<%- include('../../partials/admin/footer.ejs') %>

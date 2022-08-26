@@ -41,4 +41,9 @@ router.post('/admin/cliente/salvarNovo', (req, res) => {
   })
 })
 
+router.get('/admin/cliente/edit/:id', (req, res) => {
+  let id = req.params.id
+  res.render('admin/clientes/clienteEdit')
+})
+
 module.exports = router
