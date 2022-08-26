@@ -5,23 +5,23 @@
     <h3>Cadastrar novo serviço</h3>
   </hgroup>
   <hr class="horizontal-bar">
-  <form class="form-cadastro" method="POST" action="/admin/cliente/salvarNovo" onsubmit="desmascarar(event, this)">
+  <form class="form-cadastro" method="POST" action="/admin/servico/salvarNovo">
     <label>Serviço:</label>
-    <input type="text" name="iptNome" class="br-7" placeholder="Nome do serviço">
+    <input type="text" name="iptServico" class="br-7" placeholder="Nome do serviço">
 
     <label>Responsáveis:</label>
     <div class="div-responsaveis">
       <label>
-        <input type="checkbox" name="iptResponsavel" value="0"> Tobias de Oliveira
+        <input type="checkbox" name="iptResponsaveis" value="0"> Tobias de Oliveira
       </label>
       <label>
-        <input type="checkbox" name="iptResponsavel" value="0"> Josias Cruz
+        <input type="checkbox" name="iptResponsaveis" value="1"> Josias Cruz
       </label>
       <label>
-        <input type="checkbox" name="iptResponsavel" value="0"> Doralice Cruz
+        <input type="checkbox" name="iptResponsaveis" value="2"> Doralice Cruz
       </label>
       <label>
-        <input type="checkbox" name="iptResponsavel" value="0"> Dinorá de Oliveira
+        <input type="checkbox" name="iptResponsaveis" value="4"> Dinorá de Oliveira
       </label>
     </div>
 
