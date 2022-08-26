@@ -1,11 +1,11 @@
 <%- include('../../partials/admin/header.ejs') %>
 <main class="principal container">
   <hgroup>
-    <h2>Atualizar</h2>
-    <h3>Atualizar informações do cliente</h3>
+    <h2>Cadastrar</h2>
+    <h3>Cadastrar novo cliente</h3>
   </hgroup>
   <hr class="horizontal-bar">
-  <form class="form-cadastro">
+  <form class="form-cadastro" method="POST" action="/admin/cliente/salvarNovo" onsubmit="desmascarar(event, this)">
     <label>Nome:</label>
     <input type="text" name="iptNome" class="br-7" placeholder="Nome completo">
 
@@ -31,12 +31,12 @@
     <textarea class="br-7" rows="10" name="iptInformacoes"></textarea>
 
     <label>CPF/CNPJ:</label>
-    <input type="text" name="iptCPF" class="br-7">
+    <input type="text" name="iptIdentificacao" class="br-7">
 
     <label>Contrato assinado:</label>
     <input type="file" name="iptContrato" class="br-7">
 
-    <button class="btn btn-add btn-right">Cadastrar</button>
+    <button type="submit" class="btn btn-add btn-right">Cadastrar</button>
   </form>
 </main>
 <script type="text/javascript" src="/js/botoesExpandirAcoes.js"></script>
@@ -56,5 +56,12 @@
     mask: '+00 (00) 00000-0000'
   }
   let aplicarMaskCelular = IMask(iptCelular, celularMask)
+
+  function desmascarar(event, form) {
+    event.preventDefault()
+    iptCelular.value = aplicarMaskCelular.unmaskedValue
+    iptTelefone.value = aplicarMaskTelefone.unmaskedValue
+    form.submit()
+  }
 </script>
 <%- include('../../partials/admin/footer.ejs') %>

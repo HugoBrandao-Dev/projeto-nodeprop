@@ -15,4 +15,30 @@ router.get('/admin/cliente/novo', (req, res) => {
   res.render('admin/clientes/clienteCadastrar')
 })
 
+router.post('/admin/cliente/salvarNovo', (req, res) => {
+  let nome = req.body.iptNome
+  let ano = req.body.iptAno
+  let email = req.body.iptEmail
+
+  let telefone = req.body.iptTelefone
+  let celular = req.body.iptCelular
+
+  let localizacao = req.body.iptLocalizacao
+  let endereco = req.body.iptEndereco
+  let informacoes = req.body.iptInformacoes
+  let cpf = req.body.iptCPF
+
+  res.send({
+    nome,
+    ano,
+    email,
+    telefone,
+    celular,
+    localizacao,
+    endereco,
+    informacoes,
+    cpf
+  })
+})
+
 module.exports = router
