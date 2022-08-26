@@ -31,7 +31,10 @@
                 <a href="/admin/cliente/edit/0" class="btn-table-acao btn-editar-registro" title="Editar registro"><i class="fa fa-edit"></i></a>
               </li>
               <li>
-                <a href="#" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></a>
+                <form method="POST" action="/admin/cliente/deletar" onsubmit="deletarRegistro(event, this)">
+                  <input type="hidden" name="iptId" value="0">
+                  <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
+                </form>
               </li>
               <li>
                 <a href="#" class="btn-table-acao btn-info-registro" title="Informações do registro"><i class="fa fa-info-circle"></i></a>
@@ -49,10 +52,13 @@
             <button class="btn-table-acao btn-expandir-acoes expandir-1"><i class="fas fa-ellipsis-h"></i></button>
             <ul class="acoes-1">
               <li>
-                <a href="/admin/cliente/edit/0" class="btn-table-acao btn-editar-registro" title="Editar registro"><i class="fa fa-edit"></i></a>
+                <a href="/admin/cliente/edit/1" class="btn-table-acao btn-editar-registro" title="Editar registro"><i class="fa fa-edit"></i></a>
               </li>
               <li>
-                <a href="#" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></a>
+                <form method="POST" action="/admin/cliente/deletar" onsubmit="deletarRegistro(event, this)">
+                  <input type="hidden" name="iptId" value="1">
+                  <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
+                </form>
               </li>
               <li>
                 <a href="#" class="btn-table-acao btn-info-registro" title="Informações do registro"><i class="fa fa-info-circle"></i></a>
@@ -70,10 +76,13 @@
             <button class="btn-table-acao btn-expandir-acoes expandir-2"><i class="fas fa-ellipsis-h"></i></button>
             <ul class="acoes-2">
               <li>
-                <a href="/admin/cliente/edit/0" class="btn-table-acao btn-editar-registro" title="Editar registro"><i class="fa fa-edit"></i></a>
+                <a href="/admin/cliente/edit/2" class="btn-table-acao btn-editar-registro" title="Editar registro"><i class="fa fa-edit"></i></a>
               </li>
               <li>
-                <a href="#" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></a>
+                <form method="POST" action="/admin/cliente/deletar" onsubmit="deletarRegistro(event, this)">
+                  <input type="hidden" name="iptId" value="2">
+                  <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
+                </form>
               </li>
               <li>
                 <a href="#" class="btn-table-acao btn-info-registro" title="Informações do registro"><i class="fa fa-info-circle"></i></a>
@@ -91,10 +100,13 @@
             <button class="btn-table-acao btn-expandir-acoes expandir-3"><i class="fas fa-ellipsis-h"></i></button>
             <ul class="acoes-3">
               <li>
-                <a href="/admin/cliente/edit/0" class="btn-table-acao btn-editar-registro" title="Editar registro"><i class="fa fa-edit"></i></a>
+                <a href="/admin/cliente/edit/3" class="btn-table-acao btn-editar-registro" title="Editar registro"><i class="fa fa-edit"></i></a>
               </li>
               <li>
-                <a href="#" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></a>
+                <form method="POST" action="/admin/cliente/deletar" onsubmit="deletarRegistro(event, this)">
+                  <input type="hidden" name="iptId" value="3">
+                  <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
+                </form>
               </li>
               <li>
                 <a href="#" class="btn-table-acao btn-info-registro" title="Informações do registro"><i class="fa fa-info-circle"></i></a>
@@ -107,4 +119,5 @@
   </article>
 </main>
 <script type="text/javascript" src="/js/botoesExpandirAcoes.js"></script>
+<script type="text/javascript" src="/js/deletarRegistro.js"></script>
 <%- include('../../partials/admin/footer.ejs') %>
