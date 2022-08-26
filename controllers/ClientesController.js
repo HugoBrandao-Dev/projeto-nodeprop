@@ -11,4 +11,8 @@ router.get('/admin/clientes', (req, res) => {
   res.render('admin/clientes/clientesList')
 })
 
+router.get('/admin/cliente/novo', (req, res) => {
+  res.render('admin/clientes/clienteCadastrar')
+})
+
 module.exports = router

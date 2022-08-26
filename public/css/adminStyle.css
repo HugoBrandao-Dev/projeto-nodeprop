@@ -36,13 +36,13 @@
 
 .btn {
   padding: 5px 10px;
+  color: #fff;
+  border-radius: 0 7px 0 7px;
   font-weight: 500;
 }
 
 .btn-add {
   background-color: #00b33c;
-  color: #fff;
-  border-radius: 0 7px 0 7px;
 }
 
 .principal table {
@@ -107,6 +107,33 @@ table td ul {
   width: 120px;
 }
 
+/* Cliente: novo cliente */
+
+.form-cadastro {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.form-cadastro .btn-edit {
+  float: right;
+}
+
+.form-cadastro textarea {
+  resize: none;
+}
+
+.form-cadastro input, .form-cadastro textarea {
+  border: rgb(133,133,133) solid 1px;
+  padding: 7px 14px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.btn-edit {
+  background-color: #e6e600;
+  color: #000;
+}
+
 @media screen and (min-width: 768px) {
 
   /* CLIENTES */
@@ -130,10 +157,23 @@ table td ul {
   .table-email, .table-telefone {
     display: table-cell;
   }
+
+  /* Cliente: novo cliente */
+
+  .form-cadastro {
+    width: 75%;
+  }
 }
 
 @media screen and (min-width: 960px) {
+
   .table-cargo {
     display: table-cell;
+  }
+
+  /* Cliente: novo cliente */
+
+  .form-cadastro {
+    width: 50%;
   }
 }
