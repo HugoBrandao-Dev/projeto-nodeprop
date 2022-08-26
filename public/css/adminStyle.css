@@ -114,6 +114,24 @@ table td ul {
   width: 120px;
 }
 
+/* Cliente: informações */
+
+.cliente-info {
+  font-weight: 700;
+}
+
+.cliente-info p {
+  margin-bottom: 20px;
+}
+
+.btn-info {
+  background-color: #0099ff;
+}
+
+.cliente-info .btn-info {
+  float: right;
+}
+
 /* Cliente: novo cliente */
 
 .form-cadastro {

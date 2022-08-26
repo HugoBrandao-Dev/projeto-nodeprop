@@ -51,4 +51,9 @@ router.post('/admin/cliente/deletar', (req, res) => {
   res.send(`Registro ${ id } deletado.`)
 })
 
+router.get('/admin/cliente/info/:id', (req, res) => {
+  let id = req.params.id
+  res.render('admin/clientes/clienteInfo')
+})
+
 module.exports = router
