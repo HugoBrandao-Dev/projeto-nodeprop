@@ -96,6 +96,7 @@ table tr td .btn-info-registro {
 .btn-editar-registro, .btn-deletar-registro, .btn-info-registro {
   float: left;
   margin-right: 5px;
+  background-color: #fff;
 }
 
 table tr td .btn-expandir-acoes {
