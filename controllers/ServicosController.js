@@ -45,4 +45,8 @@ router.post('/admin/servico/salvarEdicao', (req, res) => {
   })
 })
 
+router.get('/admin/servico/:id', (req, res) => {
+  res.render('admin/servicos/servicoInfo')
+})
+
 module.exports = router

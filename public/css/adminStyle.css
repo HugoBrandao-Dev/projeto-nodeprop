@@ -116,11 +116,11 @@ table td ul {
 
 /* Cliente: informações */
 
-.cliente-info {
+.cliente-info, .servico-info {
   font-weight: 700;
 }
 
-.cliente-info p {
+.cliente-info p, .servico-info p {
   margin-bottom: 20px;
 }
 
@@ -128,7 +128,7 @@ table td ul {
   background-color: #0099ff;
 }
 
-.cliente-info .btn-info {
+.cliente-info .btn-info, .servico-info .btn-info {
   float: right;
 }
 
@@ -161,12 +161,14 @@ table td ul {
 
 /* SERVIÇOS */
 
-tbody .ul-responsaveis li {
+.ul-responsaveis li {
   list-style: initial;
+  list-style-position: inside;
+  text-align: left;
 }
 
-tbody .ul-responsaveis {
-  text-align: left;
+.servico-info ul {
+  margin-bottom: 20px;
 }
 
 /* SERVIÇOS: Responsáveis */
