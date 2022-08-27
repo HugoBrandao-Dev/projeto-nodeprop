@@ -5,7 +5,9 @@
     <h3>Atualizar informações do cliente</h3>
   </hgroup>
   <hr class="horizontal-bar">
-  <form class="form-cadastro" method="POST" action="/admin/cliente/salvarNovo" onsubmit="desmascarar(event, this)">
+  <form class="form-cadastro" method="POST" action="/admin/cliente/salvarEdicao" onsubmit="desmascarar(event, this)">
+    <input type="hidden" name="iptId" value="0">
+
     <label>Nome:</label>
     <input type="text" name="iptNome" class="br-7" placeholder="Nome completo">
 
