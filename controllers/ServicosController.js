@@ -27,4 +27,8 @@ router.post('/admin/servico/salvarNovo', (req, res) => {
   })
 })
 
+router.get('/admin/servico/edit/:id', (req, res) => {
+  res.render('admin/servicos/servicoEdit')
+})
+
 module.exports = router

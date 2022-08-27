@@ -1,0 +1,39 @@
+<%- include('../../partials/admin/header.ejs') %>
+<main class="principal container">
+  <hgroup>
+    <h2>Atualizar</h2>
+    <h3>Atualizar informações do serviço</h3>
+  </hgroup>
+  <hr class="horizontal-bar">
+  <form class="form-cadastro" method="POST" action="/admin/servico/salvarEdicao">
+    <input type="hidden" name="iptId" value="1">
+
+    <label>Serviço:</label>
+    <input type="text" name="iptServico" class="br-7" placeholder="Nome do serviço">
+
+    <label>Responsáveis:</label>
+    <div class="div-responsaveis">
+      <label>
+        <input type="checkbox" name="iptResponsaveis" value="0"> Tobias de Oliveira
+      </label>
+      <label>
+        <input type="checkbox" name="iptResponsaveis" value="1"> Josias Cruz
+      </label>
+      <label>
+        <input type="checkbox" name="iptResponsaveis" value="2"> Doralice Cruz
+      </label>
+      <label>
+        <input type="checkbox" name="iptResponsaveis" value="4"> Dinorá de Oliveira
+      </label>
+    </div>
+
+    <label>Informações adicionais:</label>
+    <textarea class="br-7" rows="10" name="iptInformacoes"></textarea>
+
+    <label>Contrato do serviço:</label>
+    <input type="file" name="iptContrato" class="br-7">
+
+    <button type="submit" class="btn btn-edit btn-right">Atualizar</button>
+  </form>
+</main>
+<%- include('../../partials/admin/footer.ejs') %>
