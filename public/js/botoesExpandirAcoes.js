@@ -13,9 +13,17 @@ let allBtnExpandir = document.querySelectorAll('button.btn-expandir-acoes')
       let ulCorrespondente = document.querySelector(`ul.acoes-${ numero }`)
 
       if (ulCorrespondente.style.display != 'block') {
+        recolherBotoesAcoes()
         ulCorrespondente.style.display = 'block'
       } else {
         ulCorrespondente.style.display = 'none'
       }
     }
   })
+
+function recolherBotoesAcoes() {
+  let allButtonsExpanded = document.querySelectorAll('ul.acoes')
+  allButtonsExpanded.forEach(ulElemento => {
+    ulElemento.style.display = 'none'
+  })
+}
