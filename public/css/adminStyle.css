@@ -147,7 +147,7 @@ table td ul {
   resize: none;
 }
 
-.form-cadastro input, .form-cadastro textarea {
+.form-cadastro input, .form-cadastro textarea, .form-cadastro select {
   border: rgb(133,133,133) solid 1px;
   padding: 7px 14px;
   width: 100%;
