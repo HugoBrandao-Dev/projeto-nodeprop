@@ -1,0 +1,108 @@
+<%- include('../../partials/admin/header.ejs') %>
+<main class="principal container">
+  <hgroup>
+    <h2>Artigos</h2>
+  </hgroup>
+  <a href="/admin/artigo/novo" class="btn btn-add">Novo artigo</a>
+  <hr class="horizontal-bar">
+  <article class="artigos">
+    <table>
+      <thead>
+        <tr>
+          <th class="table-id">ID</th>
+          <th class="table-titulo">Título</th>
+          <th class="table-acao">Ação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="table-id">0</td>
+          <td class="table-titulo">A importância do marketing digital.</td>
+          <td class="table-acao">
+            <button class="btn-table-acao btn-expandir-acoes expandir-0"><i class="fas fa-ellipsis-h"></i></button>
+            <ul class="acoes acoes-0">
+              <li>
+                <a href="/admin/cliente/edit/0" class="btn-table-acao btn-editar-registro" title="Editar registro"><i class="fa fa-edit"></i></a>
+              </li>
+              <li>
+                <form method="POST" action="/admin/cliente/deletar" onsubmit="deletarRegistro(event, this)">
+                  <input type="hidden" name="iptId" value="0">
+                  <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
+                </form>
+              </li>
+              <li>
+                <a href="/admin/cliente/0" class="btn-table-acao btn-info-registro" title="Visualizar artigo"><i class="fas fa-eye"></i></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="table-id">1</td>
+          <td class="table-titulo">Melhores estratégias digitais para o meu negócio.</td>
+          <td class="table-acao">
+            <button class="btn-table-acao btn-expandir-acoes expandir-1"><i class="fas fa-ellipsis-h"></i></button>
+            <ul class="acoes acoes-1">
+              <li>
+                <a href="/admin/cliente/edit/1" class="btn-table-acao btn-editar-registro" title="Editar registro"><i class="fa fa-edit"></i></a>
+              </li>
+              <li>
+                <form method="POST" action="/admin/cliente/deletar" onsubmit="deletarRegistro(event, this)">
+                  <input type="hidden" name="iptId" value="1">
+                  <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
+                </form>
+              </li>
+              <li>
+                <a href="/admin/cliente/1" class="btn-table-acao btn-info-registro" title="Visualizar artigo"><i class="fas fa-eye"></i></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="table-id">2</td>
+          <td class="table-titulo">Quando devo criar um Website para o meu negócio?</td>
+          <td class="table-acao">
+            <button class="btn-table-acao btn-expandir-acoes expandir-2"><i class="fas fa-ellipsis-h"></i></button>
+            <ul class="acoes acoes-2">
+              <li>
+                <a href="/admin/cliente/edit/2" class="btn-table-acao btn-editar-registro" title="Editar registro"><i class="fa fa-edit"></i></a>
+              </li>
+              <li>
+                <form method="POST" action="/admin/cliente/deletar" onsubmit="deletarRegistro(event, this)">
+                  <input type="hidden" name="iptId" value="2">
+                  <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
+                </form>
+              </li>
+              <li>
+                <a href="/admin/cliente/2" class="btn-table-acao btn-info-registro" title="Visualizar artigo"><i class="fas fa-eye"></i></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="table-id">3</td>
+          <td class="table-titulo">Como fazer uma boa campanha publicitária?</td>
+          <td class="table-acao">
+            <button class="btn-table-acao btn-expandir-acoes expandir-3"><i class="fas fa-ellipsis-h"></i></button>
+            <ul class="acoes acoes-3">
+              <li>
+                <a href="/admin/cliente/edit/3" class="btn-table-acao btn-editar-registro" title="Editar registro"><i class="fa fa-edit"></i></a>
+              </li>
+              <li>
+                <form method="POST" action="/admin/cliente/deletar" onsubmit="deletarRegistro(event, this)">
+                  <input type="hidden" name="iptId" value="3">
+                  <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
+                </form>
+              </li>
+              <li>
+                <a href="/admin/cliente/3" class="btn-table-acao btn-info-registro" title="Visualizar artigo"><i class="fas fa-eye"></i></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </article>
+</main>
+<script type="text/javascript" src="/js/botoesExpandirAcoes.js"></script>
+<script type="text/javascript" src="/js/deletarRegistro.js"></script>
+<%- include('../../partials/admin/footer.ejs') %>
