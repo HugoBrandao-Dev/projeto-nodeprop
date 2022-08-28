@@ -82,4 +82,8 @@ router.post('/admin/funcionario/deletar', (req, res) => {
   res.send(`Registro ${ id } deletado com sucesso.`)
 })
 
+router.get('/admin/funcionario/:id', (req, res) => {
+  res.render('admin/funcionarios/funcionarioInfo')
+})
+
 module.exports = router

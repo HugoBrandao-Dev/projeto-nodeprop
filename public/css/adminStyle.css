@@ -124,11 +124,11 @@ table td ul {
 
 /* Cliente: informações */
 
-.cliente-info, .servico-info {
+.cliente-info, .servico-info, .funcionario-info {
   font-weight: 700;
 }
 
-.cliente-info p, .servico-info p {
+.cliente-info p, .servico-info p, .funcionario-info p {
   margin-bottom: 20px;
 }
 
@@ -136,7 +136,7 @@ table td ul {
   background-color: #0099ff;
 }
 
-.cliente-info .btn-info, .servico-info .btn-info {
+.cliente-info .btn-info, .servico-info .btn-info, .funcionario-info .btn-info {
   float: right;
 }
 
