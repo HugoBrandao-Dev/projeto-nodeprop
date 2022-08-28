@@ -45,6 +45,11 @@ router.post('/admin/servico/salvarEdicao', (req, res) => {
   })
 })
 
+router.post('/admin/servico/deletar', (req, res) => {
+  let id = req.body.iptId
+  res.send(`Registro ${ id } deletado com sucesso.`)
+})
+
 router.get('/admin/servico/:id', (req, res) => {
   res.render('admin/servicos/servicoInfo')
 })
