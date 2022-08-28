@@ -1,0 +1,125 @@
+<%- include('../../partials/admin/header.ejs') %>
+<main class="funcionarios principal container">
+  <hgroup>
+    <h2>Funcionários</h2>
+    <h3>Cadastrar novo setor/cargo para funcionário</h3>
+  </hgroup>
+  <div class="opcoes-funcionario">
+    <label><input type="radio" name="iptOpcao" value="setor" checked> Setor</label>
+    <label><input type="radio" name="iptOpcao" value="cargo"> Cargo</label>
+  </div>
+  <hr class="horizontal-bar">
+  <article class="funcionarios-opcoes">
+    <section id="setor">
+      <form class="form-cadastro form-opcao">
+        <label>Setor:</label>
+        <div class="entrada">
+          <input type="text" name="iptSetor" class="br-7" placeholder="Nome do novo setor">
+          <button type="submit" class="btn btn-add">Cadastrar</button>
+        </div>
+      </form>
+      <hr class="hr-div-horizontal">
+      <table class="table-setores">
+        <caption><h4>Setores cadastrados</h4></caption>
+        <thead>
+          <tr>
+            <th class="table-id">ID</th>
+            <th class="table-nome">Nome</th>
+            <th class="table-acao">Ação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="table-id">0</td>
+            <td class="table-nome">Atendimento</td>
+            <td class="table-acao">
+              <form method="POST" action="/admin/funcionario/deletar" onsubmit="deletarRegistro(event, this)">
+                <input type="hidden" name="iptId" value="0">
+                <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
+              </form>
+            </td>
+          </tr>
+          <tr>
+            <td class="table-id">1</td>
+            <td class="table-nome">Estágio</td>
+            <td class="table-acao">
+              <form method="POST" action="/admin/funcionario/deletar" onsubmit="deletarRegistro(event, this)">
+                <input type="hidden" name="iptId" value="1">
+                <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
+              </form>
+            </td>
+          </tr>
+          <tr>
+            <td class="table-id">2</td>
+            <td class="table-nome">Gerência</td>
+            <td class="table-acao">
+              <form method="POST" action="/admin/funcionario/deletar" onsubmit="deletarRegistro(event, this)">
+                <input type="hidden" name="iptId" value="2">
+                <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section id="cargo">
+      <form class="form-cadastro form-opcao">
+        Setor pertencente:
+        <select name="iptSetorCargo" class="br-7">
+          <option>Atendimento</option>
+          <option>Estágio</option>
+          <option>Gerência</option>
+        </select>
+        Cargo: <input type="text" name="iptCargo" class="br-7" placeholder="Nome do novo cargo">
+        <button type="submit" class="btn btn-add">Cadastrar</button>
+      </form>
+      <hr class="hr-div-horizontal">
+      <table class="table-cargos">
+        <caption><h4>Cargos cadastrados</h4></caption>
+        <thead>
+          <tr>
+            <th class="table-id">ID</th>
+            <th class="table-nome">Nome</th>
+            <th class="table-acao">Ação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="table-id">0</td>
+            <td class="table-nome">Atendente</td>
+            <td class="table-acao">
+              <form method="POST" action="/admin/funcionario/deletar" onsubmit="deletarRegistro(event, this)">
+                <input type="hidden" name="iptId" value="0">
+                <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
+              </form>
+            </td>
+          </tr>
+          <tr>
+            <td class="table-id">1</td>
+            <td class="table-nome">Estágio</td>
+            <td class="table-acao">
+              <form method="POST" action="/admin/funcionario/deletar" onsubmit="deletarRegistro(event, this)">
+                <input type="hidden" name="iptId" value="1">
+                <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
+              </form>
+            </td>
+          </tr>
+          <tr>
+            <td class="table-id">2</td>
+            <td class="table-nome">Gerente</td>
+            <td class="table-acao">
+              <form method="POST" action="/admin/funcionario/deletar" onsubmit="deletarRegistro(event, this)">
+                <input type="hidden" name="iptId" value="2">
+                <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </article>
+</main>
+<script type="text/javascript" src="/js/botoesExpandirAcoes.js"></script>
+<script type="text/javascript" src="/js/deletarRegistro.js"></script>
+<script type="text/javascript" src="/js/sectionsRadios.js"></script>
+<%- include('../../partials/admin/footer.ejs') %>

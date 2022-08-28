@@ -11,4 +11,8 @@ router.get('/admin/funcionario/novo', (req, res) => {
   res.render('admin/funcionarios/funcionarioCadastrar')
 })
 
+router.get('/admin/funcionarios/opcoes', (req, res) => {
+  res.render('admin/funcionarios/funcionarioOpcoes')
+})
+
 module.exports = router

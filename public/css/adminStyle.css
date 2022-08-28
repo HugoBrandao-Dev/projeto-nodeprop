@@ -1,10 +1,18 @@
+.hr-div-horizontal {
+  height: 4px;
+  background-color: #e6e6e6;
+  border-radius: 7px;
+  width: 50%;
+  display: inline-table;
+}
+
 /* HOME */
 
-.sections-items .section-item, .sections-items .section-item a {
+.sections-items .section-item, .sections-items .section-item a, .table-cargos, .table-setores {
   float: left;
 }
 
-.sections-items {
+.sections-items, .table-cargos, .table-setores {
   width: 100%;
 }
 
@@ -35,7 +43,7 @@
 /* CLIENTES */
 
 .btn {
-  padding: 5px 10px;
+  padding: 7px 14px;
   color: #fff;
   border-radius: 0 7px 0 7px;
   font-weight: 500;
@@ -182,6 +190,30 @@ table td ul {
   width: 10px;
 }
 
+/* FUNCIONÁRIOS */
+
+.table-setores caption h4, .table-cargos caption h4 {
+  text-align: left;
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+.form-opcao input {
+  border-color: #00b33c;
+  border-bottom: none;
+  border-radius: 7px 7px 0 0;
+  margin: 0;
+}
+
+.form-opcao button {
+  border-radius: 0 0 7px 7px;
+  width: 100%;
+}
+
+#setor .hr-div-horizontal, #cargo .hr-div-horizontal {
+  margin: 20px 25%;
+}
+
 @media screen and (min-width: 768px) {
 
   /* CLIENTES */
@@ -210,6 +242,28 @@ table td ul {
 
   .form-cadastro {
     width: 75%;
+  }
+
+  /* FUNCIONÁRIOS */
+
+  .form-opcao .entrada label {
+    width: 100%;
+  }
+
+  .form-opcao .entrada input {
+    border-bottom: #00b33c solid 1px;
+    border-radius: 7px 0 0 7px;
+    float: left;
+    border-right: none;
+    width: 75%;
+  }
+
+  .form-opcao .entrada button {
+    border: #00b33c solid 1px;
+    padding: 7px 14px;
+    border-radius: 0 7px 7px 0;
+    float: right;
+    width: 25%;
   }
 }
 
