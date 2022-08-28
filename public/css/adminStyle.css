@@ -214,6 +214,27 @@ table td ul {
   margin: 20px 25%;
 }
 
+.form-opcao .input-cargo, .form-opcao .input-salario {
+  width: 50%;
+}
+
+.form-opcao .input-cargo {
+  float: left;
+}
+
+.form-opcao .input-cargo input {
+  border-radius: 7px 0 0 0;
+  border-right: none;
+}
+
+.form-opcao .input-salario {
+  float: right;
+}
+
+.form-opcao .input-salario input {
+  border-radius: 0 7px 0 0;
+}
+
 @media screen and (min-width: 768px) {
 
   /* CLIENTES */

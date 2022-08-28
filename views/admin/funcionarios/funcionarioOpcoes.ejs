@@ -70,7 +70,12 @@
           <option>Estágio</option>
           <option>Gerência</option>
         </select>
-        Cargo: <input type="text" name="iptCargo" class="br-7" placeholder="Nome do novo cargo">
+        <div class="input-cargo">
+          Cargo: <input type="text" name="iptCargo" placeholder="Nome do novo cargo">
+        </div>
+        <div class="input-salario">
+          Salário: <input type="number" name="iptSalario" min="0" max="500000">
+        </div>
         <button type="submit" class="btn btn-add">Cadastrar</button>
       </form>
       <hr class="hr-div-horizontal">
