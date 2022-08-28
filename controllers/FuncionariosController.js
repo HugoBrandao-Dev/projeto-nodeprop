@@ -77,4 +77,9 @@ router.post('/admin/funcionario/salvarCadastrado', (req, res) => {
   })
 })
 
+router.post('/admin/funcionario/deletar', (req, res) => {
+  let id = req.body.iptId
+  res.send(`Registro ${ id } deletado com sucesso.`)
+})
+
 module.exports = router
