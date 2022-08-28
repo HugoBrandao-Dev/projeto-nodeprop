@@ -8,36 +8,31 @@
 
 /* HOME */
 
-.sections-items .section-item, .sections-items .section-item a, .table-cargos, .table-setores {
+.table-cargos, .table-setores {
   float: left;
 }
 
-.sections-items, .table-cargos, .table-setores {
+.sections-items, .sections-items .section-item, .table-cargos, .table-setores, .sections-items .section-item, 
+.sections-items .section-item a {
   width: 100%;
 }
 
 .sections-items .section-item {
-  border-radius: 0 7px 0 7px;
-  margin-right: 20px;
-  background-color: #130400;
-}
-
-.sections-items .section-item:hover > a {
-  text-decoration: underline;
-}
-
-.sections-items .section-item:last-child {
-  margin-right: 0;
+  margin-bottom: 20px;
 }
 
 .sections-items .section-item a {
-  width: 200px;
+  font-size: 2em;
   padding: 50px 0;
-  line-height: 100%;
   text-align: center;
-  font-size: 1.2em;
-  font-weight: 700;
   color: #ce2e3c;
+  display: inline-block;
+  background-color: #130400;
+  border-radius: 7px 0 7px 0;
+}
+
+.sections-items .section-item:last-child {
+  margin-bottom: 0px;
 }
 
 /* CLIENTES */
@@ -237,6 +232,14 @@ table td ul {
 
 @media screen and (min-width: 768px) {
 
+  /* HOME */
+
+  .sections-items .section-item {
+    margin-right: 1%;
+    float: left;
+    width: 49%;
+  }
+
   /* CLIENTES */
 
   table tr td .btn-expandir-acoes {
@@ -289,6 +292,16 @@ table td ul {
 }
 
 @media screen and (min-width: 960px) {
+
+  .sections-items .section-item {
+    margin-right: 1%;
+    float: left;
+    width: 24%;
+  }
+
+  .sections-items .section-item:last-child {
+    margin-right: 0;
+  }
 
   .table-cargo {
     display: table-cell;
