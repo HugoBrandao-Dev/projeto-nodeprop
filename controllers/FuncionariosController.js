@@ -43,4 +43,8 @@ let cpf = req.body.iptCPF
   })
 })
 
+router.get('/admin/funcionario/edit/:id', (req, res) => {
+  res.render('admin/funcionarios/funcionarioEdit')
+})
+
 module.exports = router
