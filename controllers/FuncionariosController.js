@@ -86,4 +86,11 @@ router.get('/admin/funcionario/:id', (req, res) => {
   res.render('admin/funcionarios/funcionarioInfo')
 })
 
+router.post('/admin/funcionarios/setor/salvarNovo', (req, res) => {
+  let setor = req.body.iptSetor
+  res.send({
+    setor
+  })
+})
+
 module.exports = router
