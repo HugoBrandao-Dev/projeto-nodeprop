@@ -1,10 +1,13 @@
 const express = require('express')
+var path = require('path');
+
 const app = express(express)
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
+app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
 
 // Controllers
 const clientesController = require('./controllers/ClientesController')

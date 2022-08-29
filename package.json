@@ -21,6 +21,7 @@
     "express": "^4.18.1",
     "express-session": "^1.17.3",
     "knex": "^2.2.0",
-    "mysql2": "^2.3.3"
+    "mysql2": "^2.3.3",
+    "tinymce": "^6.1.2"
   }
 }

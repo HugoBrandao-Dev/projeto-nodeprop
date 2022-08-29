@@ -11,4 +11,8 @@ router.get('/admin/artigos', (req, res) => {
   res.render('admin/artigos/artigosList')
 })
 
+router.get('/admin/artigo/novo', (req, res) => {
+  res.render('admin/artigos/artigoCadastrar')
+})
+
 module.exports = router
