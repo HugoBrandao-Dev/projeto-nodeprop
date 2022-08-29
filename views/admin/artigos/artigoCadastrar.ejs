@@ -5,9 +5,9 @@
     <h3>Criar novo artigo</h3>
   </hgroup>
   <hr class="horizontal-bar">
-  <form class="form-cadastro" method="POST" action="/admin/funcionario/salvarNovo" onsubmit="desmascarar(event, this)">
+  <form class="form-cadastro" method="POST" action="/admin/artigo/salvarNovo">
     <label>Título:</label>
-    <input type="text" name="iptNome" class="br-7" placeholder="Título do artigo">
+    <input type="text" name="iptTitulo" class="br-7" placeholder="Título do artigo">
 
     <label>Categoria:</label>
     <select name="iptCategoria" class="br-7">
@@ -17,7 +17,7 @@
     </select>
 
     <label>Artigo:</label>
-    <textarea id="txtArtigo"></textarea>
+    <textarea id="txtArtigo" name="iptArtigo"></textarea>
 
     <button type="submit" class="btn btn-add btn-right">Cadastrar</button>
   </form>

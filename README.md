@@ -30,3 +30,4 @@ desenvolvimento back-end.
 # Possíveis melhorias futuras
 * Corrigir bug das redes sociais, mostradas no footer da página.
 * Corrigir bug da área administrativa, onde os botões de expansão das ações de cada registro ficam amostra, quando clicamos no botão de menu do site.
+* Corrigir bug da área administrativa, na página de criação de um novo artigo, ao clicar no botão de menu, o textarea (TinyMCE) continua sendo evidenciado.
