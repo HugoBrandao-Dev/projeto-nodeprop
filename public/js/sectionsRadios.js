@@ -1,5 +1,6 @@
 const allRadios = document.querySelectorAll('input[type=radio]')
 const allSections = document.querySelectorAll('section')
+const allLabels = document.querySelectorAll('label.iptOpcao')
 
 function getRadioChecked() {
   return [...allRadios].filter(radio => radio.checked)[0].value
@@ -19,6 +20,19 @@ function setSectionDisplay(mostrar = undefined) {
   })
 }
 
+function applyLabelStyle(opcao) {
+  allLabels.forEach(label => {
+    let classes = label.className.split(' ')
+    if (classes.indexOf(`lbl-${ opcao }`) != -1) {
+      label.style.color = '#ce2e3c'
+      label.style.backgroundColor = '#fff'
+    } else {
+      label.style.color = '#fff'
+      label.style.backgroundColor = '#ce2e3c'
+    }
+  })
+}
+
 function applyEvent() {
   let mostrar = getRadioChecked()
   setSectionDisplay(mostrar)
@@ -31,6 +45,7 @@ function applyEvent() {
           section.style.display = 'none'
         }
       })
+      applyLabelStyle(this.value)
     }
   })
 }

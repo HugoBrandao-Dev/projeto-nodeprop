@@ -230,6 +230,38 @@ table td ul {
   border-radius: 0 7px 0 0;
 }
 
+.opcoes-funcionario input {
+  width: 0;
+}
+
+.opcoes-funcionario label {
+  padding: 5px 10px;
+  color: #fff;
+  background-color: #ce2e3c;
+  float: left;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.opcoes-funcionario label:nth-child(1) {
+  border-radius: 7px 0 0 7px;
+  border: #ce2e3c solid 2px;
+  border-right: 0;
+  color: #ce2e3c;
+  background-color: #fff;
+}
+
+.opcoes-funcionario label:nth-child(2) {
+  border-radius: 0 7px 7px 0;
+  border: #ce2e3c solid 2px;
+}
+
+.opcoes-funcionario {
+  width: 100%;
+  float: left;
+  margin-bottom: 10px;
+}
+
 @media screen and (min-width: 768px) {
 
   /* HOME */
