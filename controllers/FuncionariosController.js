@@ -93,4 +93,16 @@ router.post('/admin/funcionarios/setor/salvarNovo', (req, res) => {
   })
 })
 
+router.post('/admin/funcionarios/cargo/salvarNovo', (req, res) => {
+  let setor = req.body.iptSetor
+  let cargo = req.body.iptCargo
+  let salario = parseFloat(parseFloat(req.body.iptSalario).toFixed(2))
+
+  res.send({
+    setor,
+    cargo,
+    salario
+  })
+})
+
 module.exports = router
