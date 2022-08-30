@@ -1,0 +1,10 @@
+USE nodeprop;
+
+CREATE TABLE artigos (
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	data_publicacao DATE NOT NULL,
+	titulo VARCHAR(100) NOT NULL,
+	categoria_id INT UNSIGNED NOT NULL,
+	autor_id INT UNSIGNED NOT NULL,
+	texto TEXT NOT NULL
+);
