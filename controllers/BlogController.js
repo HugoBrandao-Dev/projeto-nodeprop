@@ -44,4 +44,9 @@ router.get('/admin/artigo/edit/:id', (req, res) => {
   res.render('admin/artigos/artigoEdit')
 })
 
+router.post('/admin/artigo/deletar', (req, res) => {
+  let id = req.body.iptId
+  res.send(`Registro ${ id } deletado com sucesso.`)
+})
+
 module.exports = router
