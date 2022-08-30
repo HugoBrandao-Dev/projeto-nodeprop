@@ -31,4 +31,12 @@ router.get('/admin/artigos/categorias/nova', (req, res) => {
   res.render('admin/artigos/artigoOpcoes')
 })
 
+router.post('/admin/artigos/categorias/salvarNova', (req, res) => {
+  let categoria = req.body.iptCategoria
+
+  res.send({
+    categoria
+  })
+})
+
 module.exports = router
