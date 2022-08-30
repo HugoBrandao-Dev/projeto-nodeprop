@@ -1,0 +1,64 @@
+<%- include('../../partials/admin/header.ejs') %>
+<main class="funcionarios principal container">
+  <hgroup>
+    <h2>Artigos</h2>
+    <h3>Cadastrar nova categoria para artigos</h3>
+  </hgroup>
+  <hr class="horizontal-bar">
+  <article class="artigos-opcoes">
+    <form class="form-cadastro form-categoria" method="POST" action="/admin/artigos/categoria/salvarNova">
+      <label>Categoria:</label>
+      <div class="entrada">
+        <input type="text" name="iptCategoria" class="br-7" placeholder="Nome da nova categoria">
+        <button type="submit" class="btn btn-add">Cadastrar</button>
+      </div>
+    </form>
+    <hr class="hr-div-horizontal">
+    <table class="table-artigos-categorias">
+      <caption>
+        <h4>Categorias cadastradas</h4>
+      </caption>
+      <thead>
+        <tr>
+          <th class="table-id">ID</th>
+          <th class="table-nome">Categoria</th>
+          <th class="table-acao">Ação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="table-id">0</td>
+          <td class="table-nome">Negócios</td>
+          <td class="table-acao">
+            <form method="POST" action="/admin/funcionario/deletar" onsubmit="deletarRegistro(event, this)">
+              <input type="hidden" name="iptId" value="0">
+              <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
+            </form>
+          </td>
+        </tr>
+        <tr>
+          <td class="table-id">1</td>
+          <td class="table-nome">Marketing digital</td>
+          <td class="table-acao">
+            <form method="POST" action="/admin/funcionario/deletar" onsubmit="deletarRegistro(event, this)">
+              <input type="hidden" name="iptId" value="1">
+              <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
+            </form>
+          </td>
+        </tr>
+        <tr>
+          <td class="table-id">2</td>
+          <td class="table-nome">Publicidade</td>
+          <td class="table-acao">
+            <form method="POST" action="/admin/funcionario/deletar" onsubmit="deletarRegistro(event, this)">
+              <input type="hidden" name="iptId" value="2">
+              <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </article>
+</main>
+<script type="text/javascript" src="/js/deletarRegistro.js"></script>
+<%- include('../../partials/admin/footer.ejs') %>

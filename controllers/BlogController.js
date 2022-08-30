@@ -27,4 +27,8 @@ router.post('/admin/artigo/salvarNovo', (req, res) => {
   })
 })
 
+router.get('/admin/artigos/categorias/nova', (req, res) => {
+  res.render('admin/artigos/artigoOpcoes')
+})
+
 module.exports = router

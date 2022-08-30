@@ -8,7 +8,7 @@
 
 /* HOME */
 
-.table-cargos, .table-setores {
+.table-cargos, .table-setores, .form-opcao .input-cargo {
   float: left;
 }
 
@@ -58,7 +58,7 @@ thead tr th, tbody tr td {
   border: none;
 }
 
-thead tr th {
+thead tr th, .cliente-info, .servico-info, .funcionario-info {
   font-weight: 700;
 }
 
@@ -118,10 +118,6 @@ table td ul {
 }
 
 /* Cliente: informações */
-
-.cliente-info, .servico-info, .funcionario-info {
-  font-weight: 700;
-}
 
 .cliente-info p, .servico-info p, .funcionario-info p {
   margin-bottom: 20px;
@@ -187,7 +183,7 @@ table td ul {
 
 /* FUNCIONÁRIOS */
 
-.table-setores caption h4, .table-cargos caption h4 {
+.table-setores caption h4, .table-cargos caption h4, .artigos-opcoes .table-artigos-categorias h4 {
   text-align: left;
   font-size: 1.2em;
   font-weight: 700;
@@ -211,10 +207,6 @@ table td ul {
 
 .form-opcao .input-cargo, .form-opcao .input-salario {
   width: 50%;
-}
-
-.form-opcao .input-cargo {
-  float: left;
 }
 
 .form-opcao .input-cargo input {
@@ -262,6 +254,31 @@ table td ul {
   margin-bottom: 10px;
 }
 
+/* ARTIGOS: Nova categoria */
+
+.artigos-opcoes, .artigos-opcoes .form-categoria, .artigo-opcoes .form-categoria .entrada, .form-categoria .entrada button {
+  float: left;
+  width: 100%;
+}
+
+.form-categoria .entrada input, .form-categoria .entrada button {
+  margin: 0;
+}
+
+.form-categoria .entrada input {
+  border: #00b33c solid 1px;
+  border-radius: 7px 7px 0 0;
+  border-bottom: none;
+}
+
+.form-categoria .entrada button {
+  border-radius: 0 0 7px 7px;
+}
+
+.artigos-opcoes .hr-div-horizontal {
+  margin: 20px 25%;
+}
+
 @media screen and (min-width: 768px) {
 
   /* HOME */
@@ -302,11 +319,11 @@ table td ul {
 
   /* FUNCIONÁRIOS */
 
-  .form-opcao .entrada label {
+  .form-opcao .entrada label, .form-categoria .entrada label {
     width: 100%;
   }
 
-  .form-opcao .entrada input {
+  .form-opcao .entrada input, .form-categoria .entrada input {
     border-bottom: #00b33c solid 1px;
     border-radius: 7px 0 0 7px;
     float: left;
@@ -314,12 +331,24 @@ table td ul {
     width: 75%;
   }
 
-  .form-opcao .entrada button {
+  .form-opcao .entrada button, .form-categoria .entrada button {
     border: #00b33c solid 1px;
     padding: 7px 14px;
     border-radius: 0 7px 7px 0;
     float: right;
     width: 25%;
+  }
+
+  /* ARTIGOS: Nova categoria */
+
+  .artigos-opcoes .form-categoria {
+    float: none;
+    margin: 0 auto;
+    width: 50%;
+  }
+
+  .artigos-opcoes .table-artigos-categorias {
+    
   }
 }
 
