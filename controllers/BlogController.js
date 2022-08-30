@@ -18,11 +18,13 @@ router.get('/admin/artigo/novo', (req, res) => {
 router.post('/admin/artigo/salvarNovo', (req, res) => {
   let titulo = req.body.iptTitulo
   let categoria = req.body.iptCategoria
+  let autor = req.body.iptAutor
   let artigo = req.body.txtArtigo
 
   res.send({
     titulo,
     categoria,
+    autor,
     artigo
   })
 })
