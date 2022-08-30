@@ -46,6 +46,20 @@ router.get('/admin/artigo/edit/:id', (req, res) => {
   res.render('admin/artigos/artigoEdit')
 })
 
+router.post('/admin/artigo/salvarCadastrado', (req, res) => {
+  let titulo = req.body.iptTitulo
+  let categoria = req.body.iptCategoria
+  let autor = req.body.iptAutor
+  let artigo = req.body.txtArtigo
+
+  res.send({
+    titulo,
+    categoria,
+    autor,
+    artigo
+  })
+})
+
 router.post('/admin/artigo/deletar', (req, res) => {
   let id = req.body.iptId
   res.send(`Registro ${ id } deletado com sucesso.`)
