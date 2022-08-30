@@ -39,4 +39,9 @@ router.post('/admin/artigos/categorias/salvarNova', (req, res) => {
   })
 })
 
+router.get('/admin/artigo/edit/:id', (req, res) => {
+  let id = req.params.id
+  res.render('admin/artigos/artigoEdit')
+})
+
 module.exports = router

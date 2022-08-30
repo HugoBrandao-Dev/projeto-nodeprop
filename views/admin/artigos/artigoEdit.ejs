@@ -1,0 +1,27 @@
+<%- include('../../partials/admin/header.ejs') %>
+<main class="principal container">
+  <hgroup>
+    <h2>Artigos</h2>
+    <h3>Editar artigo</h3>
+  </hgroup>
+  <hr class="horizontal-bar">
+  <form class="form-cadastro" method="POST" action="/admin/artigo/salvarNovo">
+    <label>Título:</label>
+    <input type="text" name="iptTitulo" class="br-7" placeholder="Título do artigo">
+
+    <label>Categoria:</label>
+    <select name="iptCategoria" class="br-7">
+      <option>Negócios</option>
+      <option>Marketing digital</option>
+      <option>Web design</option>
+    </select>
+
+    <label>Artigo:</label>
+    <textarea id="txtArtigo" name="txtArtigo"><p>Apenas um exemplo.</p></textarea>
+
+    <button type="submit" class="btn btn-edit btn-right">Atualizar</button>
+  </form>
+</main>
+<script type="text/javascript" src="/tinymce/tinymce.min.js"></script>
+<script type="text/javascript" src="/js/tinyMCE_config.js"></script>
+<%- include('../../partials/admin/footer.ejs') %>
