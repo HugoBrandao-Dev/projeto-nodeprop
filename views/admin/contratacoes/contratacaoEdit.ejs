@@ -1,0 +1,34 @@
+<%- include('../../partials/admin/header.ejs') %>
+<main class="principal container">
+  <hgroup>
+    <h2>Atualizar</h2>
+    <h3>Atualizar contratação</h3>
+  </hgroup>
+  <hr class="horizontal-bar">
+  <form class="form-cadastro" method="POST" action="/admin/contratacao/salvarCadastrada">
+    <input type="hidden" name="iptId" value="2">
+
+    <label>Data:</label>
+    <input type="date" name="iptData" class="br-7">
+
+    <label>Contratante:</label>
+    <select name="iptContratante" class="br-7">
+      <option>Tobias de Oliveira</option>
+      <option>Pedro Engenharia</option>
+      <option>English, escola de inglês</option>
+    </select>
+
+    <label>Serviço:</label>
+    <select name="iptServico" class="br-7">
+      <option>Negócios</option>
+      <option>Marketing digital</option>
+      <option>Web design</option>
+    </select>
+
+    <label>Contrato assinado:</label>
+    <input type="file" name="iptContrato" class="br-7">
+
+    <button type="submit" class="btn btn-edit btn-right">Atualizar</button>
+  </form>
+</main>
+<%- include('../../partials/admin/footer.ejs') %>

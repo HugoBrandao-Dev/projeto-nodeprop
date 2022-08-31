@@ -23,4 +23,9 @@ router.post('/admin/contratacao/salvarNova', (req, res) => {
   })
 })
 
+router.get('/admin/contratacao/edit/:id', (req, res) => {
+  let id = req.body.iptId
+  res.render('admin/contratacoes/contratacaoEdit')
+})
+
 module.exports = router
