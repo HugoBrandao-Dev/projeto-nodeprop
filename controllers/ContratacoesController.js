@@ -42,4 +42,9 @@ router.post('/admin/contratacao/salvarCadastrada', (req, res) => {
   })
 })
 
+router.post('/admin/contratacao/deletar', (req, res) => {
+  let id = req.body.iptId
+  res.send(`Registro ${ id } deletado com sucesso.`)
+})
+
 module.exports = router
