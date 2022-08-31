@@ -1,0 +1,7 @@
+USE nodeprop;
+
+CREATE TABLE categorias (
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	categoria VARCHAR(100) NOT NULL,
+	PRIMARY KEY(id)
+);
