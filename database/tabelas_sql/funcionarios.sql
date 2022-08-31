@@ -5,7 +5,6 @@ CREATE TABLE funcionarios (
 	nome VARCHAR(100) NOT NULL,
 	nascimento DATE NOT NULL,
 	email VARCHAR(150) NOT NULL,
-	setor_id INT UNSIGNED NOT NULL,
 	cargo_id INT UNSIGNED NOT NULL,
 	telefone VARCHAR(13),
 	celulares VARCHAR(13) NOT NULL,
@@ -14,5 +13,5 @@ CREATE TABLE funcionarios (
 	informacoes_adicionais TEXT,
 	cpf VARCHAR(100) NOT NULL,
 	PRIMARY KEY(id),
-	CONSTRAINT fk_setores FOREIGN KEY(setor_id) REFERENCES setores(id)
+	CONSTRAINT fk_cargos FOREIGN KEY(cargo_id) REFERENCES cargos(id)
 );
