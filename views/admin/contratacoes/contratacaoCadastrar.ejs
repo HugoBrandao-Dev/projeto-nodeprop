@@ -1,0 +1,32 @@
+<%- include('../../partials/admin/header.ejs') %>
+<main class="principal container">
+  <hgroup>
+    <h2>Cadastrar</h2>
+    <h3>Cadastrar nova contratação</h3>
+  </hgroup>
+  <hr class="horizontal-bar">
+  <form class="form-cadastro" method="POST" action="/admin/cliente/salvarNovo" onsubmit="desmascarar(event, this)">
+    <label>Data:</label>
+    <input type="date" name="iptData" class="br-7">
+
+    <label>Contratante:</label>
+    <select name="iptContratante" class="br-7">
+      <option>Tobias de Oliveira</option>
+      <option>Pedro Engenharia</option>
+      <option>English, escola de inglês</option>
+    </select>
+
+    <label>Serviço:</label>
+    <select name="iptServiço" class="br-7">
+      <option>Negócios</option>
+      <option>Marketing digital</option>
+      <option>Web design</option>
+    </select>
+
+    <label>Contrato assinado:</label>
+    <input type="file" name="iptContrato" class="br-7">
+
+    <button type="submit" class="btn btn-add btn-right">Cadastrar</button>
+  </form>
+</main>
+<%- include('../../partials/admin/footer.ejs') %>
