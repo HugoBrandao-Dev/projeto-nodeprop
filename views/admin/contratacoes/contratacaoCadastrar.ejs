@@ -5,7 +5,7 @@
     <h3>Cadastrar nova contratação</h3>
   </hgroup>
   <hr class="horizontal-bar">
-  <form class="form-cadastro" method="POST" action="/admin/cliente/salvarNovo" onsubmit="desmascarar(event, this)">
+  <form class="form-cadastro" method="POST" action="/admin/contratacao/salvarNova">
     <label>Data:</label>
     <input type="date" name="iptData" class="br-7">
 
@@ -17,7 +17,7 @@
     </select>
 
     <label>Serviço:</label>
-    <select name="iptServiço" class="br-7">
+    <select name="iptServico" class="br-7">
       <option>Negócios</option>
       <option>Marketing digital</option>
       <option>Web design</option>
