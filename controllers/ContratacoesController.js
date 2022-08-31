@@ -28,4 +28,18 @@ router.get('/admin/contratacao/edit/:id', (req, res) => {
   res.render('admin/contratacoes/contratacaoEdit')
 })
 
+router.post('/admin/contratacao/salvarCadastrada', (req, res) => {
+  let id = req.body.iptId
+  let data = req.body.iptData
+  let contratante = req.body.iptContratante
+  let servico = req.body.iptServico
+
+  res.send({
+    id,
+    data,
+    contratante,
+    servico
+  })
+})
+
 module.exports = router
