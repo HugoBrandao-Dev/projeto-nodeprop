@@ -16,16 +16,29 @@
     <input type="email" name="iptEmail" class="br-7" placeholder="seu_email@email.com">
 
     <label>Telefone:</label>
-    <input type="tel" name="iptTelefone" class="br-7">
+    <input type="tel" name="iptTelefone" class="br-7" placeholder="(00) 00000-0000">
 
     <label>Celular:</label>
-    <input type="tel" name="iptCelular" class="br-7">
+    <input type="tel" name="iptCelular" class="br-7" placeholder="(00) 00000-0000">
+
+    <label>CEP:</label>
+    <input type="text" name="iptCEP" class="br-7" placeholder="00000-000">
+
+    <label>UF:</label>
+    <select name="iptUF" class="br-7">
+      <% response.data.forEach(info => { %>
+        <option value="<%= info.id %>"><%= info.sigla %></option>
+      <% }) %>
+    </select>
 
     <label>Localização/Cidade:</label>
     <input type="text" name="iptLocalizacao" class="br-7">
 
     <label>Endereço:</label>
     <input type="text" name="iptEndereco" class="br-7" placeholder="Bairro/Rua/Número">
+
+    <label>Número do estabelecimento:</label>
+    <input type="number" name="iptNumero" class="br-7">
 
     <label>Informações adicionais:</label>
     <textarea class="br-7" rows="10" name="iptInformacoes"></textarea>
@@ -41,27 +54,8 @@
 </main>
 <script type="text/javascript" src="/js/botoesExpandirAcoes.js"></script>
 <script src="https://unpkg.com/imask"></script>
-<script type="text/javascript">
-
-  // Mascara para o telefone
-  let iptTelefone = document.getElementsByName('iptTelefone')[0]
-  let telefoneMask = {
-    mask: '+00 (00) 00000-0000'
-  }
-  let aplicarMaskTelefone = IMask(iptTelefone, telefoneMask)
-
-  // Mascara para o telefone
-  let iptCelular = document.getElementsByName('iptCelular')[0]
-  let celularMask = {
-    mask: '+00 (00) 00000-0000'
-  }
-  let aplicarMaskCelular = IMask(iptCelular, celularMask)
-
-  function desmascarar(event, form) {
-    event.preventDefault()
-    iptCelular.value = aplicarMaskCelular.unmaskedValue
-    iptTelefone.value = aplicarMaskTelefone.unmaskedValue
-    form.submit()
-  }
-</script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script type="text/javascript" src="/js/mascarasCliente.js"></script>
+<script type="text/javascript" src="/js/axiosCEP.js"></script>
+<script type="text/javascript" src="/js/desmascararCliente.js"></script>
 <%- include('../../partials/admin/footer.ejs') %>
