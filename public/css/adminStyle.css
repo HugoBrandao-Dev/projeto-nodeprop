@@ -70,7 +70,7 @@ tbody tr:hover {
   background-color: #f2f2f2;
 }
 
-.table-email, .table-cargo, .table-telefone, .table-responsaveis, .table-categoria, .table-autor, .table-contratante {
+.table-email, .table-cargo, .table-celular, .table-responsaveis, .table-categoria, .table-autor, .table-contratante {
   display: none;
 }
 
@@ -307,7 +307,7 @@ table td ul {
     text-align: center;
   }
 
-  .table-email, .table-telefone, .table-responsaveis, .table-categoria, .table-contratante {
+  .table-email, .table-celular, .table-responsaveis, .table-categoria, .table-contratante {
     display: table-cell;
   }
 
