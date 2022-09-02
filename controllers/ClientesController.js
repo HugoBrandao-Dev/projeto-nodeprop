@@ -104,7 +104,9 @@ router.post('/admin/cliente/salvarNovo', (req, res) => {
   let telefoneOK = validator.isMobilePhone(telefone, ['pt-BR']) || validator.isEmpty(telefone)
   let celularOK = validator.isMobilePhone(celular, ['pt-BR'])
   let cepOK = validator.isPostalCode(cep,'BR')
-  let localizacaoOK = validator.isAlpha(localizacao, ['pt-BR'])
+  let localizacaoOK = validator.isAlpha(localizacao, ['pt-BR'], {
+    ignore: ' .,:()-'
+  })
   let enderecoOK = validator.isAlphanumeric(endereco, ['pt-BR'], {
     ignore: ' .,:()-'
   })
