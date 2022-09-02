@@ -101,7 +101,7 @@ router.post('/admin/cliente/salvarNovo', (req, res) => {
   })
   let anoOK = validator.isDate(ano)
   let emailOK = validator.isEmail(email)
-  let telefoneOK = validator.isMobilePhone(telefone, ['pt-BR'])
+  let telefoneOK = validator.isMobilePhone(telefone, ['pt-BR']) || validator.isEmpty(telefone)
   let celularOK = validator.isMobilePhone(celular, ['pt-BR'])
   let cepOK = validator.isPostalCode(cep,'BR')
   let localizacaoOK = validator.isAlpha(localizacao, ['pt-BR'])
@@ -109,7 +109,7 @@ router.post('/admin/cliente/salvarNovo', (req, res) => {
     ignore: ' .,:'
   })
   let numeroOK = validator.isInt(numero)
-  let informacoesOK = validator.isAlphanumeric(informacoes, ['pt-BR'])
+  let informacoesOK = validator.isAlphanumeric(informacoes, ['pt-BR']) || validator.isEmpty(informacoes)
   let identificacaoOK = validator.isInt(identificacao)
 
   let nomeError = null
