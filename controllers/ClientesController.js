@@ -11,7 +11,10 @@ router.get('/clientes', (req, res) => {
 /* ROTAS DO ADMINISTRADOR */
 
 router.get('/admin/clientes', (req, res) => {
-  res.render('admin/clientes/clientesList')
+  database.select().table('clientes')
+    .then(clientes => {
+      res.render('admin/clientes/clientesList', { clientes })
+    })
 })
 
 router.get('/admin/cliente/novo', (req, res) => {
