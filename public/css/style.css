@@ -30,6 +30,10 @@ button {
 	cursor: pointer;
 }
 
+small {
+	font-size: smaller;
+}
+
 /* PROPRIEDADES COMUNS */
 
 .container {
@@ -76,6 +80,11 @@ button {
 	border-radius: 2px;
 	margin: 25px auto;
 	background: linear-gradient(to right, #ce2e3c, #da6709);
+}
+
+.msgAlert {
+	font-weight: 700;
+	color: red;
 }
 
 /* CABEÇALHO */
