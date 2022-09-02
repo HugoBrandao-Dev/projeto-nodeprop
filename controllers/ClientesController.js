@@ -106,10 +106,12 @@ router.post('/admin/cliente/salvarNovo', (req, res) => {
   let cepOK = validator.isPostalCode(cep,'BR')
   let localizacaoOK = validator.isAlpha(localizacao, ['pt-BR'])
   let enderecoOK = validator.isAlphanumeric(endereco, ['pt-BR'], {
-    ignore: ' .,:'
+    ignore: ' .,:()-'
   })
   let numeroOK = validator.isInt(numero)
-  let informacoesOK = validator.isAlphanumeric(informacoes, ['pt-BR']) || validator.isEmpty(informacoes)
+  let informacoesOK = validator.isAlphanumeric(informacoes, ['pt-BR'], {
+    ignore: ' .,:()-'
+  }) || validator.isEmpty(informacoes)
   let identificacaoOK = validator.isInt(identificacao)
 
   let nomeError = null
@@ -196,7 +198,26 @@ router.post('/admin/cliente/salvarNovo', (req, res) => {
   if (nomeError || anoError || cepError || emailError || telefoneError || celularError || localizacaoError || enderecoError || numeroError || informacoesError || identificacaoError) {
     res.redirect('/admin/cliente/novo')
   } else {
-    res.send(`Tudo OK`)
+    database.insert({
+      nome,
+      nascimento: ano,
+      email,
+      telefone,
+      celular,
+      cep: cep.split('-').join(''),
+      uf,
+      localizacao,
+      endereco,
+      numero,
+      informacoes_adicionais: informacoes,
+      identificacao,
+    }).table('clientes')
+      .then(response => {
+        res.redirect('/admin/clientes')
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }
 })
 
