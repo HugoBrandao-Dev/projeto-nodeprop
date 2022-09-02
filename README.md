@@ -26,6 +26,7 @@ desenvolvimento back-end.
 * NPM: Para gerenciamento de pacotes.
 * EJS: Template engine, para geração de HTML utilizando JavaScript
 * KnexJS: Query builder, para a comunicação entre a aplicação e o banco de dados MySQL.
+* Axios: Cliente HTTP, para consumo de API, como a do IBGE, que permite fazer buscas por endereços (através do CEP), UFs e etc.
 
 # Possíveis melhorias futuras
 * Corrigir bug das redes sociais, mostradas no footer da página.
