@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const database = require('../database/connection')
 
 /* ROTAS DO ADMINISTRADOR */
 
@@ -88,9 +89,14 @@ router.get('/admin/funcionario/:id', (req, res) => {
 
 router.post('/admin/funcionarios/setor/salvarNovo', (req, res) => {
   let setor = req.body.iptSetor
-  res.send({
-    setor
-  })
+
+  database.insert({ setor }).into("setores")
+    .then(response => {
+      res.redirect('/admin/funcionarios/opcoes')
+    })
+    .catch(error => {
+      console.log(error)
+    })
 })
 
 router.post('/admin/funcionarios/cargo/salvarNovo', (req, res) => {
