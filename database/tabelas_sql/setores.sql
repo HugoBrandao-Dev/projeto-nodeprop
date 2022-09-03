@@ -5,3 +5,6 @@ CREATE TABLE setores (
 	setor VARCHAR(100) NOT NULL,
 	PRIMARY KEY(id)
 );
+
+SELECT * FROM setores;
+DESCRIBE setores;
