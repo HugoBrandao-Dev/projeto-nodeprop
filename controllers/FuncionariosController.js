@@ -126,6 +126,28 @@ router.post('/admin/funcionarios/setor/salvarNovo', (req, res) => {
   }
 })
 
+router.post('/admin/funcionario/setor/deletar', (req, res) => {
+  let id = req.body.iptId
+
+  database.select().table("cargos").where({ setor_id: id })
+    .then(setores => {
+      if (setores.length == 0) {
+        database.delete().table("setores").where({ id })
+          .then(response => {
+            res.redirect('/admin/funcionarios/opcoes')
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      } else {
+        res.send('ERRO: Há CARGOS que dependem deste setor.')
+      }
+    })
+    .catch(error => {
+      console.log(error)
+    })
+})
+
 router.post('/admin/funcionarios/cargo/salvarNovo', (req, res) => {
   let setor = req.body.iptSetor
   let cargo = req.body.iptCargo

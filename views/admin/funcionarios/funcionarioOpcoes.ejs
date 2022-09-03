@@ -39,7 +39,7 @@
               <td class="table-id"><%= setor.id %></td>
               <td class="table-nome"><%= setor.setor %></td>
               <td class="table-acao">
-                <form method="POST" action="/admin/funcionario/deletar" onsubmit="deletarRegistro(event, this)">
+                <form method="POST" action="/admin/funcionario/setor/deletar" onsubmit="deletarRegistro(event, this)">
                   <input type="hidden" name="iptId" value="<%= setor.id %>">
                   <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
                 </form>
