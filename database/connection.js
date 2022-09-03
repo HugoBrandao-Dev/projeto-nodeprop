@@ -5,7 +5,9 @@ const knex = require('knex')({
     port : 3306,
     user : 'root',
     password : '',
-    database : 'nodeprop'
+    database : 'nodeprop',
+    timezone: 'UTC',
+    dateStrings: true
   }
 });
 
