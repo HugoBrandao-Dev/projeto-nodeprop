@@ -325,8 +325,8 @@ router.post('/admin/cliente/salvarEdicao', (req, res) => {
   })
   let anoOK = validator.isDate(ano)
   let emailOK = validator.isEmail(email)
-  let telefoneOK = validator.isMobilePhone(telefone) || validator.isEmpty(telefone)
-  let celularOK = validator.isMobilePhone(celular)
+  let telefoneOK = validator.isMobilePhone(telefone, ['pt-BR']) || validator.isEmpty(telefone)
+  let celularOK = validator.isMobilePhone(celular, ['pt-BR'])
   let cepOK = validator.isPostalCode(cep, 'BR')
   let localizacaoOK = validator.isAlphanumeric(localizacao, ['pt-BR'], {
     ignore: " ,.()-\':"
