@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const database = require('../database/connection')
+const validator = require('validator')
 
 /* ROTAS DO ADMINISTRADOR */
 
@@ -13,10 +14,13 @@ router.get('/admin/funcionario/novo', (req, res) => {
 })
 
 router.get('/admin/funcionarios/opcoes', (req, res) => {
+  let setorError = req.flash('setorError')
+
   database.select().table("setores")
     .then(response => {
       res.render('admin/funcionarios/funcionarioOpcoes', {
-        setores: response
+        setores: response,
+        setorError
       })
     })
     .catch(error => {
@@ -96,15 +100,30 @@ router.get('/admin/funcionario/:id', (req, res) => {
 })
 
 router.post('/admin/funcionarios/setor/salvarNovo', (req, res) => {
-  let setor = req.body.iptSetor
+  let setor = req.body.iptSetor.trim()
 
-  database.insert({ setor }).into("setores")
+  let setorOK = validator.isAlpha(setor, ['pt-BR'], {
+    ignore: ' '
+  })
+
+  let setorError = null
+
+  if (!setorOK) {
+    setorError = 'SETOR inválido ou preenchido de forma incorreta.'
+    req.flash('setorError', setorError)
+  }
+
+  if (setorError) {
+    res.redirect('/admin/funcionarios/opcoes')
+  } else {
+    database.insert({ setor }).into("setores")
     .then(response => {
       res.redirect('/admin/funcionarios/opcoes')
     })
     .catch(error => {
       console.log(error)
     })
+  }
 })
 
 router.post('/admin/funcionarios/cargo/salvarNovo', (req, res) => {

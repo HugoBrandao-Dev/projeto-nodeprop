@@ -14,6 +14,11 @@
       <form class="form-cadastro form-opcao" method="POST" action="/admin/funcionarios/setor/salvarNovo">
         <label>Setor:</label>
         <div class="entrada">
+          <% if (setorError) { %>
+            <p>
+              <small class="msgAlert"><%= setorError %></small>
+            </p>
+          <% } %>
           <input type="text" name="iptSetor" class="br-7" placeholder="Nome do novo setor">
           <button type="submit" class="btn btn-add">Cadastrar</button>
         </div>
@@ -30,48 +35,17 @@
         </thead>
         <tbody>
           <% setores.forEach(setor => { %>
-          <tr>
-            <td class="table-id"><%= setor.id %></td>
-            <td class="table-nome"><%= setor.setor %></td>
-            <td class="table-acao">
-              <form method="POST" action="/admin/funcionario/deletar" onsubmit="deletarRegistro(event, this)">
-                <input type="hidden" name="iptId" value="<%= setor.id %>">
-                <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
-              </form>
-            </td>
-          </tr>
+            <tr>
+              <td class="table-id"><%= setor.id %></td>
+              <td class="table-nome"><%= setor.setor %></td>
+              <td class="table-acao">
+                <form method="POST" action="/admin/funcionario/deletar" onsubmit="deletarRegistro(event, this)">
+                  <input type="hidden" name="iptId" value="<%= setor.id %>">
+                  <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
+                </form>
+              </td>
+            </tr>
           <% }) %>
-          <%#
-          <tr>
-            <td class="table-id">0</td>
-            <td class="table-nome">Atendimento</td>
-            <td class="table-acao">
-              <form method="POST" action="/admin/funcionario/deletar" onsubmit="deletarRegistro(event, this)">
-                <input type="hidden" name="iptId" value="0">
-                <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
-              </form>
-            </td>
-          </tr>
-          <tr>
-            <td class="table-id">1</td>
-            <td class="table-nome">Estágio</td>
-            <td class="table-acao">
-              <form method="POST" action="/admin/funcionario/deletar" onsubmit="deletarRegistro(event, this)">
-                <input type="hidden" name="iptId" value="1">
-                <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
-              </form>
-            </td>
-          </tr>
-          <tr>
-            <td class="table-id">2</td>
-            <td class="table-nome">Gerência</td>
-            <td class="table-acao">
-              <form method="POST" action="/admin/funcionario/deletar" onsubmit="deletarRegistro(event, this)">
-                <input type="hidden" name="iptId" value="2">
-                <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
-              </form>
-            </td>
-          </tr>
         </tbody>
       </table>
     </section>
@@ -79,9 +53,9 @@
       <form class="form-cadastro form-opcao" method="POST" action="/admin/funcionarios/cargo/salvarNovo">
         Setor pertencente:
         <select name="iptSetor" class="br-7">
-          <option>Atendimento</option>
-          <option>Estágio</option>
-          <option>Gerência</option>
+          <% setores.forEach(setor => { %>
+            <option value="<%= setor.id %>"><%= setor.setor %></option>
+          <% }) %>
         </select>
         <div class="input-cargo">
           Cargo: <input type="text" name="iptCargo" placeholder="Nome do novo cargo">
@@ -132,7 +106,6 @@
               </form>
             </td>
           </tr>
-          %>
         </tbody>
       </table>
     </section>
