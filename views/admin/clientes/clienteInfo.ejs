@@ -7,31 +7,40 @@
   <hr class="horizontal-bar">
   <article class="cliente-info">
     Nome:
-    <p>Nome do Cliente</p>
+    <p><%= cliente.nome %></p>
 
     Data de nascimento/Criação:
-    <p>Data</p>
+    <p><%= cliente.nascimento %></p>
 
     Email:
-    <p>Email do cliente</p>
+    <p><%= cliente.email %></p>
 
     Telefone:
-    <p>Telefone do cliente</p>
+    <p><%= cliente.telefone %></p>
 
     Celular:
-    <p>Celular do cliente</p>
+    <p><%= cliente.celular %></p>
+
+    CEP:
+    <p><%= cliente.cep %></p>
+
+    UF:
+    <p><%= cliente.uf %></p>
+
+    Número do estabelecimento:
+    <p><%= cliente.numero %></p>
 
     Localização/Cidade:
-    <p>Localização/Cidade do cliente</p>
+    <p><%= cliente.localizacao %></p>
 
     Endereço:
-    <p>Endereço do cliente</p>
+    <p><%= cliente.endereco %></p>
 
     Informações adicionais:
-    <p>Informações adicionais do cliente</p>
+    <p><%= cliente.informacoes_adicionais %></p>
 
     CPF/CNPJ:
-    <p>CPF/CNPJ do cliente</p>
+    <p><%= cliente.identificacao %></p>
 
     Contrato assinado:
     <input type="file" name="iptContrato">

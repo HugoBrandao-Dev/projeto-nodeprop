@@ -469,7 +469,22 @@ router.post('/admin/cliente/deletar', (req, res) => {
 
 router.get('/admin/cliente/:id', (req, res) => {
   let id = req.params.id
-  res.render('admin/clientes/clienteInfo')
+  database.select().table("clientes").where({ id  })
+    .then(resultado => {
+      let cliente = resultado[0]
+
+      axios.get(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${ cliente.uf }`)
+        .then(response => {
+          cliente.uf = response.data.sigla
+          res.render('admin/clientes/clienteInfo', { cliente })
+        })
+        .catch(error => {
+          console.log("Erro durante a pesquisa pelo identificador do estado (UF).")
+        })
+    })
+    .catch(error => {
+      console.log(error)
+    })
 })
 
 module.exports = router
