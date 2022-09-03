@@ -459,7 +459,13 @@ router.post('/admin/cliente/salvarEdicao', (req, res) => {
 
 router.post('/admin/cliente/deletar', (req, res) => {
   let id = req.body.iptId
-  res.send(`Registro ${ id } deletado.`)
+  database.delete().where({ id }).table("clientes")
+    .then(response => {
+      res.redirect('/admin/clientes')
+    })
+    .catch(error => {
+      console.log(error)
+    })
 })
 
 router.get('/admin/cliente/:id', (req, res) => {
