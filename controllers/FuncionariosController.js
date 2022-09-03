@@ -13,7 +13,15 @@ router.get('/admin/funcionario/novo', (req, res) => {
 })
 
 router.get('/admin/funcionarios/opcoes', (req, res) => {
-  res.render('admin/funcionarios/funcionarioOpcoes')
+  database.select().table("setores")
+    .then(response => {
+      res.render('admin/funcionarios/funcionarioOpcoes', {
+        setores: response
+      })
+    })
+    .catch(error => {
+      console.log(error)
+    })
 })
 
 router.post('/admin/funcionario/salvarNovo', (req,res) => {
