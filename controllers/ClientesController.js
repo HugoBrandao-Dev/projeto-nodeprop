@@ -231,7 +231,6 @@ router.get('/admin/cliente/edit/:id', (req, res) => {
   database.select().where({id}).table("clientes")
     .then(resul => {
       let cliente = resul[0]
-      console.log(cliente)
     
       // Erros
       let idError = req.flash('idError')
