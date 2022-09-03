@@ -6,35 +6,169 @@
   </hgroup>
   <hr class="horizontal-bar">
   <form class="form-cadastro" method="POST" action="/admin/cliente/salvarEdicao" onsubmit="desmascarar(event, this)">
-    <input type="hidden" name="iptId" value="0">
+    <input type="hidden" name="iptId" value="<%= cliente.id %>">
 
     <label>Nome:</label>
-    <input type="text" name="iptNome" class="br-7" placeholder="Nome completo">
+    <% if (errors.nomeError) { %>
+      <p>
+        <small class="msgAlert"><%= errors.nomeError %></small>
+      </p>
+    <% } %>
+    <% if (dados.nome.length != 0) { %>
+      <input type="text" name="iptNome" class="br-7" placeholder="Nome completo" value="<%= dados.nome %>">
+    <% } else { %>
+      <input type="text" name="iptNome" class="br-7" placeholder="Nome completo" value="<%= cliente.nome %>">
+    <% } %>
 
     <label>Data de nascimento/Criação:</label>
-    <input type="date" name="iptAno" class="br-7">
+    <% if (errors.anoError) { %>
+      <p>
+        <small class="msgAlert"><%= errors.anoError %></small>
+      </p>
+    <% } %>
+    <% if (dados.ano.length != 0) { %>
+      <input type="date" name="iptAno" class="br-7" value="<%= dados.ano %>">
+    <% } else { %>
+      <input type="date" name="iptAno" class="br-7" value="<%= cliente.nascimento %>">
+    <% } %>
 
     <label>Email:</label>
-    <input type="email" name="iptEmail" class="br-7" placeholder="seu_email@email.com">
+    <% if (errors.emailError) { %>
+      <p>
+        <small class="msgAlert"><%= errors.emailError %></small>
+      </p>
+    <% } %>
+    
+    <% if (dados.email.length != 0) { %>
+      <input type="email" name="iptEmail" class="br-7" placeholder="seu_email@email.com" value="<%= dados.email %>">
+    <% } else { %>
+      <input type="email" name="iptEmail" class="br-7" placeholder="seu_email@email.com" value="<%= cliente.email %>">
+    <% } %>
 
     <label>Telefone:</label>
-    <input type="tel" name="iptTelefone" class="br-7">
+    <% if (errors.telefoneError) { %>
+      <p>
+        <small class="msgAlert"><%= errors.telefoneError %></small>
+      </p>
+    <% } %>
+    <% if (dados.telefone.length != 0) { %>
+      <input type="tel" name="iptTelefone" class="br-7" placeholder="(00) 00000-0000" value="<%= dados.telefone %>">
+    <% } else { %>
+      <input type="tel" name="iptTelefone" class="br-7" placeholder="(00) 00000-0000" value="<%= cliente.telefone %>">
+    <% } %>
 
     <label>Celular:</label>
-    <input type="tel" name="iptCelular" class="br-7">
+    <% if (errors.celularError) { %>
+      <p>
+        <small class="msgAlert"><%= errors.celularError %></small>
+      </p>
+    <% } %>
+    <% if (dados.celular.length != 0) { %>
+      <input type="tel" name="iptCelular" class="br-7" placeholder="(00) 00000-0000" value="<%= dados.celular %>">
+    <% } else { %>
+      <input type="tel" name="iptCelular" class="br-7" placeholder="(00) 00000-0000" value="<%= cliente.celular %>">
+    <% } %>
 
+    <label>CEP:</label>
+    <% if (errors.cepError) { %>
+      <p>
+        <small class="msgAlert"><%= errors.cepError %></small>
+      </p>
+    <% } %>
+    <% if (dados.cep.length != 0) { %>
+      <input type="text" name="iptCEP" class="br-7" placeholder="00000-000" value="<%= dados.cep %>">
+    <% } else { %>
+      <input type="text" name="iptCEP" class="br-7" placeholder="00000-000" value="<%= cliente.cep %>">
+    <% } %>
+    
+    <label>UF:</label>
+    <% if (errors.ufError) { %>
+      <p>
+        <small class="msgAlert"><%= errors.ufError %></small>
+      </p>      
+    <% } %>
+    <% if (dados.uf.length != 0) { %>
+      <select name="iptUF" class="br-7">
+        <% response.data.forEach(info => { %>
+            <% if (info.id == dados.uf) { %>
+              <option value="<%= info.id %>" selected><%= info.sigla %></option>
+            <% } else { %>
+              <option value="<%= info.id %>"><%= info.sigla %></option>
+            <% } %>
+        <% }) %>
+      </select>
+    <% } else { %>
+        <select name="iptUF" class="br-7">
+        <% response.data.forEach(info => { %>
+            <% if (info.id == cliente.uf) { %>
+              <option value="<%= info.id %>" selected><%= info.sigla %></option>
+            <% } else { %>
+              <option value="<%= info.id %>"><%= info.sigla %></option>
+            <% } %>
+        <% }) %>
+      </select>
+    <% } %>
+    
     <label>Localização/Cidade:</label>
-    <input type="text" name="iptLocalizacao" class="br-7">
+    <% if (errors.localizacaoError) { %>
+      <p>
+        <small class="msgAlert"><%= errors.localizacaoError %></small>
+      </p>
+    <% } %>
+    <% if (dados.localizacao.length != 0) { %>
+      <input type="text" name="iptLocalizacao" class="br-7" value="<%= dados.localizacao %>">
+    <% } else { %>
+      <input type="text" name="iptLocalizacao" class="br-7" value="<%= cliente.localizacao %>">
+    <% } %>
 
     <label>Endereço:</label>
-    <input type="text" name="iptEndereco" class="br-7" placeholder="Bairro/Rua/Número">
+    <% if (errors.enderecoError) { %>
+      <p>
+        <small class="msgAlert"><%= errors.enderecoError %></small>
+      </p>
+    <% } %>
+    <% if (dados.endereco.length != 0) { %>
+      <input type="text" name="iptEndereco" class="br-7" placeholder="Bairro/Rua/Número" value="<%= dados.endereco %>">
+    <% } else { %>
+      <input type="text" name="iptEndereco" class="br-7" placeholder="Bairro/Rua/Número" value="<%= cliente.endereco %>">
+    <% } %>
+
+    <label>Número do estabelecimento:</label>
+    <% if (errors.numeroError) { %>
+      <p>
+        <small class="msgAlert"><%= errors.numeroError %></small>
+      </p>
+    <% } %>
+    <% if (dados.numero.length != 0) { %>
+      <input type="number" name="iptNumero" class="br-7" value="<%= dados.numero %>">
+    <% } else { %>
+      <input type="number" name="iptNumero" class="br-7" value="<%= cliente.numero %>">
+    <% } %>
 
     <label>Informações adicionais:</label>
-    <textarea class="br-7" rows="10" name="iptInformacoes"></textarea>
+    <% if (errors.informacoesError) { %>
+      <p>
+        <small class="msgAlert"><%= errors.informacoesError %></small>
+      </p>
+    <% } %>
+    <% if (dados.informacoes.length != 0) { %>
+      <textarea class="br-7" rows="10" name="iptInformacoes"><%= dados.informacoes %></textarea>
+    <% } else { %>
+      <textarea class="br-7" rows="10" name="iptInformacoes"><%= cliente.informacoes_adicionais %></textarea>
+    <% } %>
 
     <label>CPF/CNPJ:</label>
-    <input type="text" name="iptIdentificacao" class="br-7">
-
+    <% if (errors.identificacaoError) { %>
+      <p>
+        <small class="msgAlert"><%= errors.identificacaoError %></small>
+      </p>
+    <% } %>
+    <% if (dados.identificacao.length != 0) { %>
+      <input type="text" name="iptIdentificacao" class="br-7" value="<%= dados.identificacao %>">
+    <% } else { %>
+      <input type="text" name="iptIdentificacao" class="br-7" value="<%= cliente.identificacao %>">
+    <% } %>
+    
     <label>Contrato assinado:</label>
     <input type="file" name="iptContrato" class="br-7">
 
@@ -43,27 +177,9 @@
 </main>
 <script type="text/javascript" src="/js/botoesExpandirAcoes.js"></script>
 <script src="https://unpkg.com/imask"></script>
-<script type="text/javascript">
-
-  // Mascara para o telefone
-  let iptTelefone = document.getElementsByName('iptTelefone')[0]
-  let telefoneMask = {
-    mask: '+00 (00) 00000-0000'
-  }
-  let aplicarMaskTelefone = IMask(iptTelefone, telefoneMask)
-
-  // Mascara para o telefone
-  let iptCelular = document.getElementsByName('iptCelular')[0]
-  let celularMask = {
-    mask: '+00 (00) 00000-0000'
-  }
-  let aplicarMaskCelular = IMask(iptCelular, celularMask)
-
-  function desmascarar(event, form) {
-    event.preventDefault()
-    iptCelular.value = aplicarMaskCelular.unmaskedValue
-    iptTelefone.value = aplicarMaskTelefone.unmaskedValue
-    form.submit()
-  }
-</script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script type="text/javascript" src="/js/mascarasCliente.js"></script>
+<script type="text/javascript" src="/js/axiosCEP.js"></script>
+<script type="text/javascript" src="/js/desmascararCliente.js"></script>
+<script type="text/javascript" src="/js/limitarDatas.js"></script>
 <%- include('../../partials/admin/footer.ejs') %>
