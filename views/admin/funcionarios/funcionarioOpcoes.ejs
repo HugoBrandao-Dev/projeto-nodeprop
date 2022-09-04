@@ -14,9 +14,9 @@
       <form class="form-cadastro form-opcao" method="POST" action="/admin/funcionarios/setor/salvarNovo">
         <label>Setor:</label>
         <div class="entrada">
-          <% if (setorError) { %>
+          <% if (erros.setorError) { %>
             <p>
-              <small class="msgAlert"><%= setorError %></small>
+              <small class="msgAlert"><%= erros.setorError %></small>
             </p>
           <% } %>
           <input type="text" name="iptSetor" class="br-7" placeholder="Nome do novo setor">
@@ -52,16 +52,33 @@
     <section id="cargo">
       <form class="form-cadastro form-opcao" method="POST" action="/admin/funcionarios/cargo/salvarNovo">
         Setor pertencente:
+        <% if (erros.cargoSetorError) { %>
+          <p>
+            <small class="msgAlert"><%= erros.cargoSetorError %></small>
+          </p>
+        <% } %>
         <select name="iptSetor" class="br-7">
           <% setores.forEach(setor => { %>
             <option value="<%= setor.id %>"><%= setor.setor %></option>
           <% }) %>
         </select>
         <div class="input-cargo">
-          Cargo: <input type="text" name="iptCargo" placeholder="Nome do novo cargo">
+          Cargo:
+          <% if (erros.cargoError) { %>
+            <p>
+              <small class="msgAlert"><%= erros.cargoError %></small>
+            </p>
+          <% } %>
+          <input type="text" name="iptCargo" placeholder="Nome do novo cargo">
         </div>
         <div class="input-salario">
-          Salário: <input type="number" name="iptSalario" min="0" max="500000">
+          Salário:
+          <% if (erros.salarioError) { %>
+            <p>
+              <small class="msgAlert"><%= erros.salarioError %></small>
+            </p>
+          <% } %>
+          <input type="number" name="iptSalario" min="0" max="500000">
         </div>
         <button type="submit" class="btn btn-add">Cadastrar</button>
       </form>
