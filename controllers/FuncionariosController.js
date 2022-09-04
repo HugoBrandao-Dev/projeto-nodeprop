@@ -14,13 +14,24 @@ router.get('/admin/funcionario/novo', (req, res) => {
 })
 
 router.get('/admin/funcionarios/opcoes', (req, res) => {
+  // Mensagens de erro.
   let setorError = req.flash('setorError')
+  let cargoSetorError = req.flash('cargoSetorError')
+  let cargoError = req.flash('cargoError')
+  let salarioError = req.flash('salarioError')
+
+  let erros = {
+    setorError,
+    cargoSetorError,
+    cargoError,
+    salarioError
+  }
 
   database.select().table("setores")
     .then(response => {
       res.render('admin/funcionarios/funcionarioOpcoes', {
         setores: response,
-        setorError
+        erros
       })
     })
     .catch(error => {
@@ -149,15 +160,62 @@ router.post('/admin/funcionario/setor/deletar', (req, res) => {
 })
 
 router.post('/admin/funcionarios/cargo/salvarNovo', (req, res) => {
-  let setor = req.body.iptSetor
+  let cargoSetor = req.body.iptSetor
   let cargo = req.body.iptCargo
-  let salario = parseFloat(parseFloat(req.body.iptSalario).toFixed(2))
+  let salario = req.body.iptSalario
 
-  res.send({
-    setor,
-    cargo,
-    salario
+  let cargoSetorOK = validator.isInt(cargoSetor)
+  let cargoOK = validator.isAlpha(cargo, ['pt-BR'], {
+    ignore: ' '
   })
+  let salarioOK = validator.isFloat(salario, ['pt-BR'], {
+    min: 0,
+    max: 500000
+  })
+
+  let cargoSetorError = null
+  let cargoError = null
+  let salarioError = null
+
+  if (!cargoSetorOK) {
+    cargoSetorError = 'SETOR inválido ou preenchido de forma incorreta.'
+  }
+  if (!cargoOK) {
+    cargoError = 'CARGO inválido.'
+  }
+  if (!salarioOK) {
+    salarioError = 'SALÁRIO inválido.'
+  }
+
+  if (cargoSetorError || cargoError || salarioError) {
+    req.flash('cargoSetorError', cargoSetorError)
+    req.flash('cargoError', cargoError)
+    req.flash('salarioError', salarioError)
+
+    req.flash('cargoSetor', cargoSetor)
+    req.flash('cargo', cargo)
+    req.flash('salario', salario)
+
+    res.redirect('/admin/funcionarios/opcoes')
+  } else {
+    database.insert({
+      cargo,
+      setor_id: cargoSetor,
+      salario: parseFloat(parseFloat(salario).toFixed(2))
+    }).table("cargos")
+    .then(response => {
+      res.redirect('/admin/funcionarios/opcoes')
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  }
+})
+
+router.post('/admin/funcionario/cargo/deletar', (req, res) => {
+  let id = req.body.iptId
+
+  res.send({ id })
 })
 
 module.exports = router
