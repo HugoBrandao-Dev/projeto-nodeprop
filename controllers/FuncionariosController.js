@@ -28,11 +28,18 @@ router.get('/admin/funcionarios/opcoes', (req, res) => {
   }
 
   database.select().table("setores")
-    .then(response => {
-      res.render('admin/funcionarios/funcionarioOpcoes', {
-        setores: response,
-        erros
-      })
+    .then(setores => {
+      database.select().table('cargos')
+        .then(cargos => {
+          res.render('admin/funcionarios/funcionarioOpcoes', {
+            setores,
+            cargos,
+            erros
+          })
+        })
+        .catch(error => {
+          console.log(error)
+        })
     })
     .catch(error => {
       console.log(error)
