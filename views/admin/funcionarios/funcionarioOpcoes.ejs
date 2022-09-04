@@ -93,36 +93,18 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="table-id">0</td>
-            <td class="table-nome">Atendente</td>
-            <td class="table-acao">
-              <form method="POST" action="/admin/funcionario/deletar" onsubmit="deletarRegistro(event, this)">
-                <input type="hidden" name="iptId" value="0">
-                <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
-              </form>
-            </td>
-          </tr>
-          <tr>
-            <td class="table-id">1</td>
-            <td class="table-nome">Estágio</td>
-            <td class="table-acao">
-              <form method="POST" action="/admin/funcionario/deletar" onsubmit="deletarRegistro(event, this)">
-                <input type="hidden" name="iptId" value="1">
-                <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
-              </form>
-            </td>
-          </tr>
-          <tr>
-            <td class="table-id">2</td>
-            <td class="table-nome">Gerente</td>
-            <td class="table-acao">
-              <form method="POST" action="/admin/funcionario/deletar" onsubmit="deletarRegistro(event, this)">
-                <input type="hidden" name="iptId" value="2">
-                <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
-              </form>
-            </td>
-          </tr>
+          <% cargos.forEach(cargo => { %>
+            <tr>
+              <td class="table-id"><%= cargo.id %></td>
+              <td class="table-nome"><%= cargo.cargo %></td>
+              <td class="table-acao">
+                <form method="POST" action="/admin/funcionario/deletar" onsubmit="deletarRegistro(event, this)">
+                  <input type="hidden" name="iptId" value="<%= cargo.id %>">
+                  <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
         </tbody>
       </table>
     </section>
