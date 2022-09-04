@@ -222,7 +222,23 @@ router.post('/admin/funcionarios/cargo/salvarNovo', (req, res) => {
 router.post('/admin/funcionario/cargo/deletar', (req, res) => {
   let id = req.body.iptId
 
-  res.send({ id })
+  database.select().table("funcionarios").where({ cargo_id: id })
+    .then(funcionarios => {
+      if (funcionarios.length == 0) {
+        database.delete().table("cargos").where({ id })
+          .then(cargos => {
+            res.redirect("/admin/funcionarios/opcoes")
+          })
+          .catch(error => {
+            console.log(error)
+          }) 
+      } else {
+        res.send('ERRO: Há funcionarios que ocupam este CARGOS.')
+      }
+    })
+    .catch(error => {
+      console.log(error)
+    })
 })
 
 module.exports = router
