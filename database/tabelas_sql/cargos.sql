@@ -8,3 +8,6 @@ CREATE TABLE cargos (
 	PRIMARY KEY(id),
 	CONSTRAINT fk_setores FOREIGN KEY(setor_id) REFERENCES setores(id)
 );
+
+SELECT * FROM cargos;
+DESCRIBE cargos;
