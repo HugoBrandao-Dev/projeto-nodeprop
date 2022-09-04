@@ -218,6 +218,10 @@ table td ul {
   float: right;
 }
 
+.form-opcao .input-cargo p, .form-opcao .input-salario p {
+  height: 20px;
+}
+
 .form-opcao .input-salario input {
   border-radius: 0 7px 0 0;
 }
