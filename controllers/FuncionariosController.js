@@ -10,7 +10,6 @@ router.get('/admin/funcionarios', (req, res) => {
   database.select(["funcionarios.id AS funcionarioId", "nome", "email", "celular", "cargo_id", "cargo"]).table("funcionarios")
     .innerJoin("cargos", "cargos.id", "funcionarios.cargo_id")
       .then(funcionarios => {
-        console.log(funcionarios)
         res.render('admin/funcionarios/funcionariosList', { funcionarios })
       })
       .catch(error => {
@@ -291,7 +290,103 @@ router.post('/admin/funcionario/salvarNovo', (req,res) => {
 })
 
 router.get('/admin/funcionario/edit/:id', (req, res) => {
-  res.render('admin/funcionarios/funcionarioEdit')
+  let id = req.params.id
+
+  axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome')
+    .then(response => {
+      let ufs = response.data
+      database.select().table("funcionarios").where({ id })
+        .then(funcionarioArray => {
+          let funcionario = funcionarioArray[0]
+          console.log(funcionario)
+          if (funcionario.length != 0) {
+            database.select().table("setores")
+              .then(setores => {
+                database.select().table("cargos")
+                  .then(cargos => {
+
+                  // Recepção de erros
+                  let nomeError = req.flash('nomeError')
+                  let nascimentoError = req.flash('nascimentoError')
+                  let emailError = req.flash('emailError')
+                  let setorError = req.flash('setorError')
+                  let cargoError = req.flash('cargoError')
+                  let telefoneError = req.flash('telefoneError')
+                  let celularError = req.flash('celularError')
+                  let cepError = req.flash('cepError')
+                  let ufError = req.flash('ufError')
+                  let localizacaoError = req.flash('localizacaoError')
+                  let enderecoError = req.flash('enderecoError')
+                  let informacoesError = req.flash('informacoesError')
+                  let cpfError = req.flash('cpfError')
+
+                  let erros = {
+                    nomeError,
+                    nascimentoError,
+                    emailError,
+                    setorError,
+                    cargoError,
+                    telefoneError,
+                    celularError,
+                    cepError,
+                    ufError,
+                    localizacaoError,
+                    enderecoError,
+                    informacoesError,
+                    cpfError
+                  }
+
+                  // Recepção de dados
+                  let nome = req.flash('nome')
+                  let nascimento = req.flash('nascimento')
+                  let email = req.flash('email')
+                  let setor = req.flash('setor')
+                  let cargo = req.flash('cargo')
+                  let telefone = req.flash('telefone')
+                  let celular = req.flash('celular')
+                  let cep = req.flash('cep')
+                  let uf = req.flash('uf')
+                  let localizacao = req.flash('localizacao')
+                  let endereco = req.flash('endereco')
+                  let informacoes = req.flash('informacoes')
+                  let cpf = req.flash('cpf')
+
+                  let dados = {
+                    nome,
+                    nascimento,
+                    email,
+                    setor,
+                    cargo,
+                    telefone,
+                    celular,
+                    cep,
+                    uf,
+                    localizacao,
+                    endereco,
+                    informacoes,
+                    cpf
+                  }
+
+                  res.render('admin/funcionarios/funcionarioEdit', { ufs, funcionario, setores, cargos, erros, dados })
+                })
+                .catch(error => {
+                  console.log(error)
+                })
+              })
+            .catch(error => {
+              console.log(error)
+            })
+          } else {
+            res.send('ERRO: Esse ID de funcionário não existe.')
+          }
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    })
+    .catch(error => {
+      console.log(error)
+    })
 })
 
 router.post('/admin/funcionario/salvarCadastrado', (req, res) => {
