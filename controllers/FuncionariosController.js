@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const database = require('../database/connection')
 const validator = require('validator')
+const axios = require('axios')
 
 /* ROTAS DO ADMINISTRADOR */
 
@@ -10,7 +11,26 @@ router.get('/admin/funcionarios', (req, res) => {
 })
 
 router.get('/admin/funcionario/novo', (req, res) => {
-  res.render('admin/funcionarios/funcionarioCadastrar')
+  axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome')
+    .then(response => {
+      let ufs = response.data
+      database.select().table("setores")
+        .then(setores => {
+          database.select().table("cargos")
+            .then(cargos => {
+              res.render('admin/funcionarios/funcionarioCadastrar', { ufs, setores, cargos })
+            })
+            .catch(error => {
+              console.log(error)
+            })
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    })
+    .catch(error => {
+      console.log(error)
+    })
 })
 
 router.get('/admin/funcionarios/opcoes', (req, res) => {
@@ -47,17 +67,17 @@ router.get('/admin/funcionarios/opcoes', (req, res) => {
 })
 
 router.post('/admin/funcionario/salvarNovo', (req,res) => {
-let nome = req.body.iptNome
-let nascimento = req.body.iptNascimento
-let email = req.body.iptEmail
-let setor = req.body.iptSetor
-let cargo = req.body.iptCargo
-let telefone = req.body.iptTelefone
-let celular = req.body.iptCelular
-let localizacao = req.body.iptLocalizacao
-let endereco = req.body.iptEndereco
-let informacoes = req.body.iptInformacoes
-let cpf = req.body.iptCPF
+  let nome = req.body.iptNome.trim()
+  let nascimento = req.body.iptNascimento
+  let email = req.body.iptEmail
+  let setor = req.body.iptSetor
+  let cargo = req.body.iptCargo
+  let telefone = req.body.iptTelefone
+  let celular = req.body.iptCelular
+  let localizacao = req.body.iptLocalizacao
+  let endereco = req.body.iptEndereco
+  let informacoes = req.body.iptInformacoes
+  let cpf = req.body.iptCPF
 
   res.send({
     nome,
