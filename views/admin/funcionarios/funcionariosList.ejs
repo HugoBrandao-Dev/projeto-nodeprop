@@ -29,8 +29,8 @@
             <td class="table-celular"><%= funcionario.celular %></td>
             <td class="table-cargo"><%= funcionario.cargo %></td>
             <td class="table-acao">
-              <button class="btn-table-acao btn-expandir-acoes expandir-0"><i class="fas fa-ellipsis-h"></i></button>
-              <ul class="acoes acoes-0">
+              <button class="btn-table-acao btn-expandir-acoes expandir-<%= funcionario.funcionarioId %>"><i class="fas fa-ellipsis-h"></i></button>
+              <ul class="acoes acoes-<%= funcionario.funcionarioId %>">
                 <li>
                   <a href="/admin/funcionario/edit/<%= funcionario.funcionarioId %>" class="btn-table-acao btn-editar-registro" title="Editar registro"><i class="fa fa-edit"></i></a>
                 </li>
