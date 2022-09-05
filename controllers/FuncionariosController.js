@@ -557,7 +557,52 @@ router.post('/admin/funcionario/deletar', (req, res) => {
 })
 
 router.get('/admin/funcionario/:id', (req, res) => {
-  res.render('admin/funcionarios/funcionarioInfo')
+  let id = req.params.id
+
+  axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome')
+    .then(ufs => {
+      database.select([
+        "funcionarios.id AS funcionarioId",
+        "setores.id AS setorId",
+        "cargos.id AS cargoId",
+        "nome",
+        "nascimento",
+        "email",
+        "telefone",
+        "celular",
+        "cep",
+        "cpf",
+        "uf",
+        "localizacao",
+        "informacoes_adicionais",
+        "endereco",
+        "cargo_id",
+        "setor_id",
+        "cargo",
+        "setor"
+        ]).table("funcionarios")
+      .innerJoin("cargos", "cargos.id", "funcionarios.cargo_id")
+      .innerJoin("setores", "setores.id", "funcionarios.setor_id")
+      .where({ "funcionarios.id": id})
+      .then(funcionarioArray => {
+        let funcionario = funcionarioArray[0]
+
+        // Captura a sigla do estado (UF) e a armazena dentro do Objeto funcionario.
+        ufs.data.forEach(ufObject => {
+          if (funcionario.uf == ufObject.id) {
+            funcionario.uf = ufObject.sigla
+          }
+        })
+        if (funcionarioArray.length == 1) {
+          res.render('admin/funcionarios/funcionarioInfo', { funcionario })
+        } else {
+          res.send('ERRO: ID inválido de funcionário.')
+        }
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    })
 })
 
 router.post('/admin/funcionarios/setor/salvarNovo', (req, res) => {
