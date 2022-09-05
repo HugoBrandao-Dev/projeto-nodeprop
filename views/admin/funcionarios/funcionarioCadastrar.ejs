@@ -7,55 +7,132 @@
   <hr class="horizontal-bar">
   <form class="form-cadastro" method="POST" action="/admin/funcionario/salvarNovo" onsubmit="desmascarar(event, this)">
     <label>Nome:</label>
-    <input type="text" name="iptNome" class="br-7" placeholder="Nome completo">
+    <% if (erros.nomeError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.nomeError %></small>
+      </p>
+    <% } %>
+    <input type="text" name="iptNome" class="br-7" placeholder="Nome completo" value="<%= dados.nome %>">
 
     <label>Data de nascimento:</label>
-    <input type="date" name="iptNascimento" class="br-7">
+    <% if (erros.nascimentoError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.nascimentoError %></small>
+      </p>
+    <% } %>
+    <input type="date" name="iptNascimento" class="br-7" value="<%= dados.nascimento %>">
 
     <label>Email:</label>
-    <input type="email" name="iptEmail" class="br-7" placeholder="seu_email@email.com">
+    <% if (erros.emailError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.emailError %></small>
+      </p>
+    <% } %>
+    <input type="email" name="iptEmail" class="br-7" placeholder="seu_email@email.com" value="<%= dados.email %>">
 
     <label>Setor:</label>
+    <% if (erros.setorError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.setorError %></small>
+      </p>
+    <% } %>
     <select name="iptSetor" class="br-7">
       <% setores.forEach(setor => { %>
-        <option value="<%= setor.id %>"><%= setor.setor %></option>
+        <% if (setor.id == dados.setor) { %>
+          <option value="<%= setor.id %>" selected><%= setor.setor %></option>
+        <% } else { %>
+          <option value="<%= setor.id %>"><%= setor.setor %></option>
+        <% } %>
       <% }) %>
     </select>
 
     <label>Cargo:</label>
+    <% if (erros.cargoError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.cargoError %></small>
+      </p>
+    <% } %>
     <select name="iptCargo" class="br-7">
       <% cargos.forEach(cargo => { %>
-        <option value="<%= cargo.id %>"><%= cargo.cargo %></option>
+        <% if (cargo.id == dados.cargo) { %>
+          <option value="<%= cargo.id %>" selected><%= cargo.cargo %></option>
+        <% } else { %>
+          <option value="<%= cargo.id %>"><%= cargo.cargo %></option>
+        <% } %>
       <% }) %>
     </select>
 
     <label>Telefone:</label>
-    <input type="tel" name="iptTelefone" class="br-7" placeholder="(00) 00000-0000">
+    <% if (erros.telefoneError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.telefoneError %></small>
+      </p>
+    <% } %>
+    <input type="tel" name="iptTelefone" class="br-7" placeholder="(00) 00000-0000" value="<%= dados.telefone %>">
 
     <label>Celular:</label>
-    <input type="tel" name="iptCelular" class="br-7" placeholder="(00) 00000-0000">
+    <% if (erros.celularError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.celularError %></small>
+      </p>
+    <% } %>
+    <input type="tel" name="iptCelular" class="br-7" placeholder="(00) 00000-0000" value="<%= dados.celular %>">
 
     <label>CEP:</label>
-    <input type="text" name="iptCEP" class="br-7" placeholder="00000-000">
+    <% if (erros.cepError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.cepError %></small>
+      </p>
+    <% } %>
+    <input type="text" name="iptCEP" class="br-7" placeholder="00000-000" value="<%= dados.cep %>">
 
     <label>UF:</label>
+    <% if (erros.ufError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.ufError %></small>
+      </p>
+    <% } %>
     <select name="iptUF" class="br-7">
       <% ufs.forEach(uf => { %>
-        <option value="<%= uf.id %>"><%= uf.sigla %></option>
+        <% if (uf.id == dados.uf) { %>
+          <option value="<%= uf.id %>" selected><%= uf.sigla %></option>
+        <% } else { %>
+          <option value="<%= uf.id %>"><%= uf.sigla %></option>
+        <% } %>
       <% }) %>
     </select>
 
     <label>Localização/Cidade:</label>
-    <input type="text" name="iptLocalizacao" class="br-7">
+    <% if (erros.localizacaoError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.localizacaoError %></small>
+      </p>
+    <% } %>
+    <input type="text" name="iptLocalizacao" class="br-7" value="<%= dados.localizacao %>">
 
     <label>Endereço:</label>
-    <input type="text" name="iptEndereco" class="br-7" placeholder="Bairro/Rua/Número">
+    <% if (erros.enderecoError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.enderecoError %></small>
+      </p>
+    <% } %>
+    <input type="text" name="iptEndereco" class="br-7" placeholder="Bairro/Rua/Número" value="<%= dados.endereco %>">
 
     <label>Informações adicionais:</label>
-    <textarea class="br-7" rows="10" name="iptInformacoes"></textarea>
+    <% if (erros.informacoesError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.informacoesError %></small>
+      </p>
+    <% } %>
+    <textarea class="br-7" rows="10" name="iptInformacoes"><%= dados.informacoes %></textarea>
 
     <label>CPF:</label>
-    <input type="text" name="iptCPF" class="br-7">
+    <% if (erros.cpfError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.cpfError %></small>
+      </p>
+    <% } %>
+    <input type="text" name="iptCPF" class="br-7" value="<%= dados.cpf %>">
 
     <button type="submit" class="btn btn-add btn-right">Cadastrar</button>
   </form>
