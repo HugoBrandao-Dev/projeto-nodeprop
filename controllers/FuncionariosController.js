@@ -139,10 +139,10 @@ router.post('/admin/funcionario/salvarNovo', (req,res) => {
   let celular = req.body.iptCelular
   let cep = req.body.iptCEP
   let uf = req.body.iptUF
-  let localizacao = req.body.iptLocalizacao
-  let endereco = req.body.iptEndereco
-  let informacoes = req.body.iptInformacoes
-  let cpf = req.body.iptCPF
+  let localizacao = req.body.iptLocalizacao.trim()
+  let endereco = req.body.iptEndereco.trim()
+  let informacoes = req.body.iptInformacoes.trim()
+  let cpf = req.body.iptCPF.trim()
 
   let nomeOK = validator.isAlpha(nome, ['pt-BR'], {
     ignore: ' ,.:()\''
@@ -258,21 +258,27 @@ router.post('/admin/funcionario/salvarNovo', (req,res) => {
 
     res.redirect('/admin/funcionario/novo')
   } else {
-    res.send({
-    nome,
-    nascimento,
-    email,
-    setor,
-    cargo,
-    telefone,
-    celular,
-    cep,
-    uf,
-    localizacao,
-    endereco,
-    informacoes,
-    cpf
-  })
+    database.insert({
+      nome: nome.toLowerCase(),
+      nascimento,
+      email,
+      setor_id: setor,
+      cargo_id: cargo,
+      telefone,
+      celular,
+      cep: cep.split('-').join(''),
+      uf,
+      localizacao,
+      endereco,
+      informacoes_adicionais: informacoes,
+      cpf
+    }).table("funcionarios")
+      .then(response => {
+        res.redirect('/admin/funcionarios')
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }
 })
 
