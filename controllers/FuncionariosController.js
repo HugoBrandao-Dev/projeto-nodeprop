@@ -7,7 +7,15 @@ const axios = require('axios')
 /* ROTAS DO ADMINISTRADOR */
 
 router.get('/admin/funcionarios', (req, res) => {
-  res.render('admin/funcionarios/funcionariosList')
+  database.select(["funcionarios.id AS funcionarioId", "nome", "email", "celular", "cargo_id", "cargo"]).table("funcionarios")
+    .innerJoin("cargos", "cargos.id", "funcionarios.cargo_id")
+      .then(funcionarios => {
+        console.log(funcionarios)
+        res.render('admin/funcionarios/funcionariosList', { funcionarios })
+      })
+      .catch(error => {
+        console.log(error)
+      })
 })
 
 router.get('/admin/funcionario/novo', (req, res) => {
