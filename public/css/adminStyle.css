@@ -74,6 +74,10 @@ tbody tr:hover {
   display: none;
 }
 
+.table-nome, .table-cargo, .table-categoria, .table-autor, .table-contratante {
+  text-transform: capitalize;
+}
+
 table tr td .btn-table-acao {
   padding: 6px;
   border-width: 2px;
