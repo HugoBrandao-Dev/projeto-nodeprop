@@ -6,83 +6,170 @@
   </hgroup>
   <hr class="horizontal-bar">
   <form class="form-cadastro" method="POST" action="/admin/funcionario/salvarCadastrado" onsubmit="desmascarar(event, this)">
-    <input type="hidden" name="iptId" value="0">
+    <input type="hidden" name="iptId" value="<%= funcionario.id %>">
 
     <label>Nome:</label>
-    <input type="text" name="iptNome" class="br-7" placeholder="Nome completo">
+    <% if (erros.nomeError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.nomeError %></small>
+      </p>
+    <% } %>
+    <input type="text" name="iptNome" class="br-7" placeholder="Nome completo" value="<%= dados.nome.length != 0 ? dados.nome : funcionario.nome %>">
 
     <label>Data de nascimento:</label>
-    <input type="date" name="iptNascimento" class="br-7">
+    <% if (erros.nascimentoError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.nascimentoError %></small>
+      </p>
+    <% } %>
+    <input type="date" name="iptNascimento" class="br-7" value="<%= dados.nascimento.length != 0 ? dados.nascimento : funcionario.nascimento %>">
 
     <label>Email:</label>
-    <input type="email" name="iptEmail" class="br-7" placeholder="seu_email@email.com">
+    <% if (erros.emailError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.emailError %></small>
+      </p>
+    <% } %>
+    <input type="email" name="iptEmail" class="br-7" placeholder="seu_email@email.com" value="<%= dados.email.length != 0 ? dados.email : funcionario.email %>">
 
     <label>Setor:</label>
+    <% if (erros.setorError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.setorError %></small>
+      </p>
+    <% } %>
     <select name="iptSetor" class="br-7">
-      <option>Atendimento</option>
-      <option>Estágio</option>
-      <option>Gerência</option>
+      <% setores.forEach(setor => { %>
+        <% if (dados.setor.length != 0) { %>
+          <% if (setor.id == dados.setor) { %>
+            <option value="<%= setor.id %>" selected><%= setor.setor %></option>
+          <% } else { %>
+            <option value="<%= setor.id %>"><%= setor.setor %></option>
+          <% } %>
+        <% } else { %>
+          <% if (setor.id == funcionario.setor_id) { %>
+            <option value="<%= setor.id %>" selected><%= setor.setor %></option>
+          <% } else { %>
+            <option value="<%= setor.id %>"><%= setor.setor %></option>
+          <% } %>
+        <% } %>
+      <% }) %>
     </select>
 
     <label>Cargo:</label>
+    <% if (erros.cargoError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.cargoError %></small>
+      </p>
+    <% } %>
     <select name="iptCargo" class="br-7">
-      <option>Atendente</option>
-      <option>Estagiário</option>
-      <option>Gerênte</option>
+      <% cargos.forEach(cargo => { %>
+        <% if (dados.cargo.length != 0) { %>
+          <% if (cargo.id == dados.cargo) { %>
+            <option value="<%= cargo.id %>" selected><%= cargo.cargo %></option>
+          <% } else { %>
+            <option value="<%= cargo.id %>"><%= cargo.cargo %></option>
+          <% } %>
+        <% } else { %>
+          <% if (cargo.id == funcionario.cargo_id) { %>
+            <option value="<%= cargo.id %>" selected><%= cargo.cargo %></option>
+          <% } else { %>
+            <option value="<%= cargo.id %>"><%= cargo.cargo %></option>
+          <% } %>
+        <% } %>
+      <% }) %>
     </select>
 
     <label>Telefone:</label>
-    <input type="tel" name="iptTelefone" class="br-7">
+    <% if (erros.telefoneError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.telefoneError %></small>
+      </p>
+    <% } %>
+    <input type="tel" name="iptTelefone" class="br-7" placeholder="(00) 00000-0000" value="<%= dados.telefone.length != 0 ? dados.telefone : funcionario.telefone %>">
 
     <label>Celular:</label>
-    <input type="tel" name="iptCelular" class="br-7">
+    <% if (erros.celularError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.celularError %></small>
+      </p>
+    <% } %>
+    <input type="tel" name="iptCelular" class="br-7" placeholder="(00) 00000-0000" value="<%= dados.celular.length != 0 ? dados.celular : funcionario.celular %>">
+
+    <label>CEP:</label>
+    <% if (erros.cepError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.cepError %></small>
+      </p>
+    <% } %>
+    <input type="text" name="iptCEP" class="br-7" placeholder="00000-000" value="<%= dados.cep.length != 0 ? dados.cep : funcionario.cep %>">
+
+    <label>UF:</label>
+    <% if (erros.ufError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.ufError %></small>
+      </p>
+    <% } %>
+    <select name="iptUF" class="br-7">
+      <% if (dados.uf.length != 0) { %>
+        <% ufs.forEach(uf => { %>
+          <% if (uf.id == dados.uf) { %>
+            <option value="<%= uf.id %>" selected><%= uf.sigla %></option>
+          <% } else { %>
+            <option value="<%= uf.id %>"><%= uf.sigla %></option>
+          <% } %>
+        <% }) %>
+      <% } else { %>
+        <% ufs.forEach(uf => { %>
+          <% if (uf.id == funcionario.uf) { %>
+            <option value="<%= uf.id %>" selected><%= uf.sigla %></option>
+          <% } else { %>
+            <option value="<%= uf.id %>"><%= uf.sigla %></option>
+          <% } %>
+        <% }) %>
+      <% } %>
+    </select>
 
     <label>Localização/Cidade:</label>
-    <input type="text" name="iptLocalizacao" class="br-7">
+    <% if (erros.localizacaoError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.localizacaoError %></small>
+      </p>
+    <% } %>
+    <input type="text" name="iptLocalizacao" class="br-7" value="<%= dados.localizacao.length != 0 ? dados.localizacao : funcionario.localizacao %>">
 
     <label>Endereço:</label>
-    <input type="text" name="iptEndereco" class="br-7" placeholder="Bairro/Rua/Número">
+    <% if (erros.enderecoError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.enderecoError %></small>
+      </p>
+    <% } %>
+    <input type="text" name="iptEndereco" class="br-7" placeholder="Bairro/Rua/Número" value="<%= dados.endereco.length != 0 ? dados.endereco : funcionario.endereco %>">
 
     <label>Informações adicionais:</label>
-    <textarea class="br-7" rows="10" name="iptInformacoes"></textarea>
+    <% if (erros.informacoesError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.informacoesError %></small>
+      </p>
+    <% } %>
+    <textarea class="br-7" rows="10" name="iptInformacoes"><%= dados.informacoes.length != 0 ? dados.informacoes : funcionario.informacoes_adicionais %></textarea>
 
     <label>CPF:</label>
-    <input type="text" name="iptCPF" class="br-7">
+    <% if (erros.cpfError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.cpfError %></small>
+      </p>
+    <% } %>
+    <input type="text" name="iptCPF" class="br-7" value="<%= dados.cpf.length != 0 ? dados.cpf : funcionario.cpf %>">
 
-    <button type="submit" class="btn btn-add btn-right">Cadastrar</button>
+    <button type="submit" class="btn btn-edit btn-right">Atualizar</button>
   </form>
 </main>
 <script type="text/javascript" src="/js/botoesExpandirAcoes.js"></script>
 <script src="https://unpkg.com/imask"></script>
-<script type="text/javascript">
-
-  // Mascara para o telefone
-  let iptTelefone = document.getElementsByName('iptTelefone')[0]
-  let telefoneMask = {
-    mask: '+00 (00) 00000-0000'
-  }
-  let aplicarMaskTelefone = IMask(iptTelefone, telefoneMask)
-
-  // Mascara para o telefone
-  let iptCelular = document.getElementsByName('iptCelular')[0]
-  let celularMask = {
-    mask: '+00 (00) 00000-0000'
-  }
-  let aplicarMaskCelular = IMask(iptCelular, celularMask)
-
-  // Mascara para o telefone
-  let iptCPF = document.getElementsByName('iptCPF')[0]
-  let CPFMask = {
-    mask: '000.000.000-00'
-  }
-  let aplicarMaskCPF = IMask(iptCPF, CPFMask)
-
-  function desmascarar(event, form) {
-    event.preventDefault()
-    iptCelular.value = aplicarMaskCelular.unmaskedValue
-    iptTelefone.value = aplicarMaskTelefone.unmaskedValue
-    iptCPF.value = aplicarMaskCPF.unmaskedValue
-    form.submit()
-  }
-</script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script type="text/javascript" src="/js/mascarasCliente.js"></script>
+<script type="text/javascript" src="/js/axiosCEP.js"></script>
+<script type="text/javascript" src="/js/desmascararCliente.js"></script>
+<script type="text/javascript" src="/js/limitarDatas.js"></script>
 <%- include('../../partials/admin/footer.ejs') %>
