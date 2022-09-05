@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const database = require('../database/connection')
 
 router.get('/servicos', (req, res) => {
   res.render('servicos')
@@ -12,7 +13,20 @@ router.get('/admin/servicos', (req, res) => {
 })
 
 router.get('/admin/servico/novo', (req, res) => {
-  res.render('admin/servicos/servicoCadastrar')
+  database.select([
+    "funcionarios.id AS funcionarioId",
+    "nome",
+    "cargo"
+  ]).table("funcionarios")
+  .innerJoin("cargos", "cargos.id", "funcionarios.cargo_id")
+    .then(funcionarios => {
+      res.render('admin/servicos/servicoCadastrar', {
+        funcionarios
+      })
+    })
+    .catch(error => {
+      console.log(error)
+    })
 })
 
 router.post('/admin/servico/salvarNovo', (req, res) => {
