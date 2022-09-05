@@ -11,18 +11,25 @@
 
     <label>Responsáveis:</label>
     <div class="div-responsaveis">
-      <label>
-        <input type="checkbox" name="iptResponsaveis" value="0"> Tobias de Oliveira
-      </label>
-      <label>
-        <input type="checkbox" name="iptResponsaveis" value="1"> Josias Cruz
-      </label>
-      <label>
-        <input type="checkbox" name="iptResponsaveis" value="2"> Doralice Cruz
-      </label>
-      <label>
-        <input type="checkbox" name="iptResponsaveis" value="4"> Dinorá de Oliveira
-      </label>
+      <% funcionarios.forEach(funcionario => { %>
+        <label>
+          <input type="checkbox" name="iptResponsaveis" value="<%= funcionario.funcionarioId %>"> <%= funcionario.nome %> - <%= funcionario.cargo %>
+        </label>
+      <% }) %>
+      <%#
+        <label>
+          <input type="checkbox" name="iptResponsaveis" value="0"> Tobias de Oliveira
+        </label>
+        <label>
+          <input type="checkbox" name="iptResponsaveis" value="1"> Josias Cruz
+        </label>
+        <label>
+          <input type="checkbox" name="iptResponsaveis" value="2"> Doralice Cruz
+        </label>
+        <label>
+          <input type="checkbox" name="iptResponsaveis" value="4"> Dinorá de Oliveira
+        </label>
+      %>
     </div>
 
     <label>Informações adicionais:</label>
