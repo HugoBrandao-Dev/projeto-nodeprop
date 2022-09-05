@@ -32,16 +32,16 @@
               <button class="btn-table-acao btn-expandir-acoes expandir-0"><i class="fas fa-ellipsis-h"></i></button>
               <ul class="acoes acoes-0">
                 <li>
-                  <a href="/admin/funcionario/edit/<%= funcionario.id %>" class="btn-table-acao btn-editar-registro" title="Editar registro"><i class="fa fa-edit"></i></a>
+                  <a href="/admin/funcionario/edit/<%= funcionario.funcionarioId %>" class="btn-table-acao btn-editar-registro" title="Editar registro"><i class="fa fa-edit"></i></a>
                 </li>
                 <li>
                   <form method="POST" action="/admin/funcionario/deletar" onsubmit="deletarRegistro(event, this)">
-                    <input type="hidden" name="iptId" value="<%= funcionario.id %>">
+                    <input type="hidden" name="iptId" value="<%= funcionario.funcionarioId %>">
                     <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
                   </form>
                 </li>
                 <li>
-                  <a href="/admin/funcionario/<%= funcionario.id %>" class="btn-table-acao btn-info-registro" title="Informações do registro"><i class="fa fa-info-circle"></i></a>
+                  <a href="/admin/funcionario/<%= funcionario.funcionarioId %>" class="btn-table-acao btn-info-registro" title="Informações do registro"><i class="fa fa-info-circle"></i></a>
                 </li>
               </ul>
             </td>
