@@ -18,7 +18,70 @@ router.get('/admin/funcionario/novo', (req, res) => {
         .then(setores => {
           database.select().table("cargos")
             .then(cargos => {
-              res.render('admin/funcionarios/funcionarioCadastrar', { ufs, setores, cargos })
+
+              // Recepção de erros
+              let nomeError = req.flash('nomeError')
+              let nascimentoError = req.flash('nascimentoError')
+              let emailError = req.flash('emailError')
+              let setorError = req.flash('setorError')
+              let cargoError = req.flash('cargoError')
+              let telefoneError = req.flash('telefoneError')
+              let celularError = req.flash('celularError')
+              let cepError = req.flash('cepError')
+              let ufError = req.flash('ufError')
+              let localizacaoError = req.flash('localizacaoError')
+              let enderecoError = req.flash('enderecoError')
+              let informacoesError = req.flash('informacoesError')
+              let cpfError = req.flash('cpfError')
+
+              let erros = {
+                nomeError,
+                nascimentoError,
+                emailError,
+                setorError,
+                cargoError,
+                telefoneError,
+                celularError,
+                cepError,
+                ufError,
+                localizacaoError,
+                enderecoError,
+                informacoesError,
+                cpfError
+              }
+
+              // Recepção de dados
+              let nome = req.flash('nome')
+              let nascimento = req.flash('nascimento')
+              let email = req.flash('email')
+              let setor = req.flash('setor')
+              let cargo = req.flash('cargo')
+              let telefone = req.flash('telefone')
+              let celular = req.flash('celular')
+              let cep = req.flash('cep')
+              let uf = req.flash('uf')
+              let localizacao = req.flash('localizacao')
+              let endereco = req.flash('endereco')
+              let informacoes = req.flash('informacoes')
+              let cpf = req.flash('cpf')
+
+              let dados = {
+                nome,
+                nascimento,
+                email,
+                setor,
+                cargo,
+                telefone,
+                celular,
+                cep,
+                uf,
+                localizacao,
+                endereco,
+                informacoes,
+                cpf
+              }
+
+              res.render('admin/funcionarios/funcionarioCadastrar', { ufs, setores, cargos, erros, dados })
             })
             .catch(error => {
               console.log(error)
@@ -74,12 +137,128 @@ router.post('/admin/funcionario/salvarNovo', (req,res) => {
   let cargo = req.body.iptCargo
   let telefone = req.body.iptTelefone
   let celular = req.body.iptCelular
+  let cep = req.body.iptCEP
+  let uf = req.body.iptUF
   let localizacao = req.body.iptLocalizacao
   let endereco = req.body.iptEndereco
   let informacoes = req.body.iptInformacoes
   let cpf = req.body.iptCPF
 
-  res.send({
+  let nomeOK = validator.isAlpha(nome, ['pt-BR'], {
+    ignore: ' ,.:()\''
+  })
+  let nascimentoOK = validator.isDate(nascimento)
+  let emailOK = validator.isEmail(email)
+  let setorOK = validator.isInt(setor, ['pt-BR'], {
+    ignore: ' ,.:()\''
+  })
+  let cargoOK = validator.isInt(cargo, ['pt-BR'], {
+    ignore: ' ,.:()\''
+  })
+  let telefoneOK = validator.isMobilePhone(telefone, ['pt-BR'])
+  let celularOK = validator.isMobilePhone(celular, ['pt-BR'])
+  let cepOK = validator.isPostalCode(cep, ['BR'])
+  let ufOK = validator.isInt(uf)
+  let localizacaoOK = validator.isAlpha(localizacao, ['pt-BR'], {
+    ignore: ' ,.:()\''
+  })
+  let enderecoOK = validator.isAlpha(endereco, ['pt-BR'], {
+    ignore: ' ,.:()\''
+  })
+  let informacoesOK = validator.isAlpha(informacoes, ['pt-BR'], {
+    ignore: ' ,.:()\''
+  })
+  let cpfOK = validator.isInt(cpf)
+
+  let nomeError = null
+  let nascimentoError = null
+  let emailError = null
+  let setorError = null
+  let cargoError = null
+  let telefoneError = null
+  let celularError = null
+  let cepError = null
+  let ufError = null
+  let localizacaoError = null
+  let enderecoError = null
+  let informacoesError = null
+  let cpfError = null
+
+  if (!nomeOK) {
+    nomeError = 'NOME inválido ou preenchido de forma incorreta.'
+  }
+  if (!nascimentoOK) {
+    nascimentoError = 'NASCIMENTO inválido ou preenchido de forma incorreta.'
+  }
+  if (!emailOK) {
+    emailError = 'EMAIL inválido ou preenchido de forma incorreta.'
+  }
+  if (!setorOK) {
+    setorError = 'SETOR inválido ou preenchido de forma incorreta.'
+  }
+  if (!cargoOK) {
+    cargoError = 'CARGO inválido ou preenchido de forma incorreta.'
+  }
+  if (!telefoneOK) {
+    telefoneError = 'TELEFONE inválido ou preenchido de forma incorreta.'
+  }
+  if (!celularOK) {
+    celularError = 'CELULAR inválido ou preenchido de forma incorreta.'
+  }
+  if (!cepOK) {
+    cepError = 'CEP inválido ou preenchido de forma incorreta.'
+  }
+  if (!ufOK) {
+    ufError = 'UF inválido ou preenchido de forma incorreta.'
+  }
+  if (!localizacaoOK) {
+    localizacaoError = 'LOCALIZACAO inválido ou preenchido de forma incorreta.'
+  }
+  if (!enderecoOK) {
+    enderecoError = 'ENDERECO inválido ou preenchido de forma incorreta.'
+  }
+  if (!informacoesOK) {
+    informacoesError = 'INFORMACOES inválido ou preenchido de forma incorreta.'
+  }
+  if (!cpfOK) {
+    cpfError = 'CPF inválido ou preenchido de forma incorreta.'
+  }
+
+  if (nomeError || nascimentoError || emailError || setorError || cargoError || telefoneError || celularError || cepError || ufError || localizacaoError || enderecoError || informacoesError || cpfError) {
+
+    // Envio de erros
+    req.flash('nomeError', nomeError)
+    req.flash('nascimentoError', nascimentoError)
+    req.flash('emailError', emailError)
+    req.flash('setorError', setorError)
+    req.flash('cargoError', cargoError)
+    req.flash('telefoneError', telefoneError)
+    req.flash('celularError', celularError)
+    req.flash('cepError', cepError)
+    req.flash('ufError', ufError)
+    req.flash('localizacaoError', localizacaoError)
+    req.flash('enderecoError', enderecoError)
+    req.flash('informacoesError', informacoesError)
+    req.flash('cpfError', cpfError)
+
+    // Envio de dados
+    req.flash('nome', nome)
+    req.flash('nascimento', nascimento)
+    req.flash('email', email)
+    req.flash('setor', setor)
+    req.flash('cargo', cargo)
+    req.flash('telefone', telefone)
+    req.flash('celular', celular)
+    req.flash('cep', cep)
+    req.flash('uf', uf)
+    req.flash('localizacao', localizacao)
+    req.flash('endereco', endereco)
+    req.flash('informacoes', informacoes)
+    req.flash('cpf', cpf)
+
+    res.redirect('/admin/funcionario/novo')
+  } else {
+    res.send({
     nome,
     nascimento,
     email,
@@ -87,11 +266,14 @@ router.post('/admin/funcionario/salvarNovo', (req,res) => {
     cargo,
     telefone,
     celular,
+    cep,
+    uf,
     localizacao,
     endereco,
     informacoes,
     cpf
   })
+  }
 })
 
 router.get('/admin/funcionario/edit/:id', (req, res) => {
