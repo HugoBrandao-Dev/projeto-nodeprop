@@ -106,13 +106,11 @@ router.get('/admin/funcionario/novo', (req, res) => {
 router.get('/admin/funcionarios/opcoes', (req, res) => {
   // Mensagens de erro.
   let setorError = req.flash('setorError')
-  let cargoSetorError = req.flash('cargoSetorError')
   let cargoError = req.flash('cargoError')
   let salarioError = req.flash('salarioError')
 
   let erros = {
     setorError,
-    cargoSetorError,
     cargoError,
     salarioError
   }
@@ -655,11 +653,9 @@ router.post('/admin/funcionario/setor/deletar', (req, res) => {
 })
 
 router.post('/admin/funcionarios/cargo/salvarNovo', (req, res) => {
-  let cargoSetor = req.body.iptSetor
   let cargo = req.body.iptCargo
   let salario = req.body.iptSalario
 
-  let cargoSetorOK = validator.isInt(cargoSetor)
   let cargoOK = validator.isAlpha(cargo, ['pt-BR'], {
     ignore: ' '
   })
@@ -668,13 +664,9 @@ router.post('/admin/funcionarios/cargo/salvarNovo', (req, res) => {
     max: 500000
   })
 
-  let cargoSetorError = null
   let cargoError = null
   let salarioError = null
 
-  if (!cargoSetorOK) {
-    cargoSetorError = 'SETOR inválido ou preenchido de forma incorreta.'
-  }
   if (!cargoOK) {
     cargoError = 'CARGO inválido.'
   }
@@ -682,12 +674,10 @@ router.post('/admin/funcionarios/cargo/salvarNovo', (req, res) => {
     salarioError = 'SALÁRIO inválido.'
   }
 
-  if (cargoSetorError || cargoError || salarioError) {
-    req.flash('cargoSetorError', cargoSetorError)
+  if (cargoError || salarioError) {
     req.flash('cargoError', cargoError)
     req.flash('salarioError', salarioError)
 
-    req.flash('cargoSetor', cargoSetor)
     req.flash('cargo', cargo)
     req.flash('salario', salario)
 
@@ -695,7 +685,6 @@ router.post('/admin/funcionarios/cargo/salvarNovo', (req, res) => {
   } else {
     database.insert({
       cargo,
-      setor_id: cargoSetor,
       salario: parseFloat(parseFloat(salario).toFixed(2))
     }).table("cargos")
     .then(response => {
