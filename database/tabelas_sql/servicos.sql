@@ -6,3 +6,6 @@ CREATE TABLE servicos (
 	informacoes_adicionais TEXT NOT NULL, 
 	PRIMARY KEY(id)
 );
+
+SELECT * FROM servicos;
+DESCRIBE servicos;
