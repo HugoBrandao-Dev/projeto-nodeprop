@@ -12,7 +12,7 @@
     <label>Responsáveis:</label>
     <div class="div-responsaveis">
       <% funcionarios.forEach(funcionario => { %>
-        <label>
+        <label class="lbl-func-cargo">
           <input type="checkbox" name="iptResponsaveis" value="<%= funcionario.funcionarioId %>"> <%= funcionario.nome %> - <%= funcionario.cargo %>
         </label>
       <% }) %>

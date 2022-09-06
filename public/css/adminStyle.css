@@ -74,7 +74,7 @@ tbody tr:hover {
   display: none;
 }
 
-.table-nome, .table-cargo, .table-categoria, .table-autor, .table-contratante {
+.table-nome, .table-cargo, .table-categoria, .table-autor, .table-contratante, .lbl-func-cargo {
   text-transform: capitalize;
 }
 
