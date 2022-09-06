@@ -51,17 +51,6 @@
     </section>
     <section id="cargo">
       <form class="form-cadastro form-opcao" method="POST" action="/admin/funcionarios/cargo/salvarNovo">
-        Setor pertencente:
-        <% if (erros.cargoSetorError) { %>
-          <p>
-            <small class="msgAlert"><%= erros.cargoSetorError %></small>
-          </p>
-        <% } %>
-        <select name="iptSetor" class="br-7">
-          <% setores.forEach(setor => { %>
-            <option value="<%= setor.id %>"><%= setor.setor %></option>
-          <% }) %>
-        </select>
         <div class="input-cargo">
           Cargo:
           <% if (erros.cargoError) { %>
@@ -89,6 +78,7 @@
           <tr>
             <th class="table-id">ID</th>
             <th class="table-nome">Nome</th>
+            <th class="table-salario">Salário</th>
             <th class="table-acao">Ação</th>
           </tr>
         </thead>
@@ -97,6 +87,7 @@
             <tr>
               <td class="table-id"><%= cargo.id %></td>
               <td class="table-nome"><%= cargo.cargo %></td>
+              <td class="table-salario"><%= cargo.salario %></td>
               <td class="table-acao">
                 <form method="POST" action="/admin/funcionario/cargo/deletar" onsubmit="deletarRegistro(event, this)">
                   <input type="hidden" name="iptId" value="<%= cargo.id %>">
