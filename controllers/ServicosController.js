@@ -44,8 +44,6 @@ router.get('/admin/servico/novo', (req, res) => {
         informacoes
       }
 
-      console.log(dados.responsaveis)
-
       res.render('admin/servicos/servicoCadastrar', {
         funcionarios,
         erros,
@@ -106,10 +104,6 @@ router.post('/admin/servico/salvarNovo', (req, res) => {
     req.flash('servico', servico)
     req.flash('responsaveis', responsaveis)
     req.flash('informacoes', informacoes)
-
-    console.log(servicoError)
-    console.log(responsaveisError)
-    console.log(informacoesError)
 
     res.redirect('/admin/servico/novo')
   } else {
