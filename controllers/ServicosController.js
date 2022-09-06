@@ -21,8 +21,21 @@ router.get('/admin/servico/novo', (req, res) => {
   ]).table("funcionarios")
   .innerJoin("cargos", "cargos.id", "funcionarios.cargo_id")
     .then(funcionarios => {
+
+      // Erros
+      let servicoError = req.flash('servicoError')
+      let responsaveisError = req.flash('responsaveisError')
+      let informacoesError = req.flash('informacoesError')
+
+      let erros = {
+        servicoError,
+        responsaveisError,
+        informacoesError
+      }
+
       res.render('admin/servicos/servicoCadastrar', {
-        funcionarios
+        funcionarios,
+        erros
       })
     })
     .catch(error => {
