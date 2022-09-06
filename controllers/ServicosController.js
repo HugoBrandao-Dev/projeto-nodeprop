@@ -27,15 +27,29 @@ router.get('/admin/servico/novo', (req, res) => {
       let responsaveisError = req.flash('responsaveisError')
       let informacoesError = req.flash('informacoesError')
 
+      // Dados
+      let servico = req.flash('servico')
+      let responsaveis = req.flash('responsaveis')
+      let informacoes = req.flash('informacoes')
+
       let erros = {
         servicoError,
         responsaveisError,
         informacoesError
       }
 
+      let dados = {
+        servico,
+        responsaveis,
+        informacoes
+      }
+
+      console.log(dados.responsaveis)
+
       res.render('admin/servicos/servicoCadastrar', {
         funcionarios,
-        erros
+        erros,
+        dados
       })
     })
     .catch(error => {
