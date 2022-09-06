@@ -7,32 +7,33 @@
   <hr class="horizontal-bar">
   <form class="form-cadastro" method="POST" action="/admin/servico/salvarNovo">
     <label>Serviço:</label>
+    <% if (erros.servicoError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.servicoError %></small>
+      </p>
+    <% } %>
     <input type="text" name="iptServico" class="br-7" placeholder="Nome do serviço">
 
     <label>Responsáveis:</label>
+    <% if (erros.responsaveisError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.responsaveisError %></small>
+      </p>
+    <% } %>
     <div class="div-responsaveis">
       <% funcionarios.forEach(funcionario => { %>
         <label class="lbl-func-cargo">
           <input type="checkbox" name="iptResponsaveis" value="<%= funcionario.funcionarioId %>"> <%= funcionario.nome %> - <%= funcionario.cargo %>
         </label>
       <% }) %>
-      <%#
-        <label>
-          <input type="checkbox" name="iptResponsaveis" value="0"> Tobias de Oliveira
-        </label>
-        <label>
-          <input type="checkbox" name="iptResponsaveis" value="1"> Josias Cruz
-        </label>
-        <label>
-          <input type="checkbox" name="iptResponsaveis" value="2"> Doralice Cruz
-        </label>
-        <label>
-          <input type="checkbox" name="iptResponsaveis" value="4"> Dinorá de Oliveira
-        </label>
-      %>
     </div>
 
     <label>Informações adicionais:</label>
+    <% if (erros.informacoesError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.informacoesError %></small>
+      </p>
+    <% } %>
     <textarea class="br-7" rows="10" name="iptInformacoes"></textarea>
 
     <label>Contrato do serviço:</label>
