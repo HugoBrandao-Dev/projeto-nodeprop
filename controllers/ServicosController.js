@@ -15,6 +15,7 @@ router.get('/servicos', (req, res) => {
 router.get('/admin/servicos', (req, res) => {
   database.select([
     "servicos.id",
+    "funcionarios_servicos.funcionario_id",
     "servico",
     "funcionarios.nome"
   ]).table("servicos")
