@@ -3,6 +3,9 @@ const router = express.Router()
 const database = require('../database/connection')
 const validator = require('validator')
 
+// Função para tratamento do relacionamento (dados) entre as tabelas Funcionarios, Servicos, Funcionarios_Servicos.
+const getFuncionariosServicosFormatados = require('../public/js/getFuncionariosServicosFormatados.js')
+
 router.get('/servicos', (req, res) => {
   res.render('servicos')
 })
@@ -10,7 +13,21 @@ router.get('/servicos', (req, res) => {
 /* ROTAS DO ADMINISTRADOR */
 
 router.get('/admin/servicos', (req, res) => {
-  res.render('admin/servicos/servicosList')
+  database.select([
+    "servicos.id",
+    "servico",
+    "funcionarios.nome"
+  ]).table("servicos")
+    .innerJoin("funcionarios_servicos", "funcionarios_servicos.servico_id", "servicos.id")
+    .innerJoin("funcionarios", "funcionarios_servicos.funcionario_id", "funcionarios.id")
+      .then(resultado => {
+        let registros = getFuncionariosServicosFormatados(resultado)
+        
+        res.render('admin/servicos/servicosList', { registros })
+      })
+      .catch(error => {
+        console.log(error)
+      })
 })
 
 router.get('/admin/servico/novo', (req, res) => {
