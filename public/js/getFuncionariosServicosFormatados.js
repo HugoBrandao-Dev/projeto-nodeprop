@@ -1,19 +1,19 @@
-function getFuncionariosServicosFormatados(array) {
+function getFuncionariosServicosFormatados(array, identificadorServico = 'id') {
   let novoArray = []
 
   array.map(registro1 => {
-    let jaPresente = novoArray.filter(registro2 => registro2['id'] == registro1['id']).length
+    let jaPresente = novoArray.filter(registro2 => registro2[identificadorServico] == registro1[identificadorServico]).length
     if (jaPresente) {
       novoArray.map(raw => {
-        if (raw['id'] == registro1['id']) {
-          raw.responsaveis.push(registro1.nome)
+        if (raw[identificadorServico] == registro1[identificadorServico]) {
+          raw.responsaveis.push({ id: registro1.funcionario_id, nome: registro1.nome })
         }
       })
     } else {
       novoArray.push({
         id: registro1.id,
         servico: registro1.servico,
-        responsaveis: [registro1.nome]
+        responsaveis: [{ id: registro1.funcionario_id, nome: registro1.nome }]
       })
     }
   })
