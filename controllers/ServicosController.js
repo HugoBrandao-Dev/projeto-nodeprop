@@ -149,7 +149,38 @@ router.post('/admin/servico/salvarNovo', (req, res) => {
 })
 
 router.get('/admin/servico/edit/:id', (req, res) => {
-  res.render('admin/servicos/servicoEdit')
+  let id = req.params.id
+
+  database.select([
+    "funcionarios.id AS funcionarioId",
+    "servicos.id AS servicoId",
+    "servico",
+    "servicos.informacoes_adicionais AS informacoes",
+    "nome"
+  ]).table("servicos")
+    .innerJoin("funcionarios_servicos", "funcionarios_servicos.servico_id", "servicos.id")
+    .innerJoin("funcionarios", "funcionarios_servicos.funcionario_id", "funcionarios.id")
+    .where({
+      "servicos.id": id
+    })
+      .then(resultado => {
+        let servico = getFuncionariosServicosFormatados(resultado, 'servicoId')[0]
+        database.select([
+          "funcionarios.id AS funcionarioId",
+          "nome",
+          "cargo"
+        ]).table("funcionarios")
+          .innerJoin("cargos", "funcionarios.cargo_id", "cargos.id")
+            .then(funcionariosCargos => {
+              res.render('admin/servicos/servicoEdit', { servico, funcionariosCargos })
+            })
+            .catch(error => {
+              console.log(error)
+            })
+      })
+      .catch(error => {
+        console.log(error)
+      })
 })
 
 router.post('/admin/servico/salvarEdicao', (req, res) => {
