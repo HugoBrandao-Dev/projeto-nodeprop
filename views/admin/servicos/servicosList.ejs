@@ -16,87 +16,36 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="table-id">0</td>
-          <td class="table-servico">Campanhas publicitárias</td>
-          <td class="table-responsaveis">
-            <ul class="ul-responsaveis">
-              <li>Tobias de Oliveira</li>
-            </ul>
-          </td>
-          <td class="table-acao">
-            <button class="btn-table-acao btn-expandir-acoes expandir-0"><i class="fas fa-ellipsis-h"></i></button>
-            <ul class="acoes acoes-0">
-              <li>
-                <a href="/admin/servico/edit/0" class="btn-table-acao btn-editar-registro" title="Editar registro"><i class="fa fa-edit"></i></a>
-              </li>
-              <li>
-                <form method="POST" action="/admin/servico/deletar" onsubmit="deletarRegistro(event, this)">
-                  <input type="hidden" name="iptId" value="0">
-                  <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
-                </form>
-              </li>
-              <li>
-                <a href="/admin/servico/0" class="btn-table-acao btn-info-registro" title="Informações do registro"><i class="fa fa-info-circle"></i></a>
-              </li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td class="table-id">1</td>
-          <td class="table-servico">Marketing Digital</td>
-          <td class="table-responsaveis">
-            <ul class="ul-responsaveis">
-              <li>Tobias de Oliveira</li>
-              <li>Doralice Cruz</li>
-            </ul>
-          </td>
-          <td class="table-acao">
-            <button class="btn-table-acao btn-expandir-acoes expandir-1"><i class="fas fa-ellipsis-h"></i></button>
-            <ul class="acoes acoes-1">
-              <li>
-                <a href="/admin/servico/edit/1" class="btn-table-acao btn-editar-registro" title="Editar registro"><i class="fa fa-edit"></i></a>
-              </li>
-              <li>
-                <form method="POST" action="/admin/servico/deletar" onsubmit="deletarRegistro(event, this)">
-                  <input type="hidden" name="iptId" value="1">
-                  <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
-                </form>
-              </li>
-              <li>
-                <a href="/admin/servico/1" class="btn-table-acao btn-info-registro" title="Informações do registro"><i class="fa fa-info-circle"></i></a>
-              </li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td class="table-id">2</td>
-          <td class="table-servico">Criação de Sites</td>
-          <td class="table-responsaveis">
-            <ul class="ul-responsaveis">
-              <li>Tobias de Oliveira</li>
-              <li>Josias Cruz</li>
-              <li>Doralice Cruz</li>
-            </ul>
-          </td>
-          <td class="table-acao">
-            <button class="btn-table-acao btn-expandir-acoes expandir-2"><i class="fas fa-ellipsis-h"></i></button>
-            <ul class="acoes acoes-2">
-              <li>
-                <a href="/admin/servico/edit/2" class="btn-table-acao btn-editar-registro" title="Editar registro"><i class="fa fa-edit"></i></a>
-              </li>
-              <li>
-                <form method="POST" action="/admin/servico/deletar" onsubmit="deletarRegistro(event, this)">
-                  <input type="hidden" name="iptId" value="2">
-                  <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
-                </form>
-              </li>
-              <li>
-                <a href="/admin/servico/2" class="btn-table-acao btn-info-registro" title="Informações do registro"><i class="fa fa-info-circle"></i></a>
-              </li>
-            </ul>
-          </td>
-        </tr>
+        <% registros.forEach(registro => { %>
+          <tr>
+            <td class="table-id"><%= registro.id %></td>
+            <td class="table-servico"><%= registro.servico %></td>
+            <td class="table-responsaveis">
+              <ul class="ul-responsaveis">
+                <% registro.responsaveis.forEach(responsavel => { %>
+                  <li><%= responsavel %></li>
+                <% }) %>
+              </ul>
+            </td>
+            <td class="table-acao">
+              <button class="btn-table-acao btn-expandir-acoes expandir-<%= registro.id %>"><i class="fas fa-ellipsis-h"></i></button>
+              <ul class="acoes acoes-<%= registro.id %>">
+                <li>
+                  <a href="/admin/servico/edit/<%= registro.id %>" class="btn-table-acao btn-editar-registro" title="Editar registro"><i class="fa fa-edit"></i></a>
+                </li>
+                <li>
+                  <form method="POST" action="/admin/servico/deletar" onsubmit="deletarRegistro(event, this)">
+                    <input type="hidden" name="iptId" value="<%= registro.id %>">
+                    <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
+                  </form>
+                </li>
+                <li>
+                  <a href="/admin/servico/<%= registro.id %>" class="btn-table-acao btn-info-registro" title="Informações do registro"><i class="fa fa-info-circle"></i></a>
+                </li>
+              </ul>
+            </td>
+          </tr>
+        <% }) %>
       </tbody>
     </table>
   </article>
