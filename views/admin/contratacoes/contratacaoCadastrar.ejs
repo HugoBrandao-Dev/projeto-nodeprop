@@ -11,16 +11,16 @@
 
     <label>Contratante:</label>
     <select name="iptContratante" class="br-7">
-      <option>Tobias de Oliveira</option>
-      <option>Pedro Engenharia</option>
-      <option>English, escola de inglês</option>
+      <% table_clientes.forEach(cliente => { %>
+        <option value="<%= cliente.id %>"><%= cliente.nome %></option>
+      <% }) %>
     </select>
 
     <label>Serviço:</label>
     <select name="iptServico" class="br-7">
-      <option>Negócios</option>
-      <option>Marketing digital</option>
-      <option>Web design</option>
+      <% table_servicos.forEach(servico => { %>
+        <option value="<%= servico.id %>"><%= servico.servico %></option>
+      <% }) %>
     </select>
 
     <label>Contrato assinado:</label>
@@ -29,4 +29,5 @@
     <button type="submit" class="btn btn-add btn-right">Cadastrar</button>
   </form>
 </main>
+<script type="text/javascript" src="/js/limitarDatas.js"></script>
 <%- include('../../partials/admin/footer.ejs') %>
