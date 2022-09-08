@@ -7,9 +7,19 @@
   <hr class="horizontal-bar">
   <form class="form-cadastro" method="POST" action="/admin/contratacao/salvarNova">
     <label>Data:</label>
+    <% if (erros.dataError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.dataError %></small>
+      </p>
+    <% } %>
     <input type="date" name="iptData" class="br-7">
 
     <label>Contratante:</label>
+    <% if (erros.contratanteError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.contratanteError %></small>
+      </p>
+    <% } %>
     <select name="iptContratante" class="br-7">
       <% table_clientes.forEach(cliente => { %>
         <option value="<%= cliente.id %>"><%= cliente.nome %></option>
@@ -17,6 +27,11 @@
     </select>
 
     <label>Serviço:</label>
+    <% if (erros.servicoError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.servicoError %></small>
+      </p>
+    <% } %>
     <select name="iptServico" class="br-7">
       <% table_servicos.forEach(servico => { %>
         <option value="<%= servico.id %>"><%= servico.servico %></option>
