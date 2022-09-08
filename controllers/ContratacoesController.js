@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const database = require('../database/connection')
 
 /* ROTAS DO ADMINISTRADOR */
 
@@ -8,7 +9,22 @@ router.get('/admin/contratacoes', (req, res) => {
 })
 
 router.get('/admin/contratacao/nova', (req, res) => {
-  res.render('admin/contratacoes/contratacaoCadastrar')
+  database.select().table("clientes")
+    .then(table_clientes => {
+      database.select().table("servicos")
+        .then(table_servicos => {
+          res.render('admin/contratacoes/contratacaoCadastrar', {
+            table_clientes,
+            table_servicos
+          })
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    })
+    .catch(error => {
+      console.log(error)
+    })
 })
 
 router.post('/admin/contratacao/salvarNova', (req, res) => {
