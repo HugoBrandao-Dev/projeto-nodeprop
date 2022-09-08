@@ -33,3 +33,4 @@ desenvolvimento back-end.
 * Corrigir bug da área administrativa, onde os botões de expansão das ações de cada registro ficam amostra, quando clicamos no botão de menu do site.
 * Corrigir bug da área administrativa, na página de criação de um novo artigo, ao clicar no botão de menu, o textarea (TinyMCE) continua sendo evidenciado.
 * Criado sistema para verificação de datas a serem inseridas durante algum cadastramento.
+* Corrigir bug de preenchimento, quando há erro no preenchimento, da edição de um serviço. Quando NÃO há checkbox marcado, é redirecionado para o mesmo, formulário mas com os checkbox do CADASTRO do servico marcados.
