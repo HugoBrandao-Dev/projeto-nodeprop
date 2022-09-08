@@ -172,7 +172,23 @@ router.get('/admin/servico/edit/:id', (req, res) => {
         ]).table("funcionarios")
           .innerJoin("cargos", "funcionarios.cargo_id", "cargos.id")
             .then(funcionariosCargos => {
-              res.render('admin/servicos/servicoEdit', { servico, funcionariosCargos })
+
+              // Recepção dos erros
+              let servicoError = req.flash('servicoError')
+              let responsaveisError = req.flash('responsaveisError')
+              let informacoesError = req.flash('informacoesError')
+
+              let erros = {
+                servicoError,
+                responsaveisError,
+                informacoesError
+              }
+
+              res.render('admin/servicos/servicoEdit', { 
+                servico,
+                funcionariosCargos,
+                erros
+              })
             })
             .catch(error => {
               console.log(error)
