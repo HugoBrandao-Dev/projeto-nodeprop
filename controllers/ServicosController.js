@@ -164,7 +164,7 @@ router.get('/admin/servico/edit/:id', (req, res) => {
       "servicos.id": id
     })
       .then(resultado => {
-        let servico = getFuncionariosServicosFormatados(resultado, 'servicoId')[0]
+        let funcionarioServico = getFuncionariosServicosFormatados(resultado, 'servicoId')[0]
         database.select([
           "funcionarios.id AS funcionarioId",
           "nome",
@@ -184,10 +184,22 @@ router.get('/admin/servico/edit/:id', (req, res) => {
                 informacoesError
               }
 
-              res.render('admin/servicos/servicoEdit', { 
+              // Recepção dos dados
+              let servico = req.flash('servico')
+              let responsaveis = req.flash('responsaveis')
+              let informacoes = req.flash('informacoes')
+
+              let dados = {
                 servico,
+                responsaveis,
+                informacoes
+              }
+
+              res.render('admin/servicos/servicoEdit', { 
+                funcionarioServico,
                 funcionariosCargos,
-                erros
+                erros,
+                dados
               })
             })
             .catch(error => {
