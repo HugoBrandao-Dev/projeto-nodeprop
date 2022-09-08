@@ -14,9 +14,22 @@ router.get('/admin/contratacao/nova', (req, res) => {
     .then(table_clientes => {
       database.select().table("servicos")
         .then(table_servicos => {
+
+          // Capturando possíveis erros
+          let dataError = req.flash('dataError')
+          let contratanteError = req.flash('contratanteError')
+          let servicoError = req.flash('servicoError')
+
+          let erros = {
+            dataError,
+            contratanteError,
+            servicoError
+          }
+
           res.render('admin/contratacoes/contratacaoCadastrar', {
             table_clientes,
-            table_servicos
+            table_servicos,
+            erros
           })
         })
         .catch(error => {
@@ -42,7 +55,7 @@ router.post('/admin/contratacao/salvarNova', (req, res) => {
   let servicoError = null
 
   if (!dataOK) {
-    dataError = 'CONTRATANTE inválido ou preenchido de forma incorreta.'
+    dataError = 'DATA inválido ou preenchido de forma incorreta.'
   }
   if (!contratanteOK) {
     contratanteError = 'CONTRATANTE inválido ou preenchido de forma incorreta.'
@@ -56,7 +69,7 @@ router.post('/admin/contratacao/salvarNova', (req, res) => {
     req.flash('contratanteError', contratanteError)
     req.flash('servicoError', servicoError)
 
-    res.redirect('/admin/contratacoes/nova')
+    res.redirect('/admin/contratacao/nova')
   } else {
     res.redirect('/admin/contratacoes')
   }
