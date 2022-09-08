@@ -9,9 +9,19 @@
     <input type="hidden" name="iptId" value="<%= servico.id %>">
 
     <label>Serviço:</label>
+    <% if (erros.servicoError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.servicoError %></small>
+      </p>
+    <% } %>
     <input type="text" name="iptServico" class="br-7" placeholder="Nome do serviço" value="<%= servico.servico %>">
 
     <label>Responsáveis:</label>
+    <% if (erros.responsaveisError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.responsaveisError %></small>
+      </p>
+    <% } %>
     <div class="div-responsaveis">
       <% funcionariosCargos.forEach(funcionario => { %>
         <% if (servico.responsaveis.map(responsavel => responsavel.id).indexOf(funcionario.funcionarioId) != -1) { %>
@@ -27,6 +37,11 @@
     </div>
 
     <label>Informações adicionais:</label>
+    <% if (erros.informacoesError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.informacoesError %></small>
+      </p>
+    <% } %>
     <textarea class="br-7" rows="10" name="iptInformacoes"><%= servico.informacoes %></textarea>
 
     <label>Contrato do serviço:</label>
