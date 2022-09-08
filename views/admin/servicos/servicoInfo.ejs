@@ -7,23 +7,22 @@
 <hr class="horizontal-bar">
 <article class="servico-info">
     Serviço:
-    <p>Nome do serviço</p>
+    <p><%= resultado.servico %></p>
 
     Responsáveis:
     <ul class="ul-responsaveis">
-      <li>Tobias de Oliveira</li>
-      <li>Dinorá de Oliveira</li>
-      <li>Josias Cruz</li>
-      <li>Doralice Cruz</li>
+      <% resultado.responsaveis.forEach(responsavel => { %>
+        <li class="lbl-func-cargo"><%= responsavel.nome %></li>
+      <% }) %>
     </ul>
 
     Informações adicionais:
-    <p>Informações adicionais do serviço.</p>
+    <p><%= resultado.informacoes %></p>
 
     Contrato do serviço:
     <p>Arquivo de contrato.</p>
 
-    <a href="/admin/clientes" class="btn btn-info btn-right">Voltar</a>
+    <a href="/admin/servicos" class="btn btn-info btn-right">Voltar</a>
 </article>
 </main>
 <%- include('../../partials/admin/footer.ejs') %>
