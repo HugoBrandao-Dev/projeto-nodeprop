@@ -22,6 +22,7 @@ router.get('/admin/servicos', (req, res) => {
     .innerJoin("funcionarios_servicos", "funcionarios_servicos.servico_id", "servicos.id")
     .innerJoin("funcionarios", "funcionarios_servicos.funcionario_id", "funcionarios.id")
       .then(resultado => {
+        console.log(resultado)
         let registros = getFuncionariosServicosFormatados(resultado)
         
         res.render('admin/servicos/servicosList', { registros })
@@ -307,7 +308,26 @@ router.post('/admin/servico/deletar', (req, res) => {
 })
 
 router.get('/admin/servico/:id', (req, res) => {
-  res.render('admin/servicos/servicoInfo')
+  let id = req.params.id
+
+  database.select([
+    "funcionarios_servicos.funcionario_id AS funcionarioId",
+    "servicos.id",
+    "nome",
+    "servico",
+    "servicos.informacoes_adicionais AS informacoes"
+  ]).table("servicos")
+    .innerJoin("funcionarios_servicos", "funcionarios_servicos.servico_id", "servicos.id")
+    .innerJoin("funcionarios", "funcionarios_servicos.funcionario_id", "funcionarios.id")
+    .where({ "servicos.id": id })
+      .then(resposta => {
+        
+        let resultado = getFuncionariosServicosFormatados(resposta)[0]
+        res.render('admin/servicos/servicoInfo', { resultado })
+      })
+      .catch(error => {
+        console.log(error)
+      })
 })
 
 module.exports = router
