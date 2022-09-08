@@ -20,5 +20,7 @@ CREATE TABLE funcionarios (
 	CONSTRAINT fk_setores FOREIGN KEY(setor_id) REFERENCES setores(id)
 );
 
+ALTER TABLE funcionarios ADD COLUMN numero INT UNSIGNED NOT NULL;
+
 SELECT * FROM funcionarios;
 DESCRIBE funcionarios;
