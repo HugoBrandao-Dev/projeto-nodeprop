@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const database = require('../database/connection')
+const validator = require('validator')
 
 /* ROTAS DO ADMINISTRADOR */
 
@@ -32,11 +33,33 @@ router.post('/admin/contratacao/salvarNova', (req, res) => {
   let contratante = req.body.iptContratante
   let servico = req.body.iptServico
 
-  res.send({
-    data,
-    contratante,
-    servico
-  })
+  let dataOK = validator.isDate(data)
+  let contratanteOK = validator.isInt(contratante)
+  let servicoOK = validator.isInt(servico)
+
+  let dataError = null
+  let contratanteError = null
+  let servicoError = null
+
+  if (!dataOK) {
+    dataError = 'CONTRATANTE inválido ou preenchido de forma incorreta.'
+  }
+  if (!contratanteOK) {
+    contratanteError = 'CONTRATANTE inválido ou preenchido de forma incorreta.'
+  }
+  if (!servicoOK) {
+    servicoError = 'SERVICO inválido ou preenchido de forma incorreta.'
+  }
+
+  if (dataError || contratanteError || servicoError) {
+    req.flash('dataError', dataError)
+    req.flash('contratanteError', contratanteError)
+    req.flash('servicoError', servicoError)
+
+    res.redirect('/admin/contratacoes/nova')
+  } else {
+    res.redirect('/admin/contratacoes')
+  }
 })
 
 router.get('/admin/contratacao/edit/:id', (req, res) => {
