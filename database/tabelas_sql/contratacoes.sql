@@ -9,3 +9,6 @@ CREATE TABLE contratacoes (
   CONSTRAINT fk_clientes FOREIGN KEY(cliente_id) REFERENCES clientes(id),
   CONSTRAINT fk_servicos FOREIGN KEY(servico_id) REFERENCES servicos(id)
 );
+
+SELECT * FROM contratacoes;
+DESCRIBE contratacoes;
