@@ -71,7 +71,17 @@ router.post('/admin/contratacao/salvarNova', (req, res) => {
 
     res.redirect('/admin/contratacao/nova')
   } else {
-    res.redirect('/admin/contratacoes')
+    database.insert({
+      cliente_id: contratante,
+      servico_id: servico,
+      data
+    }).table("contratacoes")
+      .then(() => {
+        res.redirect('/admin/contratacoes')
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }
 })
 
