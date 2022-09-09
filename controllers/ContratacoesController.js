@@ -6,7 +6,16 @@ const validator = require('validator')
 /* ROTAS DO ADMINISTRADOR */
 
 router.get('/admin/contratacoes', (req, res) => {
-  res.render('admin/contratacoes/contratacoesList')
+  database.select([
+    "contratacoes.id AS contratacaoId",
+    "nome AS cliente",
+    "servico"
+  ]).table("contratacoes")
+    .innerJoin("servicos", "servicos.id", "contratacoes.servico_id")
+    .innerJoin("clientes", "clientes.id", "contratacoes.cliente_id")
+      .then(table_contratacoes => {
+        res.render('admin/contratacoes/contratacoesList', { table_contratacoes })
+      })
 })
 
 router.get('/admin/contratacao/nova', (req, res) => {
