@@ -9,12 +9,12 @@
     <input type="hidden" name="iptId" value="<%= contratacao.id %>">
 
     <label>Data:</label>
-    <% if (erros.dataError) { %>
+    <% if (erros.dataContratacao) { %>
       <p>
-        <small class="msgAlert"><%= erros.dataError %></small>
+        <small class="msgAlert"><%= erros.dataContratacao %></small>
       </p>
     <% } %>
-    <input type="date" name="iptData" class="br-7" value="<%= contratacao.data %>">
+    <input type="date" name="iptDataContratacao" class="br-7" value="<%= contratacao.data_contratacao %>">
 
     <label>Contratante:</label>
     <% if (erros.contratanteError) { %>
