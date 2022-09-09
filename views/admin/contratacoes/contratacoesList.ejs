@@ -23,10 +23,23 @@
             <td class="table-contratante"><%= contratacao.cliente %></td>
             <td class="table-servico"><%= contratacao.servico %></td>
             <td class="table-status">
-              <svg width="20" height="20">
-                <circle cx="10" cy="10" r="10" class="status-aberto" />
-              </svg>
-              Aberto
+              
+                <% if (contratacao.status_id == 1) { %>
+                  <svg width="20" height="20">
+                    <circle cx="10" cy="10" r="10" class="status-aberto" />
+                  </svg>
+                  <%= contratacao.status_contratacao %>
+                <% } else if (contratacao.status_id == 2) { %>
+                  <svg width="20" height="20">
+                    <circle cx="10" cy="10" r="10" class="status-em-andamento" />
+                  </svg>
+                  <%= contratacao.status_contratacao %>
+                <% } else { %>
+                  <svg width="20" height="20">
+                    <circle cx="10" cy="10" r="10" class="status-finalizado" />
+                  </svg>
+                  <%= contratacao.status_contratacao %>
+                <% } %>
             </td>
             <td class="table-acao">
               <button class="btn-table-acao btn-expandir-acoes expandir-<%= contratacao.contratacaoId %>"><i class="fas fa-ellipsis-h"></i></button>
