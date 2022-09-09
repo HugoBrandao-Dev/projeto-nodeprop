@@ -135,12 +135,47 @@ router.post('/admin/contratacao/salvarCadastrada', (req, res) => {
   let contratante = req.body.iptContratante
   let servico = req.body.iptServico
 
-  res.send({
-    id,
-    data,
-    contratante,
-    servico
-  })
+  let dataOK = validator.isDate(data)
+  let contratanteOK = validator.isInt(contratante)
+  let servicoOK = validator.isInt(servico)
+
+  let dataError = null
+  let contratanteError = null
+  let servicoError = null
+
+  if (!dataOK) {
+    dataError = 'DATA inválido ou preenchido de forma incorreta.'
+  }
+  if (!contratanteOK) {
+    contratanteError = 'CONTRATANTE inválido ou preenchido de forma incorreta.'
+  }
+  if (!servicoOK) {
+    servicoError = 'SERVICO inválido ou preenchido de forma incorreta.'
+  }
+
+  if (dataError || contratanteError || servicoError) {
+    req.flash('data', data)
+    req.flash('contratante', contratante)
+    req.flash('servico', servico)
+
+    req.flash('dataError', dataError)
+    req.flash('contratanteError', contratanteError)
+    req.flash('servicoError', servicoError)
+
+    res.redirect(`/admin/contratacao/edit/${ id }`)
+  } else {
+    database.update({
+      cliente_id: contratante,
+      servico_id: servico,
+      data
+    }).table("contratacoes").where({ id })
+      .then(() => {
+        res.redirect('/admin/contratacoes')
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
 })
 
 router.post('/admin/contratacao/deletar', (req, res) => {
