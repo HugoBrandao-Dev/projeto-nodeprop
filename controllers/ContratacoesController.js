@@ -9,10 +9,13 @@ router.get('/admin/contratacoes', (req, res) => {
   database.select([
     "contratacoes.id AS contratacaoId",
     "nome AS cliente",
-    "servico"
+    "servico",
+    "status_id",
+    "status_contratacao"
   ]).table("contratacoes")
     .innerJoin("servicos", "servicos.id", "contratacoes.servico_id")
     .innerJoin("clientes", "clientes.id", "contratacoes.cliente_id")
+    .innerJoin("status_contratacoes", "status_contratacoes.id", "contratacoes.status_id")
       .then(table_contratacoes => {
         res.render('admin/contratacoes/contratacoesList', { table_contratacoes })
       })
