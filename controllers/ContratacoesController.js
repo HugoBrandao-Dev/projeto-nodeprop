@@ -25,12 +25,12 @@ router.get('/admin/contratacao/nova', (req, res) => {
         .then(table_servicos => {
 
           // Capturando possíveis erros
-          let dataError = req.flash('dataError')
+          let dataContratacaoError = req.flash('dataContratacaoError')
           let contratanteError = req.flash('contratanteError')
           let servicoError = req.flash('servicoError')
 
           let erros = {
-            dataError,
+            dataContratacaoError,
             contratanteError,
             servicoError
           }
@@ -51,20 +51,20 @@ router.get('/admin/contratacao/nova', (req, res) => {
 })
 
 router.post('/admin/contratacao/salvarNova', (req, res) => {
-  let data = req.body.iptData
+  let dataContratacao = req.body.iptDataContratacao
   let contratante = req.body.iptContratante
   let servico = req.body.iptServico
 
-  let dataOK = validator.isDate(data)
+  let dataContratacaoOK = validator.isDate(dataContratacao)
   let contratanteOK = validator.isInt(contratante)
   let servicoOK = validator.isInt(servico)
 
-  let dataError = null
+  let dataContratacaoError = null
   let contratanteError = null
   let servicoError = null
 
-  if (!dataOK) {
-    dataError = 'DATA inválido ou preenchido de forma incorreta.'
+  if (!dataContratacaoOK) {
+    dataContratacaoError = 'DATA inválido ou preenchido de forma incorreta.'
   }
   if (!contratanteOK) {
     contratanteError = 'CONTRATANTE inválido ou preenchido de forma incorreta.'
@@ -73,8 +73,8 @@ router.post('/admin/contratacao/salvarNova', (req, res) => {
     servicoError = 'SERVICO inválido ou preenchido de forma incorreta.'
   }
 
-  if (dataError || contratanteError || servicoError) {
-    req.flash('dataError', dataError)
+  if (dataContratacaoError || contratanteError || servicoError) {
+    req.flash('dataContratacaoError', dataContratacaoError)
     req.flash('contratanteError', contratanteError)
     req.flash('servicoError', servicoError)
 
@@ -83,7 +83,7 @@ router.post('/admin/contratacao/salvarNova', (req, res) => {
     database.insert({
       cliente_id: contratante,
       servico_id: servico,
-      data
+      data_contratacao: dataContratacao
     }).table("contratacoes")
       .then(() => {
         res.redirect('/admin/contratacoes')
@@ -112,12 +112,12 @@ router.get('/admin/contratacao/edit/:id', (req, res) => {
               let contratacao = table_contratacoes[0]
 
               // Capturando os erros
-              let dataError = req.flash('dataError')
+              let dataContratacaoError = req.flash('dataContratacaoError')
               let contratanteError = req.flash('contratanteError')
               let servicoError = req.flash('servicoError')
 
               let erros = {
-                dataError,
+                dataContratacaoError,
                 contratanteError,
                 servicoError
               }
@@ -144,20 +144,20 @@ router.get('/admin/contratacao/edit/:id', (req, res) => {
 
 router.post('/admin/contratacao/salvarCadastrada', (req, res) => {
   let id = req.body.iptId
-  let data = req.body.iptData
+  let dataContratacao = req.body.iptDataContratacao
   let contratante = req.body.iptContratante
   let servico = req.body.iptServico
 
-  let dataOK = validator.isDate(data)
+  let dataContratacaoOK = validator.isDate(dataContratacao)
   let contratanteOK = validator.isInt(contratante)
   let servicoOK = validator.isInt(servico)
 
-  let dataError = null
+  let dataContratacaoError = null
   let contratanteError = null
   let servicoError = null
 
-  if (!dataOK) {
-    dataError = 'DATA inválido ou preenchido de forma incorreta.'
+  if (!dataContratacaoOK) {
+    dataContratacaoError = 'DATA inválido ou preenchido de forma incorreta.'
   }
   if (!contratanteOK) {
     contratanteError = 'CONTRATANTE inválido ou preenchido de forma incorreta.'
@@ -166,12 +166,12 @@ router.post('/admin/contratacao/salvarCadastrada', (req, res) => {
     servicoError = 'SERVICO inválido ou preenchido de forma incorreta.'
   }
 
-  if (dataError || contratanteError || servicoError) {
+  if (dataContratacaoError || contratanteError || servicoError) {
     req.flash('data', data)
     req.flash('contratante', contratante)
     req.flash('servico', servico)
 
-    req.flash('dataError', dataError)
+    req.flash('dataContratacaoError', dataContratacaoError)
     req.flash('contratanteError', contratanteError)
     req.flash('servicoError', servicoError)
 
@@ -180,7 +180,7 @@ router.post('/admin/contratacao/salvarCadastrada', (req, res) => {
     database.update({
       cliente_id: contratante,
       servico_id: servico,
-      data
+      data_contratacao: dataContratacao
     }).table("contratacoes").where({ id })
       .then(() => {
         res.redirect('/admin/contratacoes')
