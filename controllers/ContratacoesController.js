@@ -193,7 +193,14 @@ router.post('/admin/contratacao/salvarCadastrada', (req, res) => {
 
 router.post('/admin/contratacao/deletar', (req, res) => {
   let id = req.body.iptId
-  res.send(`Registro ${ id } deletado com sucesso.`)
+  
+  database.delete().table("contratacoes").where({ id })
+    .then(() => {
+      res.redirect('/admin/contratacoes')
+    })
+    .catch(error => {
+      console.log(error)
+    })
 })
 
 router.get('/admin/contratacao/:id', (req, res) => {
