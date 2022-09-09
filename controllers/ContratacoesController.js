@@ -95,8 +95,38 @@ router.post('/admin/contratacao/salvarNova', (req, res) => {
 })
 
 router.get('/admin/contratacao/edit/:id', (req, res) => {
-  let id = req.body.iptId
-  res.render('admin/contratacoes/contratacaoEdit')
+  let id = req.params.id
+
+  database.select().table("contratacoes").where({ id })
+    .then(table_contratacoes => {
+      database.select([
+          "clientes.id AS clienteId",
+          "nome"
+        ]).table("clientes")
+        .then(table_clientes => {
+          database.select([
+            "servicos.id AS servicoId",
+            "servico"
+          ]).table("servicos")
+            .then(table_servicos => {
+              let contratacao = table_contratacoes[0]
+              res.render('admin/contratacoes/contratacaoEdit', {
+                contratacao,
+                table_clientes,
+                table_servicos
+              })
+            })
+            .catch(error => {
+              console.log(error)
+            })
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    })
+    .catch(error => {
+      console.log(error)
+    })
 })
 
 router.post('/admin/contratacao/salvarCadastrada', (req, res) => {
