@@ -269,11 +269,11 @@ table td ul {
 }
 
 .status-em-andamento {
-  
+  fill: #e6e600;
 }
 
 .status-finalizado {
-  
+  fill: #33cc33;
 }
 
 /* ARTIGOS: Nova categoria */
