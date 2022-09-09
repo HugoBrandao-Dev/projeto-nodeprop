@@ -15,9 +15,9 @@
     <select name="iptContratante" class="br-7">
       <% table_clientes.forEach(cliente => { %>
         <% if (cliente.clienteId == contratacao.cliente_id) { %>
-          <option value="<%= cliente.id %>" selected><%= cliente.nome %></option>
+          <option value="<%= cliente.clienteId %>" selected><%= cliente.nome %></option>
         <% } else { %>
-          <option value="<%= cliente.id %>"><%= cliente.nome %></option>
+          <option value="<%= cliente.clienteId %>"><%= cliente.nome %></option>
         <% } %>
       <% }) %>
     </select>
@@ -26,9 +26,9 @@
     <select name="iptServico" class="br-7">
       <% table_servicos.forEach(servico => { %>
         <% if (servico.servicoId == contratacao.servico_id) { %>
-          <option value="<%= servico.id %>" selected><%= servico.servico %></option>
+          <option value="<%= servico.servicoId %>" selected><%= servico.servico %></option>
         <% } else { %>
-          <option value="<%= servico.id %>"><%= servico.servico %></option>
+          <option value="<%= servico.servicoId %>"><%= servico.servico %></option>
         <% } %>
       <% }) %>
     </select>
@@ -39,4 +39,5 @@
     <button type="submit" class="btn btn-edit btn-right">Atualizar</button>
   </form>
 </main>
+<script type="text/javascript" src="/js/limitarDatas.js"></script>
 <%- include('../../partials/admin/footer.ejs') %>
