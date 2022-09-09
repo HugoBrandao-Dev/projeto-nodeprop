@@ -9,9 +9,19 @@
     <input type="hidden" name="iptId" value="<%= contratacao.id %>">
 
     <label>Data:</label>
+    <% if (erros.dataError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.dataError %></small>
+      </p>
+    <% } %>
     <input type="date" name="iptData" class="br-7" value="<%= contratacao.data %>">
 
     <label>Contratante:</label>
+    <% if (erros.contratanteError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.contratanteError %></small>
+      </p>
+    <% } %>
     <select name="iptContratante" class="br-7">
       <% table_clientes.forEach(cliente => { %>
         <% if (cliente.clienteId == contratacao.cliente_id) { %>
@@ -23,6 +33,11 @@
     </select>
 
     <label>Serviço:</label>
+    <% if (erros.servicoError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.servicoError %></small>
+      </p>
+    <% } %>
     <select name="iptServico" class="br-7">
       <% table_servicos.forEach(servico => { %>
         <% if (servico.servicoId == contratacao.servico_id) { %>
