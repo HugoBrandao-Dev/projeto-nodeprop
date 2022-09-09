@@ -262,6 +262,20 @@ table td ul {
   margin-bottom: 10px;
 }
 
+/* CONTRATAÇÕES */
+
+.status-aberto {
+  fill: #ff0000;
+}
+
+.status-em-andamento {
+  
+}
+
+.status-finalizado {
+  
+}
+
 /* ARTIGOS: Nova categoria */
 
 .artigos-opcoes, .artigos-opcoes .form-categoria, .artigo-opcoes .form-categoria .entrada, .form-categoria .entrada button {
