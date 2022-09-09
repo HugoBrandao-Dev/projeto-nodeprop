@@ -16,94 +16,30 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="table-id">0</td>
-          <td class="table-contratante">Tobias de Oliveira</td>
-          <td class="table-servico">Marketing digital</td>
-          <td class="table-acao">
-            <button class="btn-table-acao btn-expandir-acoes expandir-0"><i class="fas fa-ellipsis-h"></i></button>
-            <ul class="acoes acoes-0">
-              <li>
-                <a href="/admin/contratacao/edit/0" class="btn-table-acao btn-editar-registro" title="Editar registro"><i class="fa fa-edit"></i></a>
-              </li>
-              <li>
-                <form method="POST" action="/admin/contratacao/deletar" onsubmit="deletarRegistro(event, this)">
-                  <input type="hidden" name="iptId" value="0">
-                  <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
-                </form>
-              </li>
-              <li>
-                <a href="/admin/contratacao/0" class="btn-table-acao btn-info-registro" title="Informações do registro"><i class="fa fa-info-circle"></i></a>
-              </li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td class="table-id">1</td>
-          <td class="table-contratante">Dinorá de Oliveira</td>
-          <td class="table-servico">Aplicativo Mobile</td>
-          <td class="table-acao">
-            <button class="btn-table-acao btn-expandir-acoes expandir-1"><i class="fas fa-ellipsis-h"></i></button>
-            <ul class="acoes acoes-1">
-              <li>
-                <a href="/admin/contratacao/edit/1" class="btn-table-acao btn-editar-registro" title="Editar registro"><i class="fa fa-edit"></i></a>
-              </li>
-              <li>
-                <form method="POST" action="/admin/contratacao/deletar" onsubmit="deletarRegistro(event, this)">
-                  <input type="hidden" name="iptId" value="1">
-                  <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
-                </form>
-              </li>
-              <li>
-                <a href="/admin/contratacao/1" class="btn-table-acao btn-info-registro" title="Informações do registro"><i class="fa fa-info-circle"></i></a>
-              </li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td class="table-id">2</td>
-          <td class="table-contratante">Josias Cruz</td>
-          <td class="table-servico">Criação de site</td>
-          <td class="table-acao">
-            <button class="btn-table-acao btn-expandir-acoes expandir-2"><i class="fas fa-ellipsis-h"></i></button>
-            <ul class="acoes acoes-2">
-              <li>
-                <a href="/admin/contratacao/edit/2" class="btn-table-acao btn-editar-registro" title="Editar registro"><i class="fa fa-edit"></i></a>
-              </li>
-              <li>
-                <form method="POST" action="/admin/contratacao/deletar" onsubmit="deletarRegistro(event, this)">
-                  <input type="hidden" name="iptId" value="2">
-                  <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
-                </form>
-              </li>
-              <li>
-                <a href="/admin/contratacao/2" class="btn-table-acao btn-info-registro" title="Informações do registro"><i class="fa fa-info-circle"></i></a>
-              </li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td class="table-id">3</td>
-          <td class="table-contratante">Doralice Cruz</td>
-          <td class="table-servico">Campanha publicitária</td>
-          <td class="table-acao">
-            <button class="btn-table-acao btn-expandir-acoes expandir-3"><i class="fas fa-ellipsis-h"></i></button>
-            <ul class="acoes acoes-3">
-              <li>
-                <a href="/admin/contratacao/edit/3" class="btn-table-acao btn-editar-registro" title="Editar registro"><i class="fa fa-edit"></i></a>
-              </li>
-              <li>
-                <form method="POST" action="/admin/contratacao/deletar" onsubmit="deletarRegistro(event, this)">
-                  <input type="hidden" name="iptId" value="3">
-                  <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
-                </form>
-              </li>
-              <li>
-                <a href="/admin/cliente/3" class="btn-table-acao btn-info-registro" title="Informações do registro"><i class="fa fa-info-circle"></i></a>
-              </li>
-            </ul>
-          </td>
-        </tr>
+        <% table_contratacoes.forEach(contratacao => { %>
+          <tr>
+            <td class="table-id"><%= contratacao.contratacaoId %></td>
+            <td class="table-contratante"><%= contratacao.cliente %></td>
+            <td class="table-servico"><%= contratacao.servico %></td>
+            <td class="table-acao">
+              <button class="btn-table-acao btn-expandir-acoes expandir-<%= contratacao.contratacaoId %>"><i class="fas fa-ellipsis-h"></i></button>
+              <ul class="acoes acoes-<%= contratacao.contratacaoId %>">
+                <li>
+                  <a href="/admin/contratacao/edit/<%= contratacao.contratacaoId %>" class="btn-table-acao btn-editar-registro" title="Editar registro"><i class="fa fa-edit"></i></a>
+                </li>
+                <li>
+                  <form method="POST" action="/admin/contratacao/deletar" onsubmit="deletarRegistro(event, this)">
+                    <input type="hidden" name="iptId" value="<%= contratacao.contratacaoId %>">
+                    <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
+                  </form>
+                </li>
+                <li>
+                  <a href="/admin/contratacao/<%= contratacao.contratacaoId %>" class="btn-table-acao btn-info-registro" title="Informações do registro"><i class="fa fa-info-circle"></i></a>
+                </li>
+              </ul>
+            </td>
+          </tr>
+        <% }) %>
       </tbody>
     </table>
   </article>
