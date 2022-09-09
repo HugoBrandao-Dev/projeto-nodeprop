@@ -110,10 +110,23 @@ router.get('/admin/contratacao/edit/:id', (req, res) => {
           ]).table("servicos")
             .then(table_servicos => {
               let contratacao = table_contratacoes[0]
+
+              // Capturando os erros
+              let dataError = req.flash('dataError')
+              let contratanteError = req.flash('contratanteError')
+              let servicoError = req.flash('servicoError')
+
+              let erros = {
+                dataError,
+                contratanteError,
+                servicoError
+              }
+
               res.render('admin/contratacoes/contratacaoEdit', {
                 contratacao,
                 table_clientes,
-                table_servicos
+                table_servicos,
+                erros
               })
             })
             .catch(error => {
