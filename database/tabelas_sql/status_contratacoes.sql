@@ -11,5 +11,5 @@ DESCRIBE status_contratacoes;
 
 INSERT INTO status_contratacoes VALUES
 (default, "aberto"),
-(default, "am andamento"),
+(default, "em andamento"),
 (default, "finalizado");
