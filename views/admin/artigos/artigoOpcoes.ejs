@@ -26,13 +26,13 @@
         </tr>
       </thead>
       <tbody>
-        <% table_artigos.forEach(artigo => { %>
+        <% table_categorias.forEach(categoria => { %>
           <tr>
-            <td class="table-id"><%= artigo.id %></td>
-            <td class="table-nome"><%= artigo.categoria %></td>
+            <td class="table-id"><%= categoria.id %></td>
+            <td class="table-nome"><%= categoria.categoria %></td>
             <td class="table-acao">
               <form method="POST" action="/admin/artigos/categoria/deletar" onsubmit="deletarRegistro(event, this)">
-                <input type="hidden" name="iptId" value="<%= artigo.id %>">
+                <input type="hidden" name="iptId" value="<%= categoria.id %>">
                 <button type="submit" class="btn-table-acao btn-deletar-registro" title="Deletar registro"><i class="fa fa-eraser"></i></button>
               </form>
             </td>

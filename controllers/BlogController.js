@@ -33,8 +33,8 @@ router.post('/admin/artigo/salvarNovo', (req, res) => {
 
 router.get('/admin/artigos/categorias/nova', (req, res) => {
   database.select().table('categorias')
-    .then(table_artigos => {
-      res.render('admin/artigos/artigoOpcoes', { table_artigos })
+    .then(table_categorias => {
+      res.render('admin/artigos/artigoOpcoes', { table_categorias })
     })
 })
 
