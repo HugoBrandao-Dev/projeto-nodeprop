@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const database = require('../database/connection')
 const validator = require('validator')
+const getData = require('../public/js/getData.js')
 
 router.get('/blog', (req, res) => {
   res.render('blog')
@@ -31,17 +32,75 @@ router.get('/admin/artigo/novo', (req, res) => {
 })
 
 router.post('/admin/artigo/salvarNovo', (req, res) => {
-  let titulo = req.body.iptTitulo
+  let titulo = req.body.iptTitulo.trim()
   let categoria = req.body.iptCategoria
   let autor = req.body.iptAutor
+  let status = req.body.iptStatus
   let artigo = req.body.txtArtigo
 
-  res.send({
-    titulo,
-    categoria,
-    autor,
-    artigo
+  let tituloOK = validator.isAlphanumeric(titulo, ['pt-BR'], {
+    ignore: ' ,.!?:;()\'+-_%$@=/*'
   })
+  let categoriaOK = validator.isInt(categoria)
+  let autorOK = validator.isInt(autor)
+  let statusOK = validator.isInt(status)
+  let artigoOK = !validator.isEmpty(artigo)
+
+  let tituloError = null
+  let categoriaError = null
+  let autorError = null
+  let statusError = null
+  let artigoError = null
+
+  if (!tituloOK) {
+    tituloError = 'TITULO inválido ou preenchido de forma incorreta.'
+  }
+  if (!categoriaOK) {
+    categoriaError = 'CATEGORIA inválido ou preenchido de forma incorreta.'
+  }
+  if (!autorOK) {
+    autorError = 'AUTOR inválido ou preenchido de forma incorreta.'
+  }
+  if (!statusOK) {
+    statusError = 'STATUS inválido ou preenchido de forma incorreta.'
+  }
+  if (!artigoOK) {
+    artigoError = 'ARTIGO inválido ou preenchido de forma incorreta.'
+  }
+
+  if (tituloError || categoriaError || autorError || statusError || artigoError) {
+
+    // Emitindo erros
+    req.flash('tituloError', tituloError)
+    req.flash('categoriaError', categoriaError)
+    req.flash('autorError', autorError)
+    req.flash('statusError', statusError)
+    req.flash('artigoError', artigoError)
+
+    // Emitindo dados
+    req.flash('titulo', titulo)
+    req.flash('categoria', categoria)
+    req.flash('autor', autor)
+    req.flash('status', status)
+    req.flash('artigo', artigo)
+
+    res.redirect('/admin/artigo/novo')
+  } else {
+    database.insert({
+      data_publicacao: getData(),
+      titulo,
+      categoria_id: categoria,
+      autor_id: autor,
+      status_id: status,
+      texto: autor
+    }).table("artigos")
+      .then(() => {
+        res.redirect('/admin/artigos')
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
 })
 
 router.get('/admin/artigos/categorias/nova', (req, res) => {
