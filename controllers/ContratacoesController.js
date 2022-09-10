@@ -227,7 +227,23 @@ router.post('/admin/contratacao/deletar', (req, res) => {
 router.get('/admin/contratacao/:id', (req, res) => {
   let id = req.params.id
 
-  res.render('admin/contratacoes/contratacaoInfo')
+  database.select([
+    "data_contratacao",
+    "servico",
+    "nome",
+    "status_contratacao"
+  ]).table("contratacoes")
+    .innerJoin("servicos", "servicos.id", "contratacoes.servico_id")
+    .innerJoin("clientes", "clientes.id", "contratacoes.cliente_id")
+    .innerJoin("status_contratacoes", "status_contratacoes.id", "contratacoes.status_id")
+    .where({ "contratacoes.id": id })
+      .then(resultado => {
+        let table_contratacoes = resultado[0]
+        res.render('admin/contratacoes/contratacaoInfo', { table_contratacoes })
+      })
+      .catch(error => {
+        console.log(error)
+      })
 })
 
 module.exports = router
