@@ -112,25 +112,32 @@ router.get('/admin/contratacao/edit/:id', (req, res) => {
             "servico"
           ]).table("servicos")
             .then(table_servicos => {
-              let contratacao = table_contratacoes[0]
+              database.select().table("status_contratacoes")
+                .then(table_status_contratacoes => {
+                  let contratacao = table_contratacoes[0]
 
-              // Capturando os erros
-              let dataContratacaoError = req.flash('dataContratacaoError')
-              let contratanteError = req.flash('contratanteError')
-              let servicoError = req.flash('servicoError')
+                  // Capturando os erros
+                  let dataContratacaoError = req.flash('dataContratacaoError')
+                  let contratanteError = req.flash('contratanteError')
+                  let servicoError = req.flash('servicoError')
 
-              let erros = {
-                dataContratacaoError,
-                contratanteError,
-                servicoError
-              }
+                  let erros = {
+                    dataContratacaoError,
+                    contratanteError,
+                    servicoError
+                  }
 
-              res.render('admin/contratacoes/contratacaoEdit', {
-                contratacao,
-                table_clientes,
-                table_servicos,
-                erros
-              })
+                  res.render('admin/contratacoes/contratacaoEdit', {
+                    contratacao,
+                    table_clientes,
+                    table_servicos,
+                    table_status_contratacoes,
+                    erros
+                  })
+                })
+                .catch(error => {
+                  console.log(error)
+                })
             })
             .catch(error => {
               console.log(error)
