@@ -14,7 +14,20 @@ router.get('/admin/artigos', (req, res) => {
 })
 
 router.get('/admin/artigo/novo', (req, res) => {
-  res.render('admin/artigos/artigoCadastrar')
+  database.select().table("categorias")
+    .then(table_categorias => {
+      database.select().table("funcionarios")
+        .then(table_funcionarios => {
+          database.select().table("status_artigos")
+            .then(table_status_artigos => {
+              res.render('admin/artigos/artigoCadastrar', {
+                table_categorias,
+                table_funcionarios,
+                table_status_artigos
+              })
+            })
+        })
+    })
 })
 
 router.post('/admin/artigo/salvarNovo', (req, res) => {
