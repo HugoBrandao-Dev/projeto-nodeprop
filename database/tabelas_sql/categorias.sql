@@ -2,6 +2,9 @@ USE nodeprop;
 
 CREATE TABLE categorias (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-	categoria VARCHAR(100) NOT NULL,
+	categoria VARCHAR(100) NOT NULL UNIQUE,
 	PRIMARY KEY(id)
 );
+
+SELECT * FROM categorias;
+DESCRIBE categorias;
