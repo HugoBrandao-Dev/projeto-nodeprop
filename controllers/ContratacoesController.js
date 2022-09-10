@@ -120,11 +120,13 @@ router.get('/admin/contratacao/edit/:id', (req, res) => {
                   let dataContratacaoError = req.flash('dataContratacaoError')
                   let contratanteError = req.flash('contratanteError')
                   let servicoError = req.flash('servicoError')
+                  let statusError = req.flash('statusError')
 
                   let erros = {
                     dataContratacaoError,
                     contratanteError,
-                    servicoError
+                    servicoError,
+                    statusError
                   }
 
                   res.render('admin/contratacoes/contratacaoEdit', {
