@@ -70,7 +70,7 @@ tbody tr:hover {
   background-color: #f2f2f2;
 }
 
-.table-email, .table-cargo, .table-celular, .table-responsaveis, .table-categoria, .table-autor, .table-contratante {
+.table-email, .table-cargo, .table-celular, .table-responsaveis, .table-categoria, .table-autor, .table-contratante, .table-status {
   display: none;
 }
 
@@ -301,6 +301,16 @@ table td ul {
   margin: 20px 25%;
 }
 
+/* ARTIGOS: Status */
+
+.status-em-desenvolvimento {
+  fill: #0099ff;
+}
+
+.status-publicado {
+  fill: #00cc66;
+}
+
 @media screen and (min-width: 768px) {
 
   /* HOME */
@@ -382,7 +392,7 @@ table td ul {
     margin-right: 0;
   }
 
-  .table-cargo, .table-autor {
+  .table-cargo, .table-autor, .table-status {
     display: table-cell;
   }
 
