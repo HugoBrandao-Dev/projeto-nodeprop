@@ -147,6 +147,11 @@
     <input type="text" name="iptEndereco" class="br-7" placeholder="Bairro/Rua" value="<%= dados.endereco.length != 0 ? dados.endereco : funcionario.endereco %>">
 
     <label>Número:</label>
+    <% if (erros.numeroError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.numeroError %></small>
+      </p>
+    <% } %>
     <input type="number" name="iptNumero" class="br-7" value="<%= dados.numero.length != 0 ? dados.numero : funcionario.numero %>">
 
     <label>Informações adicionais:</label>
