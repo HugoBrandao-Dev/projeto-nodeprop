@@ -157,14 +157,17 @@ router.post('/admin/contratacao/salvarCadastrada', (req, res) => {
   let dataContratacao = req.body.iptDataContratacao
   let contratante = req.body.iptContratante
   let servico = req.body.iptServico
+  let status = req.body.iptStatus
 
   let dataContratacaoOK = validator.isDate(dataContratacao)
   let contratanteOK = validator.isInt(contratante)
   let servicoOK = validator.isInt(servico)
+  let statusOK = validator.isInt(status)
 
   let dataContratacaoError = null
   let contratanteError = null
   let servicoError = null
+  let statusError = null
 
   if (!dataContratacaoOK) {
     dataContratacaoError = 'DATA inválido ou preenchido de forma incorreta.'
@@ -175,22 +178,28 @@ router.post('/admin/contratacao/salvarCadastrada', (req, res) => {
   if (!servicoOK) {
     servicoError = 'SERVICO inválido ou preenchido de forma incorreta.'
   }
+  if (!statusOK) {
+    statusError = 'STATUS inválido  preenchido de forma incorreta.'
+  }
 
   if (dataContratacaoError || contratanteError || servicoError) {
     req.flash('data', data)
     req.flash('contratante', contratante)
     req.flash('servico', servico)
+    req.flash('status', status)
 
     req.flash('dataContratacaoError', dataContratacaoError)
     req.flash('contratanteError', contratanteError)
     req.flash('servicoError', servicoError)
+    req.flash('statusError', statusError)
 
     res.redirect(`/admin/contratacao/edit/${ id }`)
   } else {
     database.update({
       cliente_id: contratante,
       servico_id: servico,
-      data_contratacao: dataContratacao
+      status_id: status,
+      data_contratacao: dataContratacao,
     }).table("contratacoes").where({ id })
       .then(() => {
         res.redirect('/admin/contratacoes')
