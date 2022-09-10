@@ -32,7 +32,10 @@ router.post('/admin/artigo/salvarNovo', (req, res) => {
 })
 
 router.get('/admin/artigos/categorias/nova', (req, res) => {
-  res.render('admin/artigos/artigoOpcoes')
+  database.select().table('categorias')
+    .then(table_artigos => {
+      res.render('admin/artigos/artigoOpcoes', { table_artigos })
+    })
 })
 
 router.post('/admin/artigos/categorias/salvarNova', (req, res) => {
