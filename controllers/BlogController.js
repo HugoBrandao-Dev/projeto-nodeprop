@@ -72,6 +72,25 @@ router.post('/admin/artigos/categorias/salvarNova', (req, res) => {
   }
 })
 
+router.post('/admin/artigos/categoria/deletar', (req, res) => {
+  let id = req.body.iptId
+
+  database.select().table("artigos").where({ categoria_id: id })
+    .then(table_artigos => {
+      if (table_artigos.length == 0) {
+        database.delete().table("categorias").where({ id })
+          .then(() => {
+            res.redirect('/admin/artigos/categorias/nova')
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      } else {
+        res.send('ERRO: Há artigos cadastrados com essa categoria.')
+      }
+    })
+})
+
 router.get('/admin/artigo/edit/:id', (req, res) => {
   let id = req.params.id
   res.render('admin/artigos/artigoEdit')
