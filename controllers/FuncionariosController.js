@@ -146,6 +146,7 @@ router.post('/admin/funcionario/salvarNovo', (req,res) => {
   let uf = req.body.iptUF
   let localizacao = req.body.iptLocalizacao.trim()
   let endereco = req.body.iptEndereco.trim()
+  let numero = req.body.iptNumero
   let informacoes = req.body.iptInformacoes.trim()
   let cpf = req.body.iptCPF.trim()
 
@@ -170,6 +171,7 @@ router.post('/admin/funcionario/salvarNovo', (req,res) => {
   let enderecoOK = validator.isAlpha(endereco, ['pt-BR'], {
     ignore: ' ,.:()\''
   })
+  let numeroOK = validator.isInt(numero)
   let informacoesOK = validator.isAlpha(informacoes, ['pt-BR'], {
     ignore: ' ,.:()\''
   })
@@ -186,6 +188,7 @@ router.post('/admin/funcionario/salvarNovo', (req,res) => {
   let ufError = null
   let localizacaoError = null
   let enderecoError = null
+  let numeroError = null
   let informacoesError = null
   let cpfError = null
 
@@ -222,6 +225,9 @@ router.post('/admin/funcionario/salvarNovo', (req,res) => {
   if (!enderecoOK) {
     enderecoError = 'ENDERECO inválido ou preenchido de forma incorreta.'
   }
+  if (!numeroOK) {
+    numeroError = 'NÚMERO inválido ou preenchido de forma incorreta.'
+  }
   if (!informacoesOK) {
     informacoesError = 'INFORMACOES inválido ou preenchido de forma incorreta.'
   }
@@ -229,7 +235,7 @@ router.post('/admin/funcionario/salvarNovo', (req,res) => {
     cpfError = 'CPF inválido ou preenchido de forma incorreta.'
   }
 
-  if (nomeError || nascimentoError || emailError || setorError || cargoError || telefoneError || celularError || cepError || ufError || localizacaoError || enderecoError || informacoesError || cpfError) {
+  if (nomeError || nascimentoError || emailError || setorError || cargoError || telefoneError || celularError || cepError || ufError || localizacaoError || enderecoError || numeroError || informacoesError || cpfError) {
 
     // Envio de erros
     req.flash('nomeError', nomeError)
@@ -243,6 +249,7 @@ router.post('/admin/funcionario/salvarNovo', (req,res) => {
     req.flash('ufError', ufError)
     req.flash('localizacaoError', localizacaoError)
     req.flash('enderecoError', enderecoError)
+    req.flash('numeroError', numeroError)
     req.flash('informacoesError', informacoesError)
     req.flash('cpfError', cpfError)
 
@@ -258,6 +265,7 @@ router.post('/admin/funcionario/salvarNovo', (req,res) => {
     req.flash('uf', uf)
     req.flash('localizacao', localizacao)
     req.flash('endereco', endereco)
+    req.flash('numero', numero)
     req.flash('informacoes', informacoes)
     req.flash('cpf', cpf)
 
@@ -275,6 +283,7 @@ router.post('/admin/funcionario/salvarNovo', (req,res) => {
       uf,
       localizacao,
       endereco,
+      numero,
       informacoes_adicionais: informacoes,
       cpf
     }).table("funcionarios")
