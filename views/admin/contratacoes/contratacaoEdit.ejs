@@ -49,6 +49,11 @@
     </select>
 
     <label>Status:</label>
+    <% if (erros.statusError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.statusError %></small>
+      </p>
+    <% } %>
     <select name="iptStatus" class="br-7">
       <% table_status_contratacoes.forEach(status => { %>
         <% if (status.id == contratacao.status_id) { %>
