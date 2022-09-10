@@ -1,5 +1,7 @@
 const express = require('express')
 const router = express.Router()
+const database = require('../database/connection')
+const validator = require('validator')
 
 router.get('/blog', (req, res) => {
   res.render('blog')
@@ -36,9 +38,35 @@ router.get('/admin/artigos/categorias/nova', (req, res) => {
 router.post('/admin/artigos/categorias/salvarNova', (req, res) => {
   let categoria = req.body.iptCategoria
 
-  res.send({
-    categoria
+  let categoriaOK = validator.isAlpha(categoria, ['pt-BR'], {
+    ignore: ' ,.:;?!()\''
   })
+
+  let categoriaError = null
+
+  if (!categoriaOK) {
+    categoriaError = 'CATEGORIA inválida ou preenchida de forma incorreta.'
+  } 
+
+  if (categoriaError) {
+    // Emitindo erros
+    req.flash('categoriaError', categoriaError)
+
+    // Emitindo dados
+    req.flash('categoria', categoria)
+
+    res.redirect('/admin/artigos/categorias/nova')
+  } else {
+    database.insert({ categoria }).table('categorias')
+      .then(() => {
+        res.redirect('/admin/artigos/categorias/nova')
+      })
+      .catch(error => {
+        if (error.sqlState == 23000) {
+          res.send('Erro: Já existe uma categoria com esse nome.')
+        }
+      })
+  }
 })
 
 router.get('/admin/artigo/edit/:id', (req, res) => {
