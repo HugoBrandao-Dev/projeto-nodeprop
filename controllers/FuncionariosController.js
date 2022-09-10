@@ -415,6 +415,7 @@ router.post('/admin/funcionario/salvarCadastrado', (req, res) => {
   let cep = req.body.iptCEP
   let uf = req.body.iptUF
   let localizacao = req.body.iptLocalizacao.trim()
+  let numero = req.body.iptNumero
   let endereco = req.body.iptEndereco.trim()
   let informacoes = req.body.iptInformacoes.trim()
   let cpf = req.body.iptCPF.trim()
@@ -440,6 +441,7 @@ router.post('/admin/funcionario/salvarCadastrado', (req, res) => {
   let enderecoOK = validator.isAlpha(endereco, ['pt-BR'], {
     ignore: ' ,.:()\''
   })
+  let numeroOK = validator.isInt(numero)
   let informacoesOK = validator.isAlpha(informacoes, ['pt-BR'], {
     ignore: ' ,.:()\''
   })
@@ -455,6 +457,7 @@ router.post('/admin/funcionario/salvarCadastrado', (req, res) => {
   let cepError = null
   let ufError = null
   let localizacaoError = null
+  let numeroError = null
   let enderecoError = null
   let informacoesError = null
   let cpfError = null
@@ -492,6 +495,9 @@ router.post('/admin/funcionario/salvarCadastrado', (req, res) => {
   if (!enderecoOK) {
     enderecoError = 'ENDERECO inválido ou preenchido de forma incorreta.'
   }
+  if (!numeroOK) {
+    numeroError = 'NUMERO inválido ou preenchido de forme incorreta.'
+  }
   if (!informacoesOK) {
     informacoesError = 'INFORMACOES inválido ou preenchido de forma incorreta.'
   }
@@ -499,7 +505,7 @@ router.post('/admin/funcionario/salvarCadastrado', (req, res) => {
     cpfError = 'CPF inválido ou preenchido de forma incorreta.'
   }
 
-  if (nomeError || nascimentoError || emailError || setorError || cargoError || telefoneError || celularError || cepError || ufError || localizacaoError || enderecoError || informacoesError || cpfError) {
+  if (nomeError || nascimentoError || emailError || setorError || cargoError || telefoneError || celularError || cepError || ufError || localizacaoError || enderecoError || numeroError || informacoesError || cpfError) {
 
     // Envio de erros
     req.flash('nomeError', nomeError)
@@ -512,6 +518,7 @@ router.post('/admin/funcionario/salvarCadastrado', (req, res) => {
     req.flash('cepError', cepError)
     req.flash('ufError', ufError)
     req.flash('localizacaoError', localizacaoError)
+    req.flash('numeroError', numeroError)
     req.flash('enderecoError', enderecoError)
     req.flash('informacoesError', informacoesError)
     req.flash('cpfError', cpfError)
@@ -527,6 +534,7 @@ router.post('/admin/funcionario/salvarCadastrado', (req, res) => {
     req.flash('cep', cep)
     req.flash('uf', uf)
     req.flash('localizacao', localizacao)
+    req.flash('numero', numero)
     req.flash('endereco', endereco)
     req.flash('informacoes', informacoes)
     req.flash('cpf', cpf)
@@ -544,6 +552,7 @@ router.post('/admin/funcionario/salvarCadastrado', (req, res) => {
       cep: cep.split('-').join(''),
       uf,
       localizacao,
+      numero,
       endereco,
       informacoes_adicionais: informacoes,
       cpf
