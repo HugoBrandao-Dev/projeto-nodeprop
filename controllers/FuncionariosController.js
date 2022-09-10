@@ -38,6 +38,7 @@ router.get('/admin/funcionario/novo', (req, res) => {
               let ufError = req.flash('ufError')
               let localizacaoError = req.flash('localizacaoError')
               let enderecoError = req.flash('enderecoError')
+              let numeroError = req.flash('numeroError')
               let informacoesError = req.flash('informacoesError')
               let cpfError = req.flash('cpfError')
 
@@ -53,6 +54,7 @@ router.get('/admin/funcionario/novo', (req, res) => {
                 ufError,
                 localizacaoError,
                 enderecoError,
+                numeroError,
                 informacoesError,
                 cpfError
               }
@@ -69,6 +71,7 @@ router.get('/admin/funcionario/novo', (req, res) => {
               let uf = req.flash('uf')
               let localizacao = req.flash('localizacao')
               let endereco = req.flash('endereco')
+              let numero = req.flash('numero')
               let informacoes = req.flash('informacoes')
               let cpf = req.flash('cpf')
 
@@ -84,6 +87,7 @@ router.get('/admin/funcionario/novo', (req, res) => {
                 uf,
                 localizacao,
                 endereco,
+                numero,
                 informacoes,
                 cpf
               }
