@@ -6,5 +6,9 @@ CREATE TABLE status_artigos(
 	PRIMARY KEY(id)
 );
 
+INSERT INTO status_artigos VALUES
+(default, "em desenvolvimento"),
+(default, "publicado");
+
 SELECT * FROM status_artigos;
 DESCRIBE status_artigos;
