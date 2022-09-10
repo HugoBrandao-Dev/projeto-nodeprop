@@ -50,9 +50,13 @@
 
     <label>Status:</label>
     <select name="iptStatus" class="br-7">
-      <option>aberto</option>
-      <option>em andamento</option>
-      <option>finalizado</option>
+      <% table_status_contratacoes.forEach(status => { %>
+        <% if (status.id == contratacao.status_id) { %>
+          <option value="<%= status.id %>" selected><%= status.status_contratacao %></option>
+        <% } else { %>
+          <option value="<%= status.id %>"><%= status.status_contratacao %></option>
+        <% } %>
+      <% }) %>
     </select>
 
     <label>Contrato assinado:</label>
