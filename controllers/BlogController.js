@@ -344,7 +344,14 @@ router.post('/admin/artigo/salvarCadastrado', (req, res) => {
 
 router.post('/admin/artigo/deletar', (req, res) => {
   let id = req.body.iptId
-  res.send(`Registro ${ id } deletado com sucesso.`)
+
+  database.delete().table("artigos").where({ id })
+    .then(() => {
+      res.redirect('/admin/artigos')
+    })
+    .catch(error => {
+      console.log(error)
+    })
 })
 
 router.get('/admin/artigo/:id', (req, res) => {
