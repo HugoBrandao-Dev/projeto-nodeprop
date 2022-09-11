@@ -9,43 +9,106 @@
     <input type="hidden" name="iptId" value="<%= artigo.id %>">
 
     <label>Título:</label>
-    <input type="text" name="iptTitulo" class="br-7" placeholder="Título do artigo" value="<%= artigo.titulo %>">
+    <% if (erros.tituloError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.tituloError %></small>
+      </p>
+    <% } %>
+    <% if (dados.titulo.length != 0) { %>
+      <input type="text" name="iptTitulo" class="br-7" placeholder="Título do artigo" value="<%= dados.titulo %>">
+    <% } else { %>
+      <input type="text" name="iptTitulo" class="br-7" placeholder="Título do artigo" value="<%= artigo.titulo %>">
+    <% } %>
 
     <label>Categoria:</label>
+    <% if (erros.categoriaError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.categoriaError %></small>
+      </p>
+    <% } %>
     <select name="iptCategoria" class="br-7">
-      <% table_categorias.forEach(categoria => { %>
-        <% if (categoria.id == artigo.categoria_id) { %>
-          <option value="<%= categoria.id %>" selected><%= categoria.categoria %></option>
-        <% } else { %>
-          <option value="<%= categoria.id %>"><%= categoria.categoria %></option>
-        <% } %>
-      <% }) %>
+      <% if (dados.categoria.length != 0) { %>
+        <% table_categorias.forEach(categoria => { %>
+          <% if (categoria.id == dados.categoria) { %>
+            <option value="<%= categoria.id %>" selected><%= categoria.categoria %></option>
+          <% } else { %>
+            <option value="<%= categoria.id %>"><%= categoria.categoria %></option>
+          <% } %>
+        <% }) %>
+      <% } else { %>
+        <% table_categorias.forEach(categoria => { %>
+          <% if (categoria.id == artigo.categoria_id) { %>
+            <option value="<%= categoria.id %>" selected><%= categoria.categoria %></option>
+          <% } else { %>
+            <option value="<%= categoria.id %>"><%= categoria.categoria %></option>
+          <% } %>
+        <% }) %>
+      <% } %>
     </select>
 
     <label>Autor:</label>
+    <% if (erros.autorError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.autorError %></small>
+      </p>
+    <% } %>
     <select name="iptAutor" class="br-7">
-      <% table_funcionarios.forEach(funcionario => { %>
-        <% if (funcionario.id == artigo.autor_id) { %>
-          <option value="<%= funcionario.id %>" selected><%= funcionario.nome %></option>
-        <% } else { %>
-          <option value="<%= funcionario.id %>"><%= funcionario.nome %></option>
-        <% } %>
-      <% }) %>
+      <% if (dados.autor.length != 0) { %>
+        <% table_funcionarios.forEach(funcionario => { %>
+          <% if (funcionario.id == dados.autor) { %>
+            <option value="<%= funcionario.id %>" selected><%= funcionario.nome %></option>
+          <% } else { %>
+            <option value="<%= funcionario.id %>"><%= funcionario.nome %></option>
+          <% } %>
+        <% }) %>
+      <% } else { %>
+        <% table_funcionarios.forEach(funcionario => { %>
+          <% if (funcionario.id == artigo.autor_id) { %>
+            <option value="<%= funcionario.id %>" selected><%= funcionario.nome %></option>
+          <% } else { %>
+            <option value="<%= funcionario.id %>"><%= funcionario.nome %></option>
+          <% } %>
+        <% }) %>
+      <% } %>
     </select>
 
     <label>Status:</label>
+    <% if (erros.statusError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.statusError %></small>
+      </p>
+    <% } %>
     <select name="iptStatus" class="br-7">
-      <% table_status_artigos.forEach(status => { %>
-        <% if (status.id == artigo.status_id) { %>
-          <option value="<%= status.id %>" selected><%= status.status_artigo %></option>
-        <% } else { %>
-          <option value="<%= status.id %>"><%= status.status_artigo %></option>
-        <% } %>
-      <% }) %>
+      <% if (dados.status.length != 0) { %>
+        <% table_status_artigos.forEach(status => { %>
+          <% if (status.id == dados.status) { %>
+            <option value="<%= status.id %>" selected><%= status.status_artigo %></option>
+          <% } else { %>
+            <option value="<%= status.id %>"><%= status.status_artigo %></option>
+          <% } %>
+        <% }) %>
+      <% } else { %>
+        <% table_status_artigos.forEach(status => { %>
+          <% if (status.id == artigo.status_id) { %>
+            <option value="<%= status.id %>" selected><%= status.status_artigo %></option>
+          <% } else { %>
+            <option value="<%= status.id %>"><%= status.status_artigo %></option>
+          <% } %>
+        <% }) %>
+      <% } %>
     </select>
 
     <label>Artigo:</label>
-    <textarea id="txtArtigo" name="txtArtigo"><%= artigo.texto %></textarea>
+    <% if (erros.textoError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.textoError %></small>
+      </p>
+    <% } %>
+    <% if (dados.texto.length != 0) { %>
+      <textarea id="txtArtigo" name="txtArtigo"><%= dados.texto %></textarea>
+    <% } else { %>
+      <textarea id="txtArtigo" name="txtArtigo"><%= artigo.texto %></textarea>
+    <% } %>
 
     <button type="submit" class="btn btn-edit btn-right">Atualizar</button>
   </form>
