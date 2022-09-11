@@ -27,14 +27,14 @@ router.get('/admin/artigo/novo', (req, res) => {
               let categoriaError = req.flash('categoriaError')
               let autorError = req.flash('autorError')
               let statusError = req.flash('statusError')
-              let artigoError = req.flash('artigoError')
+              let textoError = req.flash('textoError')
 
               let erros = {
                 tituloError,
                 categoriaError,
                 autorError,
                 statusError,
-                artigoError
+                textoError
               }
 
               // Capturando dados
@@ -42,14 +42,14 @@ router.get('/admin/artigo/novo', (req, res) => {
               let categoria = req.flash('categoria')
               let autor = req.flash('autor')
               let status = req.flash('status')
-              let artigo = req.flash('artigo')
+              let texto = req.flash('texto')
 
               let dados = {
                 titulo,
                 categoria,
                 autor,
                 status,
-                artigo
+                texto
               }
 
               res.render('admin/artigos/artigoCadastrar', {
@@ -69,7 +69,7 @@ router.post('/admin/artigo/salvarNovo', (req, res) => {
   let categoria = req.body.iptCategoria
   let autor = req.body.iptAutor
   let status = req.body.iptStatus
-  let artigo = req.body.txtArtigo
+  let texto = req.body.txtArtigo
 
   let tituloOK = validator.isAlphanumeric(titulo, ['pt-BR'], {
     ignore: ' ,.!?:;()\'+-_%$@=/*'
@@ -77,13 +77,13 @@ router.post('/admin/artigo/salvarNovo', (req, res) => {
   let categoriaOK = validator.isInt(categoria)
   let autorOK = validator.isInt(autor)
   let statusOK = validator.isInt(status)
-  let artigoOK = !validator.isEmpty(artigo)
+  let textoOK = !validator.isEmpty(texto)
 
   let tituloError = null
   let categoriaError = null
   let autorError = null
   let statusError = null
-  let artigoError = null
+  let textoError = null
 
   if (!tituloOK) {
     tituloError = 'TITULO inválido ou preenchido de forma incorreta.'
@@ -97,25 +97,25 @@ router.post('/admin/artigo/salvarNovo', (req, res) => {
   if (!statusOK) {
     statusError = 'STATUS inválido ou preenchido de forma incorreta.'
   }
-  if (!artigoOK) {
-    artigoError = 'ARTIGO inválido ou preenchido de forma incorreta.'
+  if (!textoOK) {
+    textoError = 'ARTIGO inválido ou preenchido de forma incorreta.'
   }
 
-  if (tituloError || categoriaError || autorError || statusError || artigoError) {
+  if (tituloError || categoriaError || autorError || statusError || textoError) {
 
     // Emitindo erros
     req.flash('tituloError', tituloError)
     req.flash('categoriaError', categoriaError)
     req.flash('autorError', autorError)
     req.flash('statusError', statusError)
-    req.flash('artigoError', artigoError)
+    req.flash('textoError', textoError)
 
     // Emitindo dados
     req.flash('titulo', titulo)
     req.flash('categoria', categoria)
     req.flash('autor', autor)
     req.flash('status', status)
-    req.flash('artigo', artigo)
+    req.flash('texto', texto)
 
     res.redirect('/admin/artigo/novo')
   } else {
@@ -125,7 +125,7 @@ router.post('/admin/artigo/salvarNovo', (req, res) => {
       categoria_id: categoria,
       autor_id: autor,
       status_id: status,
-      texto: autor
+      texto
     }).table("artigos")
       .then(() => {
         res.redirect('/admin/artigos')
