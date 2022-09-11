@@ -6,32 +6,48 @@
   </hgroup>
   <hr class="horizontal-bar">
   <form class="form-cadastro" method="POST" action="/admin/artigo/salvarCadastrado">
+    <input type="hidden" name="iptId" value="<%= artigo.id %>">
+
     <label>Título:</label>
-    <input type="text" name="iptTitulo" class="br-7" placeholder="Título do artigo">
+    <input type="text" name="iptTitulo" class="br-7" placeholder="Título do artigo" value="<%= artigo.titulo %>">
 
     <label>Categoria:</label>
     <select name="iptCategoria" class="br-7">
-      <option>Negócios</option>
-      <option>Marketing digital</option>
-      <option>Web design</option>
+      <% table_categorias.forEach(categoria => { %>
+        <% if (categoria.id == artigo.categoria_id) { %>
+          <option value="<%= categoria.id %>" selected><%= categoria.categoria %></option>
+        <% } else { %>
+          <option value="<%= categoria.id %>"><%= categoria.categoria %></option>
+        <% } %>
+      <% }) %>
     </select>
 
     <label>Autor:</label>
     <select name="iptAutor" class="br-7">
-      <option>Tobias de Oliveira</option>
-      <option>Dinorá de Oliveira</option>
-      <option>Josias Cruz</option>
-      <option>Doralice Cruz</option>
+      <% table_funcionarios.forEach(funcionario => { %>
+        <% if (funcionario.id == artigo.autor_id) { %>
+          <option value="<%= funcionario.id %>" selected><%= funcionario.nome %></option>
+        <% } else { %>
+          <option value="<%= funcionario.id %>"><%= funcionario.nome %></option>
+        <% } %>
+      <% }) %>
     </select>
 
     <label>Status:</label>
     <select name="iptStatus" class="br-7">
+      <% table_status_artigos.forEach(status => { %>
+        <% if (status.id == artigo.status_id) { %>
+          <option value="<%= status.id %>" selected><%= status.status_artigo %></option>
+        <% } else { %>
+          <option value="<%= status.id %>"><%= status.status_artigo %></option>
+        <% } %>
+      <% }) %>
       <option>Em desenvolvimento</option>
       <option>Publicado</option>
     </select>
 
     <label>Artigo:</label>
-    <textarea id="txtArtigo" name="txtArtigo"><p>Apenas um exemplo.</p></textarea>
+    <textarea id="txtArtigo" name="txtArtigo"><%= artigo.texto %></textarea>
 
     <button type="submit" class="btn btn-edit btn-right">Atualizar</button>
   </form>
