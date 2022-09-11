@@ -224,11 +224,44 @@ router.get('/admin/artigo/edit/:id', (req, res) => {
               database.select().table("status_artigos")
                .then(table_status_artigos => {
                   let artigo = table_artigos[0]
+
+                  // Recepção dos erros
+                  let tituloError = req.flash('tituloError')
+                  let categoriaError = req.flash('categoriaError')
+                  let autorError = req.flash('autorError')
+                  let statusError = req.flash('statusError')
+                  let textoError = req.flash('textoError')
+
+                  let erros = {
+                    tituloError,
+                    categoriaError,
+                    autorError,
+                    statusError,
+                    textoError
+                  }
+
+                  // Recepção dos dados
+                  let titulo = req.flash('titulo')
+                  let categoria = req.flash('categoria')
+                  let autor = req.flash('autor')
+                  let status = req.flash('status')
+                  let texto = req.flash('texto')
+
+                  let dados = {
+                    titulo,
+                    categoria,
+                    autor,
+                    status,
+                    texto
+                  }
+
                   res.render('admin/artigos/artigoEdit', {
                     artigo,
                     table_categorias,
                     table_funcionarios,
-                    table_status_artigos
+                    table_status_artigos,
+                    erros,
+                    dados
                   })
                })
             })
