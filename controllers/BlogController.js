@@ -11,7 +11,23 @@ router.get('/blog', (req, res) => {
 /* ROTAS DO ADMINISTRADOR */
 
 router.get('/admin/artigos', (req, res) => {
-  res.render('admin/artigos/artigosList')
+  database.select([
+    "artigos.id AS artigoId",
+    "titulo",
+    "categoria",
+    "nome",
+    "status_artigos.id AS statusId",
+    "status_artigo"
+  ]).table("artigos")
+    .innerJoin("categorias", "categorias.id", "artigos.categoria_id")
+    .innerJoin("funcionarios", "funcionarios.id", "artigos.autor_id")
+    .innerJoin("status_artigos", "status_artigos.id", "artigos.status_id")
+      .then(table_artigos => {
+        res.render('admin/artigos/artigosList', { table_artigos })
+      })
+      .catch(error => {
+        console.log(error)
+      })
 })
 
 router.get('/admin/artigo/novo', (req, res) => {
