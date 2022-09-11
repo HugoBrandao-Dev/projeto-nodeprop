@@ -355,8 +355,19 @@ router.post('/admin/artigo/deletar', (req, res) => {
 })
 
 router.get('/admin/artigo/:id', (req, res) => {
-  let id = req.params.iptId
-  res.render('admin/artigos/artigoInfo')
+  let id = req.params.id
+  
+  database.select().table("artigos").where({ "artigos.id": id })
+    .innerJoin("categorias", "categorias.id", "artigos.categoria_id")
+    .innerJoin("funcionarios", "funcionarios.id", "artigos.autor_id")
+    .innerJoin("status_artigos", "status_artigos.id", "artigos.status_id")
+      .then(table_artigos => {
+        let artigo = table_artigos[0]
+        res.render('admin/artigos/artigoInfo', { artigo })
+      })
+      .catch(error => {
+        console.log(error)
+      })
 })
 
 module.exports = router
