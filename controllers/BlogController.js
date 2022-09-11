@@ -21,10 +21,43 @@ router.get('/admin/artigo/novo', (req, res) => {
         .then(table_funcionarios => {
           database.select().table("status_artigos")
             .then(table_status_artigos => {
+
+              // Capturando erros
+              let tituloError = req.flash('tituloError')
+              let categoriaError = req.flash('categoriaError')
+              let autorError = req.flash('autorError')
+              let statusError = req.flash('statusError')
+              let artigoError = req.flash('artigoError')
+
+              let erros = {
+                tituloError,
+                categoriaError,
+                autorError,
+                statusError,
+                artigoError
+              }
+
+              // Capturando dados
+              let titulo = req.flash('titulo')
+              let categoria = req.flash('categoria')
+              let autor = req.flash('autor')
+              let status = req.flash('status')
+              let artigo = req.flash('artigo')
+
+              let dados = {
+                titulo,
+                categoria,
+                autor,
+                status,
+                artigo
+              }
+
               res.render('admin/artigos/artigoCadastrar', {
                 table_categorias,
                 table_funcionarios,
-                table_status_artigos
+                table_status_artigos,
+                erros,
+                dados
               })
             })
         })
