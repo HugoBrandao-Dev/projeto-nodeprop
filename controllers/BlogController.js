@@ -198,7 +198,26 @@ router.post('/admin/artigos/categoria/deletar', (req, res) => {
 
 router.get('/admin/artigo/edit/:id', (req, res) => {
   let id = req.params.id
-  res.render('admin/artigos/artigoEdit')
+
+  database.select().table("artigos").where({ id })
+    .then(table_artigos => {
+      database.select().table("categorias")
+       .then(table_categorias => {
+          database.select().table("funcionarios")
+            .then(table_funcionarios => {
+              database.select().table("status_artigos")
+               .then(table_status_artigos => {
+                  let artigo = table_artigos[0]
+                  res.render('admin/artigos/artigoEdit', {
+                    artigo,
+                    table_categorias,
+                    table_funcionarios,
+                    table_status_artigos
+                  })
+               })
+            })
+       })
+    })
 })
 
 router.post('/admin/artigo/salvarCadastrado', (req, res) => {
