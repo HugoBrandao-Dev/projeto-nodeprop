@@ -237,17 +237,76 @@ router.get('/admin/artigo/edit/:id', (req, res) => {
 })
 
 router.post('/admin/artigo/salvarCadastrado', (req, res) => {
-  let titulo = req.body.iptTitulo
+  let id = req.body.iptId
+
+  let titulo = req.body.iptTitulo.trim()
   let categoria = req.body.iptCategoria
   let autor = req.body.iptAutor
-  let artigo = req.body.txtArtigo
+  let status = req.body.iptStatus
+  let texto = req.body.txtArtigo
 
-  res.send({
-    titulo,
-    categoria,
-    autor,
-    artigo
+  let tituloOK = validator.isAlphanumeric(titulo, ['pt-BR'], {
+    ignore: ' ,.!?:;()\'+-_%$@=/*'
   })
+  let categoriaOK = validator.isInt(categoria)
+  let autorOK = validator.isInt(autor)
+  let statusOK = validator.isInt(status)
+  let textoOK = !validator.isEmpty(texto)
+
+  let tituloError = null
+  let categoriaError = null
+  let autorError = null
+  let statusError = null
+  let textoError = null
+
+  if (!tituloOK) {
+    tituloError = 'TITULO inválido ou preenchido de forma incorreta.'
+  }
+  if (!categoriaOK) {
+    categoriaError = 'CATEGORIA inválido ou preenchido de forma incorreta.'
+  }
+  if (!autorOK) {
+    autorError = 'AUTOR inválido ou preenchido de forma incorreta.'
+  }
+  if (!statusOK) {
+    statusError = 'STATUS inválido ou preenchido de forma incorreta.'
+  }
+  if (!textoOK) {
+    textoError = 'ARTIGO inválido ou preenchido de forma incorreta.'
+  }
+
+  if (tituloError || categoriaError || autorError || statusError || textoError) {
+
+    // Emitindo erros
+    req.flash('tituloError', tituloError)
+    req.flash('categoriaError', categoriaError)
+    req.flash('autorError', autorError)
+    req.flash('statusError', statusError)
+    req.flash('textoError', textoError)
+
+    // Emitindo dados
+    req.flash('titulo', titulo)
+    req.flash('categoria', categoria)
+    req.flash('autor', autor)
+    req.flash('status', status)
+    req.flash('texto', texto)
+
+    res.redirect(`/admin/artigo/edit/${ id }`)
+  } else {
+    database.update({
+      titulo,
+      categoria_id: categoria,
+      autor_id: autor,
+      status_id: status,
+      texto
+    }).table("artigos").where({ id })
+      .then(() => {
+        res.redirect('/admin/artigos')
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
 })
 
 router.post('/admin/artigo/deletar', (req, res) => {
