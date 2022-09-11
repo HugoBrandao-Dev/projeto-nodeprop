@@ -7,19 +7,22 @@
   <hr class="horizontal-bar">
   <article class="funcionario-info">
     Data da publicação:
-    <p>Data da publicação.</p>
+    <p><%= artigo.data_publicacao %></p>
 
     Título:
-    <p>Título do artigo.</p>
+    <p><%= artigo.titulo %></p>
 
     Categoria:
-    <p>Categoria do artigo.</p>
+    <p><%= artigo.categoria %></p>
 
     Autor:
-    <p>Nome do autor do artigo.</p>
+    <p><%= artigo.nome %></p>
+
+    Status:
+    <p><%= artigo.status_artigo %></p>
 
     Artigo:
-    <article>Artigo aqui...</article>
+    <article><%- artigo.texto %></article>
 
     <a href="/admin/artigos" class="btn btn-info btn-right">Voltar</a>
   </article>
