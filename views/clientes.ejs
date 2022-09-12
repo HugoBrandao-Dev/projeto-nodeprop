@@ -6,21 +6,13 @@
   </hgroup>
   <hr class="horizontal-bar">
   <article class="clientes">
-    <section class="cliente bg-white br-7">
-      <a href="#">
-        <img src="img/clientes/cliente_1.png" alt="Logo do cliente 1">
-      </a>
-    </section>
-    <section class="cliente bg-white br-7">
-      <a href="#">
-        <img src="img/clientes/cliente_2.png" alt="Logo do cliente 2">
-      </a>
-    </section>
-    <section class="cliente bg-white br-7">
-      <a href="#">
-        <img src="img/clientes/cliente_3.png" alt="Logo do cliente 3">
-      </a>
-    </section>
+    <% table_clientes.forEach(cliente => { %>
+      <section class="cliente bg-white br-7">
+        <a href="#">
+          <img src="img/clientes/cliente.png" alt="<%= cliente.nome %>" title="<%= cliente.nome %>">
+        </a>
+      </section>
+    <% }) %>
   </article>
 </main>
 <%- include('partials/newsletter.ejs') %>
