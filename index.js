@@ -28,6 +28,7 @@ const quemSomosController = require('./controllers/QuemSomosController')
 const contatosController = require('./controllers/ContatosController')
 const funcionariosController = require('./controllers/FuncionariosController')
 const contratacoesController = require('./controllers/ContratacoesController')
+const newsletterController = require('./controllers/NewsletterController')
 
 // Configuração dos Controllers
 app.use('/', clientesController)
@@ -37,6 +38,7 @@ app.use('/', quemSomosController)
 app.use('/', contatosController)
 app.use('/', funcionariosController)
 app.use('/', contratacoesController)
+app.use('/', newsletterController)
 
 app.get('/', (req, res) => {
   res.render('index')
