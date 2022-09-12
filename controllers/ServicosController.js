@@ -7,7 +7,13 @@ const validator = require('validator')
 const getFuncionariosServicosFormatados = require('../public/js/getFuncionariosServicosFormatados.js')
 
 router.get('/servicos', (req, res) => {
-  res.render('servicos')
+  database.select().table("servicos")
+    .then(table_servicos => {
+      res.render('servicos', { table_servicos })
+    })
+    .catch(error => {
+      console.log(error)
+    })
 })
 
 /* ROTAS DO ADMINISTRADOR */
