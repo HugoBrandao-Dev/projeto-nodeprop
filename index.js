@@ -41,7 +41,24 @@ app.use('/', contratacoesController)
 app.use('/', newsletterController)
 
 app.get('/', (req, res) => {
-  res.render('index')
+  // Captura de erros
+  let emailError = req.flash('emailError')
+
+  let erros = {
+    emailError
+  }
+
+  // Captura de dados
+  let email = req.flash('email')
+
+  let dados = {
+    email
+  }
+
+  res.render('index', {
+    erros,
+    dados
+  })
 })
 
 app.get('/admin', (req, res) => {
