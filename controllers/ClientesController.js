@@ -5,7 +5,13 @@ const database = require('../database/connection')
 const axios = require('axios')
 
 router.get('/clientes', (req, res) => {
-  res.render('clientes')
+  database.select().table("clientes")
+    .then(table_clientes => {
+      res.render('clientes', { table_clientes })
+    })
+    .catch(error => {
+      console.log(error)
+    })
 })
 
 /* ROTAS DO ADMINISTRADOR */
