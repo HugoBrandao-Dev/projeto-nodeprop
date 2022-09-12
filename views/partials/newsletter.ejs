@@ -1,8 +1,10 @@
 <section class="newsletter container bg-black text-center">
   <h2 class="color-white">Inscreva-se agora!</h2>
   <h3 class="color-white">Receba novidades, dicas e muito mais</h3>
-  <form method="POST" class="mt-2">
-    <input type="email" name="email" placeholder="Seu email" class="bg-black color-white br-7">
-    <button class="color-black bg-white br-7 mt-2">Cadastrar</button>
+  <form method="POST" action="/newsletter/salvar" class="mt-2">
+    <div>
+      <input type="email" name="iptEmail" placeholder="Seu email" class="bg-black color-white br-7">
+      <button type="submit" class="color-black bg-white br-7 mt-2">Cadastrar</button>
+    </div>
   </form>
 </section>
