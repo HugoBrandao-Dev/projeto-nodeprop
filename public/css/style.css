@@ -216,6 +216,7 @@ small {
 .artigos .artigo {
 	background-color: rgb(245,245,245);
 	margin-bottom: 10px;
+	width: 100%;
 	float: left;
 }
 
