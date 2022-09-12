@@ -5,7 +5,13 @@ const validator = require('validator')
 const getData = require('../public/js/getData.js')
 
 router.get('/blog', (req, res) => {
-  res.render('blog')
+  database.select().table("artigos")
+    .then(table_artigos => {
+      res.render('blog', { table_artigos })
+    })
+    .catch(error => {
+      console.log(error)
+    })
 })
 
 /* ROTAS DO ADMINISTRADOR */
