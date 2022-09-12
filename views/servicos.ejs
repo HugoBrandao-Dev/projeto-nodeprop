@@ -6,30 +6,16 @@
   </hgroup>
   <hr class="horizontal-bar">
   <article class="servicos">
-    <section class="servico bg-white br-7">
-      <a href="#"><img src="img/criacoes.jpg" alt="Campanhas Publicitárias"></a>
-      <div class="inner">
-        <a href="#">Campanhas Publicitárias</a>
-        <h4 class="color-black mt-2">Impressos, VTs e Jingles</h4>
-        <p class="color-black">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil praesentium odit culpa blanditiis laudantium consectetur magni dignissimos quibusdam beatae aliquid illo, dolorem quasi! Natus perspiciatis qui, magnam voluptate repudiandae blanditiis.</p>
-      </div>
-    </section>
-    <section class="servico bg-white br-7">
-      <a href="#"><img src="img/md.jpg" alt="Marketing Digital"></a>
-      <div class="inner">
-        <a href="#">Marketing Digital</a>
-        <h4 class="color-black mt-2">Administração de Redes Sociais</h4>
-        <p class="color-black">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil praesentium odit culpa blanditiis laudantium consectetur magni dignissimos quibusdam beatae aliquid illo, dolorem quasi! Natus perspiciatis qui, magnam voluptate repudiandae blanditiis.</p>
-      </div>
-    </section>
-    <section class="servico bg-white br-7">
-      <a href="#"><img src="img/cs.jpg" alt="Criação de Sites"></a>
-      <div class="inner">
-        <a href="#">Criação de Sites</a>
-        <h4 class="color-black mt-2">Sites Administráveis</h4>
-        <p class="color-black">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil praesentium odit culpa blanditiis laudantium consectetur magni dignissimos quibusdam beatae aliquid illo, dolorem quasi! Natus perspiciatis qui, magnam voluptate repudiandae blanditiis.</p>
-      </div>
-    </section>
+    <% table_servicos.forEach(servico => { %>
+      <section class="servico bg-white br-7">
+        <a href="#"><img src="img/servicos/servico.png" alt="<%= servico.servico %>"></a>
+        <div class="inner">
+          <a href="#"><%= servico.servico %></a>
+          <h4 class="color-black mt-2">Subtitulo aqui.</h4>
+          <p class="color-black"><%= servico.informacoes_adicionais %></p>
+        </div>
+      </section>
+    <% }) %>
   </article>
 </main>
 <%- include('partials/newsletter.ejs') %>
