@@ -2,6 +2,11 @@
   <h2 class="color-white">Inscreva-se agora!</h2>
   <h3 class="color-white">Receba novidades, dicas e muito mais</h3>
   <form method="POST" action="/newsletter/salvar" class="mt-2">
+    <% if (erros.emailError) { %>
+      <p>
+        <small class="msgAlert"><%= erros.emailError %></small>
+      </p>
+    <% } %>
     <div>
       <input type="email" name="iptEmail" placeholder="Seu email" class="bg-black color-white br-7">
       <button type="submit" class="color-black bg-white br-7 mt-2">Cadastrar</button>
