@@ -29,7 +29,6 @@ desenvolvimento back-end.
 * Axios: Cliente HTTP, para consumo de API, como a do IBGE, que permite fazer buscas por endereços (através do CEP), UFs e etc.
 
 # Possíveis melhorias futuras
-* Corrigir bug das redes sociais, mostradas no footer da página.
 * Corrigir bug da área administrativa, onde os botões de expansão das ações de cada registro ficam amostra, quando clicamos no botão de menu do site.
 * Corrigir bug da área administrativa, na página de criação de um novo artigo, ao clicar no botão de menu, o textarea (TinyMCE) continua sendo evidenciado.
 * Criado sistema para verificação de datas a serem inseridas durante algum cadastramento.
