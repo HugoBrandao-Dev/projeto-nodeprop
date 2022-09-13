@@ -14,6 +14,14 @@
     <% } %>
     <input type="text" name="iptServico" class="br-7" placeholder="Nome do serviço" value="<%= dados.servico %>">
 
+    <label>Breve descrição:</label>
+    <% if (erros.breveDescricao) %>
+      <p>
+        <small class="msgAlert"><%= erros.breveDescricao %></small>
+      </p>
+    <% } %>
+    <input type="text" name="iptBreveDescricao" class="br-7" placeholder="Breve descrição do serviço" value="dados.breve_descricao">
+
     <label>Responsáveis:</label>
     <% if (erros.responsaveisError) { %>
       <p>
