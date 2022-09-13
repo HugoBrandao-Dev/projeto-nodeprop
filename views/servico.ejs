@@ -1,0 +1,13 @@
+<%- include('partials/header.ejs') %>
+<main class="principal container">
+  <hgroup>
+    <h2><%= servico.servico %></h2>
+    <h3><%= servico.breve_descricao %></h3>
+  </hgroup>
+  <hr class="horizontal-bar">
+  <article class="servicos">
+    <%- servico.informacoes_adicionais %>
+  </article>
+</main>
+<%- include('partials/newsletter.ejs') %>
+<%- include('partials/footer.ejs') %>
