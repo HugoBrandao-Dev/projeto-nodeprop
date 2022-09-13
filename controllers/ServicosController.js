@@ -176,6 +176,7 @@ router.get('/admin/servico/edit/:id', (req, res) => {
     "funcionarios.id AS funcionarioId",
     "servicos.id AS servicoId",
     "servico",
+    "breve_descricao",
     "servicos.informacoes_adicionais AS informacoes",
     "nome"
   ]).table("servicos")
@@ -186,6 +187,7 @@ router.get('/admin/servico/edit/:id', (req, res) => {
     })
       .then(resultado => {
         let funcionarioServico = getFuncionariosServicosFormatados(resultado, 'servicoId')[0]
+        console.log(funcionarioServico)
         database.select([
           "funcionarios.id AS funcionarioId",
           "nome",
@@ -196,22 +198,26 @@ router.get('/admin/servico/edit/:id', (req, res) => {
 
               // Recepção dos erros
               let servicoError = req.flash('servicoError')
+              let breveDescricaoError = req.flash('breveDescricaoError')
               let responsaveisError = req.flash('responsaveisError')
               let informacoesError = req.flash('informacoesError')
 
               let erros = {
                 servicoError,
+                breveDescricaoError,
                 responsaveisError,
                 informacoesError
               }
 
               // Recepção dos dados
               let servico = req.flash('servico')
+              let breveDescricao = req.flash('breveDescricao')
               let responsaveis = req.flash('responsaveis')
               let informacoes = req.flash('informacoes')
 
               let dados = {
                 servico,
+                breveDescricao,
                 responsaveis,
                 informacoes
               }
