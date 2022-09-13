@@ -187,7 +187,6 @@ router.get('/admin/servico/edit/:id', (req, res) => {
     })
       .then(resultado => {
         let funcionarioServico = getFuncionariosServicosFormatados(resultado, 'servicoId')[0]
-        console.log(funcionarioServico)
         database.select([
           "funcionarios.id AS funcionarioId",
           "nome",
@@ -350,6 +349,7 @@ router.get('/admin/servico/:id', (req, res) => {
   database.select([
     "funcionarios_servicos.funcionario_id AS funcionarioId",
     "servicos.id",
+    "breve_descricao",
     "nome",
     "servico",
     "servicos.informacoes_adicionais AS informacoes"
@@ -358,7 +358,6 @@ router.get('/admin/servico/:id', (req, res) => {
     .innerJoin("funcionarios", "funcionarios_servicos.funcionario_id", "funcionarios.id")
     .where({ "servicos.id": id })
       .then(resposta => {
-        
         let resultado = getFuncionariosServicosFormatados(resposta)[0]
         res.render('admin/servicos/servicoInfo', { resultado })
       })
