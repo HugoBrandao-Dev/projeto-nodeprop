@@ -85,7 +85,7 @@ router.get('/admin/servico/novo', (req, res) => {
 
 router.post('/admin/servico/salvarNovo', (req, res) => {
   let servico = req.body.iptServico.trim()
-  let breveDescricao = req.body.iptBreveDescricao
+  let breveDescricao = req.body.iptBreveDescricao.trim()
 
   // O flash da bug, quando se passa um [] (vazio) via req.flash()
   let responsaveis = req.body.iptResponsaveis || ''
@@ -242,12 +242,16 @@ router.post('/admin/servico/salvarEdicao', (req, res) => {
   let id = req.body.iptId
   
   let servico = req.body.iptServico.trim()
+  let breveDescricao = req.body.iptBreveDescricao.trim()
 
   // O flash da bug, quando se passa um [] (vazio) via req.flash()
   let responsaveis = req.body.iptResponsaveis || ''
   let informacoes = req.body.iptInformacoes.trim()
 
   let servicoOK = validator.isAlpha(servico, ['pt-BR'], {
+    ignore: ' ,.:;?()\''
+  })
+  let breveDescricaoOK = validator.isAlpha(breveDescricao, ['pt-BR'], {
     ignore: ' ,.:;?()\''
   })
   let responsaveisOK = true
@@ -266,11 +270,15 @@ router.post('/admin/servico/salvarEdicao', (req, res) => {
   })
 
   let servicoError = null
+  let breveDescricaoError = null
   let responsaveisError = null
   let informacoesError = null
 
   if (!servicoOK) {
     servicoError = "SERVICO inválido ou preenchido de forma incorreta."
+  }
+  if (!breveDescricaoOK) {
+    breveDescricaoError = "BREVE DESCRIÇÃO inválido ou preenchido de forma incorreta."
   }
   if (!responsaveisOK) {
     responsaveisError = "RESPONSAVEIS inválido ou preenchido de forma incorreta."
@@ -279,14 +287,16 @@ router.post('/admin/servico/salvarEdicao', (req, res) => {
     informacoesError = "INFORMACOES inválido ou preenchido de forma incorreta."
   }
  
-  if (servicoError || responsaveisError || informacoesError) {
+  if (servicoError || breveDescricaoError || responsaveisError || informacoesError) {
     // Erros
     req.flash('servicoError', servicoError)
+    req.flash('breveDescricaoError', breveDescricaoError)
     req.flash('responsaveisError', responsaveisError)
     req.flash('informacoesError', informacoesError)
 
     // Dados
     req.flash('servico', servico)
+    req.flash('breveDescricao', breveDescricao)
     req.flash('responsaveis', responsaveis)
     req.flash('informacoes', informacoes)
 
@@ -294,6 +304,7 @@ router.post('/admin/servico/salvarEdicao', (req, res) => {
   } else {
     database.update({
       servico,
+      breve_descricao: breveDescricao,
       informacoes_adicionais: informacoes
     }).table("servicos").where({ id })
       .then(servicoId => {
