@@ -3,9 +3,9 @@
   <h3 class="color-white">Receba novidades, dicas e muito mais</h3>
   <form method="POST" action="/newsletter/salvar" class="mt-2">
     <% if (typeof erros != 'undefined') { %>
-      <% if (objectErros.emailError) { %>
+      <% if (erros.emailError) { %>
         <p>
-          <small class="msgAlert"><%= objectErros.emailError %></small>
+          <small class="msgAlert"><%= erros.emailError %></small>
         </p>
       <% } %>
     <% } %>
