@@ -18,6 +18,9 @@ function getFuncionariosServicosFormatados(array, identificadorServico = 'id') {
       if (registro1.informacoes) {
         objeto.informacoes = registro1.informacoes
       }
+      if (registro1.breve_descricao) {
+        objeto.breve_descricao = registro1.breve_descricao
+      }
       novoArray.push(objeto)
     }
   })
