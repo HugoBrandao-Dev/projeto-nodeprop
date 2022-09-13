@@ -7,5 +7,7 @@ CREATE TABLE servicos (
 	PRIMARY KEY(id)
 );
 
+ALTER TABLE servicos ADD COLUMN breve_descricao VARCHAR(50) NOT NULL AFTER servico;
+
 SELECT * FROM servicos;
 DESCRIBE servicos;
