@@ -28,7 +28,6 @@ router.get('/admin/servicos', (req, res) => {
     .innerJoin("funcionarios_servicos", "funcionarios_servicos.servico_id", "servicos.id")
     .innerJoin("funcionarios", "funcionarios_servicos.funcionario_id", "funcionarios.id")
       .then(resultado => {
-        console.log(resultado)
         let registros = getFuncionariosServicosFormatados(resultado)
         
         res.render('admin/servicos/servicosList', { registros })
@@ -49,22 +48,26 @@ router.get('/admin/servico/novo', (req, res) => {
 
       // Erros
       let servicoError = req.flash('servicoError')
+      let breveDescricaoError = req.flash('breveDescricaoError')
       let responsaveisError = req.flash('responsaveisError')
       let informacoesError = req.flash('informacoesError')
 
       // Dados
       let servico = req.flash('servico')
+      let breveDescricao = req.flash('breveDescricao')
       let responsaveis = req.flash('responsaveis')
       let informacoes = req.flash('informacoes')
 
       let erros = {
         servicoError,
+        breveDescricaoError,
         responsaveisError,
         informacoesError
       }
 
       let dados = {
         servico,
+        breveDescricao,
         responsaveis,
         informacoes
       }
@@ -130,7 +133,7 @@ router.post('/admin/servico/salvarNovo', (req, res) => {
   if (servicoError || breveDescricaoError || responsaveisError || informacoesError) {
     // Erros
     req.flash('servicoError', servicoError)
-    req.flash('breveDescricaoError'), breveDescricaoError
+    req.flash('breveDescricaoError', breveDescricaoError)
     req.flash('responsaveisError', responsaveisError)
     req.flash('informacoesError', informacoesError)
 
