@@ -211,6 +211,8 @@ small {
 .servico .inner p {
 	margin-top: 6%;
 	line-height: 1.5em;
+	height: 100px;
+	overflow: hidden;
 }
 
 .artigos .artigo {
