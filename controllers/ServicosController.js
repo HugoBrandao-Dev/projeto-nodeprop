@@ -16,6 +16,16 @@ router.get('/servicos', (req, res) => {
     })
 })
 
+router.get('/servico/:id', (req, res) => {
+  let id = req.params.id
+
+  database.select().table("servicos").where({ id })
+    .then(table_servicos => {
+      let servico = table_servicos[0]
+      res.render('servico', { servico })
+    })
+})
+
 /* ROTAS DO ADMINISTRADOR */
 
 router.get('/admin/servicos', (req, res) => {
