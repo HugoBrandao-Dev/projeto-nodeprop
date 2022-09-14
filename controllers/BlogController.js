@@ -346,8 +346,11 @@ router.post('/admin/artigo/salvarCadastrado', (req, res) => {
 
     res.redirect(`/admin/artigo/edit/${ id }`)
   } else {
+    let slug = slugify(titulo.toLowerCase())
+
     database.update({
       titulo,
+      slug,
       categoria_id: categoria,
       autor_id: autor,
       status_id: status,
