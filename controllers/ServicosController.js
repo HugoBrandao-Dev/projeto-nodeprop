@@ -315,8 +315,10 @@ router.post('/admin/servico/salvarEdicao', (req, res) => {
 
     res.redirect(`/admin/servico/edit/${ id }`)
   } else {
+    let slug = slugify(servico.toLowerCase())
     database.update({
       servico,
+      slug,
       breve_descricao: breveDescricao,
       informacoes_adicionais: informacoes
     }).table("servicos").where({ id })
