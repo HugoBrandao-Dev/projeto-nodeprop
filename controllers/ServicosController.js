@@ -17,10 +17,10 @@ router.get('/servicos', (req, res) => {
     })
 })
 
-router.get('/servico/:id', (req, res) => {
-  let id = req.params.id
+router.get('/servico/:slug', (req, res) => {
+  let slug = req.params.slug
 
-  database.select().table("servicos").where({ id })
+  database.select().table("servicos").where({ slug })
     .then(table_servicos => {
       let servico = table_servicos[0]
       res.render('servico', { servico })

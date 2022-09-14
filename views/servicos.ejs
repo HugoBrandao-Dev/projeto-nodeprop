@@ -8,9 +8,9 @@
   <article class="servicos">
     <% table_servicos.forEach(servico => { %>
       <section class="servico bg-white br-7">
-        <a href="/servico/<%= servico.id %>"><img src="img/servicos/servico.png" alt="<%= servico.servico %>"></a>
+        <a href="/servico/<%= servico.slug %>"><img src="img/servicos/servico.png" alt="<%= servico.servico %>"></a>
         <div class="inner">
-          <a href="/servico/<%= servico.id %>"><%= servico.servico %></a>
+          <a href="/servico/<%= servico.slug %>"><%= servico.servico %></a>
           <h4 class="color-black mt-2"><%= servico.breve_descricao %></h4>
           <p class="color-black"><%= servico.informacoes_adicionais %></p>
         </div>
