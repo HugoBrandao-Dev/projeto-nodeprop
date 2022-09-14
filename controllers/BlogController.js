@@ -3,6 +3,7 @@ const router = express.Router()
 const database = require('../database/connection')
 const validator = require('validator')
 const getData = require('../public/js/getData.js')
+const slugify = require('slugify')
 
 router.get('/blog', (req, res) => {
   database.select().table("artigos")
@@ -151,9 +152,12 @@ router.post('/admin/artigo/salvarNovo', (req, res) => {
 
     res.redirect('/admin/artigo/novo')
   } else {
+    let slug = slugify(titulo.toLowerCase())
+
     database.insert({
       data_publicacao: getData(),
       titulo,
+      slug,
       categoria_id: categoria,
       autor_id: autor,
       status_id: status,
