@@ -34,3 +34,4 @@ desenvolvimento back-end.
 * Criado sistema para verificação de datas a serem inseridas durante algum cadastramento.
 * Corrigir bug de preenchimento, quando há erro no preenchimento, da edição de um serviço. Quando NÃO há checkbox marcado, é redirecionado para o mesmo, formulário mas com os checkbox do CADASTRO do servico marcados.
 * Criar sistema para o envio  armazenamento de arquivos de imagens, para a capa de serviços e clientes, e pdf para os contratos.
+* Corrigir bug do estilo responsivo da pagina de listagem servicos para visitantes.
