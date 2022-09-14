@@ -8,6 +8,7 @@ CREATE TABLE servicos (
 );
 
 ALTER TABLE servicos ADD COLUMN breve_descricao VARCHAR(50) NOT NULL AFTER servico;
+ALTER TABLE servicos ADD COLUMN slug VARCHAR(100) NOT NULL AFTER servico;
 
 SELECT * FROM servicos;
 DESCRIBE servicos;
