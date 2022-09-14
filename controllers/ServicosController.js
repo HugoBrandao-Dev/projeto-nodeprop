@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const database = require('../database/connection')
 const validator = require('validator')
+const slugify = require('slugify')
 
 // Função para tratamento do relacionamento (dados) entre as tabelas Funcionarios, Servicos, Funcionarios_Servicos.
 const getFuncionariosServicosFormatados = require('../public/js/getFuncionariosServicosFormatados.js')
@@ -155,8 +156,11 @@ router.post('/admin/servico/salvarNovo', (req, res) => {
 
     res.redirect('/admin/servico/novo')
   } else {
+    let slug = slugify(servico.toLowerCase())
+
     database.insert({
       servico,
+      slug,
       breve_descricao: breveDescricao,
       informacoes_adicionais: informacoes
     }).table("servicos")
