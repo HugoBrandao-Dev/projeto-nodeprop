@@ -180,6 +180,10 @@ small {
 
 /* Áreas: SERVIÇOS e CLIENTES */
 
+.servicos .servico {
+	background-color: rgb(245,245,245);
+}
+
 .servicos .servico, .clientes .cliente {
 	width: 100%;
 	text-align: left;
@@ -406,8 +410,13 @@ small {
 	.banner .title h3 {
 		font-size: 2em;
 	}
+
+	.servicos .servico {
+		height: 500px;
+	}
+
 	.servicos .servico, .clientes .cliente {
-		width: 49%;
+		width: 48%;
 		float: left;
 		margin-right: 2%;
 	}
