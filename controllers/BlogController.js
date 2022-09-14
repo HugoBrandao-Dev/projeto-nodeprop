@@ -4,6 +4,7 @@ const database = require('../database/connection')
 const validator = require('validator')
 const getData = require('../public/js/getData.js')
 const slugify = require('slugify')
+const getDataFormatada = require('../public/js/getDataFormatada.js')
 
 router.get('/blog', (req, res) => {
 
@@ -20,9 +21,18 @@ router.get('/blog', (req, res) => {
 router.get('/blog/artigo/:slug',(req, res) => {
   let slug = req.params.slug
 
-  database.select().table("artigos").where({ slug })
+  database.select([
+    "titulo",
+    "funcionarios.nome AS autor",
+    "categoria",
+    "texto",
+    "data_publicacao"
+  ]).table("artigos").where({ slug })
+    .innerJoin("funcionarios", "funcionarios.id", "artigos.autor_id")
+    .innerJoin("categorias", "categorias.id", "artigos.categoria_id")
     .then(table_artigos => {
       let artigo = table_artigos[0]
+      artigo.data = getDataFormatada(artigo.data_publicacao)
       res.render('artigo', { artigo })
     })
 })
