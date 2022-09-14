@@ -2,12 +2,14 @@
   <main class="principal container">
     <hgroup>
       <h2><%= artigo.titulo %></h2>
-      <h3><%= artigo.autor %></h3>
+      <h3 class="h3-autor"><%= artigo.autor %></h3>
     </hgroup>
     <hr class="horizontal-bar">
-    <p>Data de publicação: <%= artigo.data %></p>
-    <a href="#"><%= artigo.categoria %></a>
-    <article class="artigos">
+    <div class="artigo-info">
+      <p>Data da publicação: <%= artigo.data %></p>
+      <a href="#"><%= artigo.categoria %></a>
+    </div>
+    <article class="artigo mt-2">
       <%- artigo.texto %>
     </article>
   </main>
