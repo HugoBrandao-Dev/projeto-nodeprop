@@ -6,7 +6,9 @@ const getData = require('../public/js/getData.js')
 const slugify = require('slugify')
 
 router.get('/blog', (req, res) => {
-  database.select().table("artigos")
+
+  // O where é para selecionar somente os artigo que já foram publicados.
+  database.select().table("artigos").where({ status_id: 2 })
     .then(table_artigos => {
       res.render('blog', { table_artigos })
     })
