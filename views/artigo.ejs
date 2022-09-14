@@ -1,0 +1,15 @@
+<%- include('partials/header.ejs') %>
+  <main class="principal container">
+    <hgroup>
+      <h2><%= artigo.titulo %></h2>
+      <h3><%= artigo.autor %></h3>
+    </hgroup>
+    <hr class="horizontal-bar">
+    <p>Data de publicação: <%= artigo.data %></p>
+    <a href="#"><%= artigo.categoria %></a>
+    <article class="artigos">
+      <%- artigo.texto %>
+    </article>
+  </main>
+<%- include('partials/newsletter.ejs') %>
+<%- include('partials/footer.ejs') %>
