@@ -14,6 +14,16 @@ router.get('/blog', (req, res) => {
     })
 })
 
+router.get('/blog/artigo/:slug',(req, res) => {
+  let slug = req.params.slug
+
+  database.select().table("artigos").where({ slug })
+    .then(table_artigos => {
+      let artigo = table_artigos[0]
+      res.render('artigo', { artigo })
+    })
+})
+
 /* ROTAS DO ADMINISTRADOR */
 
 router.get('/admin/artigos', (req, res) => {
