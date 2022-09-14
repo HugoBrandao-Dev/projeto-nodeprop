@@ -250,6 +250,10 @@ small {
 	background: linear-gradient(to right, #ce2e3c, #da6709);
 }
 
+.h3-autor {
+	text-transform: capitalize;
+}
+
 .about, .about p, .about figure {
 	float: left;
 }
