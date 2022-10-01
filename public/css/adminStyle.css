@@ -6,6 +6,10 @@
   display: inline-table;
 }
 
+.position-initial {
+  position: initial;
+}
+
 /* HOME */
 
 .table-cargos, .table-setores, .form-opcao .input-cargo {

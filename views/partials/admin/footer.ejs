@@ -11,11 +11,15 @@
     // Mostra o menu quando o botão btn-menu é clicado
     $(".btn-menu").click(function () {
       $(".menu").show()
+      $(".btn-table-acao").css('position', 'initial')
+      $(".tox-tinymce").css('display', 'none')
     })
 
     // Esconde o menu quando o botão btn-close é clicado
     $(".btn-close").click(function() {
       $(".menu").hide()
+      $(".btn-table-acao").css('position', 'relative')
+      $(".tox-tinymce").css('display', 'block')
     })
   </script>
 </body>
